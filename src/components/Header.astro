@@ -1,0 +1,46 @@
+---
+const { locale = "en", currentPath = "" } = Astro.props;
+
+const base = locale === "ar" ? "/ar" : "/en";
+const otherLocale = locale === "ar" ? "en" : "ar";
+const switchHref = `/${otherLocale}/${currentPath}`.replace(/\/+$/, "") || `/${otherLocale}`;
+
+const navItems = [
+  { href: "", labelEn: "Home", labelAr: "الرئيسية" },
+  { href: "about", labelEn: "About", labelAr: "من نحن" },
+  { href: "commodities", labelEn: "Commodities", labelAr: "السلع" },
+  { href: "contact", labelEn: "Contact", labelAr: "اتصل بنا" },
+];
+const isRtl = locale === "ar";
+---
+
+<header class="border-b border-slate-200 bg-white">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4">
+    <a href={locale === "ar" ? "/ar" : "/en"} class="text-xl font-semibold text-slate-900">
+      AL Farhan General Trading
+    </a>
+    <nav class="flex flex-wrap items-center gap-6" aria-label="Main">
+      {
+        navItems.map((item) => {
+          const href = `${base}/${item.href}`.replace(/\/+$/, "") || base;
+          const label = isRtl ? item.labelAr : item.labelEn;
+          return (
+            <a
+              href={href}
+              class="text-slate-600 hover:text-slate-900 hover:underline"
+            >
+              {label}
+            </a>
+          );
+        })
+      }
+      <a
+        href={switchHref}
+        class="rounded border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
+        aria-label={isRtl ? "Switch to English" : "التبديل إلى العربية"}
+      >
+        {locale === "ar" ? "EN" : "AR"}
+      </a>
+    </nav>
+  </div>
+</header>
