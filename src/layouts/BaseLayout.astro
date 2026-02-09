@@ -13,7 +13,7 @@ const {
 } = Astro.props;
 
 const resolvedDir = dir ?? (lang === "ar" ? "rtl" : "ltr");
-const baseUrl = "https://example.com";
+const baseUrl = Astro.site?.origin ?? "https://general-gjpn.vercel.app";
 const canonicalPath = currentPath ? `/${locale}/${currentPath}` : `/${locale}`;
 const canonicalUrl = `${baseUrl}${canonicalPath}`;
 const enPath = currentPath ? `/en/${currentPath}` : "/en";
@@ -28,6 +28,14 @@ const arPath = currentPath ? `/ar/${currentPath}` : "/ar";
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="AL Farhan General Trading Co" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="alternate" hreflang="en" href={`${baseUrl}${enPath}`} />
