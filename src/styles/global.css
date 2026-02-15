@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap");
+@import "tailwindcss";
+
+.clip-polygon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.font-nav {
+  font-family: "Cormorant Garamond", serif;
+}

@@ -1,0 +1,100 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Commodities | Sugar, Wheat, Barley & Sunflower Oil — ALFArhan"
+  description="Overview of supported commodity categories and structured buyer engagement across active markets."
+  lang="en"
+  dir="ltr"
+  locale="en"
+  currentPath="commodities"
+>
+  <section class="py-24 bg-[#1b2230]">
+    <div class="mx-auto max-w-[1140px] px-8 text-center">
+
+      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
+        Commodity Categories
+      </h1>
+
+      <p class="mt-8 text-lg text-white/80 leading-8 max-w-2xl mx-auto" data-slot="hero-description"></p>
+
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#2c2c2c]">
+    <div class="mx-auto max-w-[1140px] px-8">
+
+      <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
+
+        <a href="/en/commodities/sugar" class="group block">
+          <figure class="h-[320px] overflow-hidden">
+            <div class="h-full w-full object-cover" data-slot="card-1-image"></div>
+          </figure>
+          <h2 class="mt-6 text-2xl text-white group-hover:text-gray-300 transition-colors">
+            Sugar
+          </h2>
+        </a>
+
+        <a href="/en/commodities/wheat" class="group block">
+          <figure class="h-[320px] overflow-hidden">
+            <div class="h-full w-full object-cover" data-slot="card-2-image"></div>
+          </figure>
+          <h2 class="mt-6 text-2xl text-white group-hover:text-gray-300 transition-colors">
+            Wheat
+          </h2>
+        </a>
+
+        <a href="/en/commodities/barley" class="group block">
+          <figure class="h-[320px] overflow-hidden">
+            <div class="h-full w-full object-cover" data-slot="card-3-image"></div>
+          </figure>
+          <h2 class="mt-6 text-2xl text-white group-hover:text-gray-300 transition-colors">
+            Barley
+          </h2>
+        </a>
+
+        <a href="/en/commodities/sunflower-oil" class="group block">
+          <figure class="h-[320px] overflow-hidden">
+            <div class="h-full w-full object-cover" data-slot="card-4-image"></div>
+          </figure>
+          <h2 class="mt-6 text-2xl text-white group-hover:text-gray-300 transition-colors">
+            Sunflower Oil
+          </h2>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#1b2230]">
+    <div class="mx-auto max-w-[900px] px-8 text-center">
+
+      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
+        Structured Intermediary Engagement
+      </h2>
+
+      <p class="mt-8 text-lg text-white/80 leading-8" data-slot="section-3-body"></p>
+
+    </div>
+  </section>
+
+  <section class="py-32 bg-[#2c2c2c]">
+    <div class="mx-auto max-w-[1140px] px-8 text-center">
+
+      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
+        Engage With AFGT
+      </h2>
+
+      <a
+        href="/en/contact"
+        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
+        data-slot="cta-link"
+      >
+        <span data-slot="cta-text">Request Commodity Access</span>
+      </a>
+
+    </div>
+  </section>
+</BaseLayout>

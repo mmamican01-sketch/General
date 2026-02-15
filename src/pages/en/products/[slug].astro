@@ -1,0 +1,144 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  const pages = [
+    {
+      slug: "institutional-procurement-support",
+      title: "Institutional Procurement Support",
+      intro: "",
+      overview: ["", ""],
+      specifications: [
+        { label: "Engagement Scope", value: "" },
+        { label: "Counterpart Model", value: "" },
+        { label: "Documentation Layer", value: "" },
+        { label: "Execution Basis", value: "" },
+      ],
+      origins: ["", "", ""],
+    },
+    {
+      slug: "supplier-verification-alignment",
+      title: "Supplier Verification Alignment",
+      intro: "",
+      overview: ["", ""],
+      specifications: [
+        { label: "Engagement Scope", value: "" },
+        { label: "Counterpart Model", value: "" },
+        { label: "Documentation Layer", value: "" },
+        { label: "Execution Basis", value: "" },
+      ],
+      origins: ["", "", ""],
+    },
+    {
+      slug: "documentation-transaction-structure",
+      title: "Documentation & Transaction Structure",
+      intro: "",
+      overview: ["", ""],
+      specifications: [
+        { label: "Engagement Scope", value: "" },
+        { label: "Counterpart Model", value: "" },
+        { label: "Documentation Layer", value: "" },
+        { label: "Execution Basis", value: "" },
+      ],
+      origins: ["", "", ""],
+    },
+    {
+      slug: "execution-coordination",
+      title: "Execution Coordination",
+      intro: "",
+      overview: ["", ""],
+      specifications: [
+        { label: "Engagement Scope", value: "" },
+        { label: "Counterpart Model", value: "" },
+        { label: "Documentation Layer", value: "" },
+        { label: "Execution Basis", value: "" },
+      ],
+      origins: ["", "", ""],
+    },
+  ];
+
+  return pages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<BaseLayout
+  title={`${page.title} | Products — ALFArhan`}
+  description={page.intro}
+  lang="en"
+  dir="ltr"
+  locale="en"
+  currentPath={`products/${page.slug}`}
+>
+  <section class="py-24 bg-[#1b2230]">
+    <div class="mx-auto max-w-[1140px] px-8">
+      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
+        {page.title}
+      </h1>
+      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="hero-description">
+        {page.intro}
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="mx-auto grid max-w-[1140px] grid-cols-1 items-center gap-16 px-8 md:grid-cols-2">
+      <div>
+        <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-2-title">
+          Overview
+        </h2>
+        <p class="mt-6 text-slate-600 leading-8" data-slot="section-2-body-1">{page.overview[0]}</p>
+        <p class="mt-6 text-slate-600 leading-8" data-slot="section-2-body-2">{page.overview[1]}</p>
+      </div>
+      <figure class="h-[420px] w-full overflow-hidden">
+        <div class="h-full w-full object-cover" data-slot="section-2-image"></div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#f8f8f8]">
+    <div class="mx-auto max-w-[1140px] px-8">
+      <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
+        Specifications
+      </h2>
+      <div class="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+        {page.specifications.map((item, index) => (
+          <div>
+            <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot={`section-3-card-${index + 1}-title`}>{item.label}</h3>
+            <p class="mt-4 text-slate-600 leading-7" data-slot={`section-3-card-${index + 1}-body`}>{item.value}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#1b2230]">
+    <div class="mx-auto max-w-[1140px] px-8">
+      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
+        Origins / Certifications
+      </h2>
+      <ul class="mt-8 max-w-3xl space-y-3 text-lg leading-8 text-white/80">
+        {page.origins.map((item, index) => <li data-slot={`section-4-item-${index + 1}`}>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-32 bg-[#2c2c2c]">
+    <div class="mx-auto max-w-[1140px] px-8 text-center">
+      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
+        Engage With AFGT
+      </h2>
+      <a
+        href="/en/contact"
+        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
+        data-slot="cta-link"
+      >
+        <span data-slot="cta-text">Request Structured Engagement</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

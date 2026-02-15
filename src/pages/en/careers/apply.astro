@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+const locale = "en";
+---
+
+<BaseLayout locale={locale} title="Apply">
+  <section class="py-24 bg-[#1b2230]">
+    <div class="mx-auto max-w-[1140px] px-8">
+      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;">Submit Career Inquiry</h1>
+      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80">Career inquiry channel for institutional role alignment.</p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="mx-auto max-w-[1140px] px-8">
+      <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;">Candidate Details</h2>
+      <p class="mt-8 max-w-3xl text-lg leading-8 text-slate-600">Include background summary and relevant operating experience.</p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#f8f8f8]">
+    <div class="mx-auto max-w-[1140px] px-8">
+      <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;">Role Interest</h2>
+      <p class="mt-8 max-w-3xl text-lg leading-8 text-slate-600">Specify role interest and preferred functional scope.</p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#1b2230]">
+    <div class="mx-auto max-w-[1140px] px-8">
+      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;">Submission Notes</h2>
+      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80">Submissions are reviewed through a structured response and follow-up sequence.</p>
+    </div>
+  </section>
+
+  <section class="py-32 bg-[#2c2c2c]">
+    <div class="mx-auto max-w-[1140px] px-8 text-center">
+      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;">Questions / Contact</h2>
+      <a
+        href="/en/contact"
+        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
+      >
+        Request Buyer Access
+      </a>
+    </div>
+  </section>
+</BaseLayout>

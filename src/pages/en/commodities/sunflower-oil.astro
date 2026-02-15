@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Sunflower Oil Trading | Buyer Access — ALFArhan General Trading Co."
+  description="Buyer-oriented access to bulk sunflower oil trade with structured engagement and compliance alignment."
+  lang="en"
+  dir="ltr"
+  locale="en"
+  currentPath="commodities/sunflower-oil"
+>
+  <section class="py-24 bg-[#1b2230]">
+    <div class="mx-auto max-w-[1140px] px-8">
+      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
+        Sunflower Oil Commodity
+      </h1>
+      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="hero-description"></p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="mx-auto grid max-w-[1140px] grid-cols-1 items-center gap-16 px-8 md:grid-cols-2">
+      <div>
+        <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-2-title">
+          Commodity Overview
+        </h2>
+        <p class="mt-6 text-slate-600 leading-8" data-slot="section-2-body-1"></p>
+        <p class="mt-6 text-slate-600 leading-8" data-slot="section-2-body-2"></p>
+      </div>
+      <figure class="h-[420px] w-full overflow-hidden">
+        <div class="h-full w-full object-cover" data-slot="section-2-image"></div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#f8f8f8]">
+    <div class="mx-auto max-w-[1140px] px-8">
+      <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
+        Key Specifications
+      </h2>
+      <div class="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-1-title">FFA Range</h3>
+          <p class="mt-4 text-slate-600 leading-7" data-slot="section-3-card-1-body"></p>
+        </div>
+        <div>
+          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-2-title">Origin Options</h3>
+          <p class="mt-4 text-slate-600 leading-7" data-slot="section-3-card-2-body"></p>
+        </div>
+        <div>
+          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-3-title">Packaging Formats</h3>
+          <p class="mt-4 text-slate-600 leading-7" data-slot="section-3-card-3-body"></p>
+        </div>
+        <div>
+          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-4-title">Shipment Terms</h3>
+          <p class="mt-4 text-slate-600 leading-7" data-slot="section-3-card-4-body"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#1b2230]">
+    <div class="mx-auto max-w-[1140px] px-8">
+      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
+        Institutional Supply Alignment
+      </h2>
+      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="section-4-body"></p>
+    </div>
+  </section>
+
+  <section class="py-32 bg-[#2c2c2c]">
+    <div class="mx-auto max-w-[1140px] px-8 text-center">
+      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
+        Engage With AFGT
+      </h2>
+      <a
+        href="/en/contact"
+        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
+        data-slot="cta-link"
+      >
+        <span data-slot="cta-text">Request Structured Engagement</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

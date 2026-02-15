@@ -1,0 +1,159 @@
+---
+const { locale = "en", currentPath = "" } = Astro.props;
+
+const base = locale === "ar" ? "/ar" : "/en";
+const otherLocale = locale === "ar" ? "en" : "ar";
+const switchHref = `/${otherLocale}/${currentPath}`.replace(/\/+$/, "") || `/${otherLocale}`;
+
+function buildHref(path: string) {
+  const p = path ? `${base}/${path}` : base;
+  return p.replace(/\/+$/, "") || base;
+}
+
+function isActive(path: string) {
+  const normalized = currentPath.replace(/\/+$/, "") || "";
+  const normalizedPath = path.replace(/\/+$/, "") || "";
+  return normalized === normalizedPath || (normalizedPath && normalized.startsWith(normalizedPath + "/"));
+}
+
+const isRtl = locale === "ar";
+
+const utilityLinks = [
+  { href: "careers/apply", labelEn: "Apply for a role", labelAr: "التقدم لوظيفة", external: false },
+  { href: "newsroom", labelEn: "Newsroom", labelAr: "غرفة الأخبار", external: false },
+  { href: "contact", labelEn: "Contact Us", labelAr: "اتصل بنا", external: false },
+];
+
+const primaryNavItems = [
+  { href: "who-we-are", labelEn: "Who we are", labelAr: "من نحن", dropdown: false },
+  { href: "products", labelEn: "Products & Services", labelAr: "المنتجات والخدمات", dropdown: true },
+  { href: "sustainability", labelEn: "Sustainability", labelAr: "الاستدامة", dropdown: false },
+  { href: "careers", labelEn: "Careers", labelAr: "الوظائف", dropdown: false },
+];
+---
+
+<header class="w-full bg-white">
+  <!-- Tier A — Utility Bar -->
+  <div class="w-full bg-[#f5f5f5]">
+    <div class="mx-auto max-w-[1400px] px-8 py-3">
+      <div class="flex items-center justify-end gap-8">
+        {utilityLinks.map((item) => {
+          const href = item.external ? item.href : buildHref(item.href);
+          const label = isRtl ? item.labelAr : item.labelEn;
+          return (
+            <a
+              href={href}
+              class="flex items-center gap-1 text-sm text-[#2c2c2c] transition-colors hover:text-[#000]"
+              {...(item.external && { rel: "noopener noreferrer", target: "_blank", "aria-label": `${label} (opens in new tab)` })}
+            >
+              {label}
+              {item.external && (
+                <svg class="h-3.5 w-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              )}
+            </a>
+          );
+        })}
+
+        <details class="relative" aria-label="Global sites">
+          <summary class="flex cursor-pointer list-none items-center gap-1 text-sm text-[#2c2c2c] transition-colors hover:text-[#000] [&::-webkit-details-marker]:hidden">
+            {isRtl ? "المواقع العالمية" : "Global sites"}
+            <svg class="h-3.5 w-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="absolute top-full end-0 z-10 mt-1 min-w-[180px] rounded border border-gray-200 bg-white py-2 shadow-lg">
+            <a href="#" class="block px-4 py-2 text-sm text-[#2c2c2c] hover:bg-gray-50 hover:text-[#000]">Saudi Arabia</a>
+            <a href="#" class="block px-4 py-2 text-sm text-[#2c2c2c] hover:bg-gray-50 hover:text-[#000]">UAE</a>
+            <a href="#" class="block px-4 py-2 text-sm text-[#2c2c2c] hover:bg-gray-50 hover:text-[#000]">Regional</a>
+          </div>
+        </details>
+
+        <button type="button" class="bg-[#2c2c2c] p-2 transition-colors hover:bg-[#000]" aria-label="Search">
+          <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tier B — Primary Header -->
+  <div class="w-full border-b border-gray-200 bg-white">
+    <div class="mx-auto max-w-[1400px] px-8 py-6">
+      <div class="flex items-center justify-between">
+        <a href={base} class="flex items-center gap-3">
+          <div class="h-10 w-10 shrink-0 bg-gradient-to-br from-blue-600 via-blue-500 to-teal-400 clip-polygon"></div>
+          <span class="font-sans text-2xl tracking-tight text-[#2c2c2c]">AFGT</span>
+        </a>
+
+        <nav class="flex items-center gap-12 font-nav" aria-label="Main navigation">
+          {primaryNavItems.map((item) => {
+            const label = isRtl ? item.labelAr : item.labelEn;
+            if (item.dropdown) {
+              return (
+                <details class="group relative">
+                  <summary class="flex cursor-pointer list-none items-center gap-1 text-[#2c2c2c] transition-colors hover:text-[#000] [&::-webkit-details-marker]:hidden">
+                    {label}
+                    <svg class="h-3.5 w-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </summary>
+                  <div class="absolute left-0 top-full z-20 mt-1 min-w-[640px] rounded border border-gray-200 bg-white p-6 shadow-lg">
+                    <div class="grid grid-cols-4 gap-6">
+                      <div>
+                        <p class="mb-3 text-xs font-medium uppercase tracking-wider text-gray-500">Categories</p>
+                        <ul class="space-y-2">
+                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Placeholder 1</a></li>
+                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Placeholder 2</a></li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p class="mb-3 text-xs font-medium uppercase tracking-wider text-gray-500">Products</p>
+                        <ul class="space-y-2">
+                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Placeholder A</a></li>
+                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Placeholder B</a></li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p class="mb-3 text-xs font-medium uppercase tracking-wider text-gray-500">Content / Banners</p>
+                        <div class="h-24 rounded bg-gray-100"></div>
+                      </div>
+                      <div>
+                        <p class="mb-3 text-xs font-medium uppercase tracking-wider text-gray-500">Pages / Resources</p>
+                        <ul class="space-y-2">
+                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Placeholder X</a></li>
+                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Placeholder Y</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </details>
+              );
+            }
+            const href = buildHref(item.href);
+            const active = isActive(item.href);
+            return (
+              <a
+                href={href}
+                class="text-[#2c2c2c] transition-colors hover:text-[#000]"
+                aria-current={active ? "page" : undefined}
+              >
+                {label}
+              </a>
+            );
+          })}
+
+          <a
+            href={switchHref}
+            class="rounded border border-slate-300 px-3 py-1.5 text-sm text-slate-700 transition-colors hover:bg-slate-50"
+            aria-label={isRtl ? "Switch to English" : "التبديل إلى العربية"}
+          >
+            {locale === "ar" ? "EN" : "AR"}
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

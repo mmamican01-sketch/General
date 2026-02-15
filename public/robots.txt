@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://general-gjpn.vercel.app/sitemap.xml

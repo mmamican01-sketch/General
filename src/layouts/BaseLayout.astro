@@ -1,0 +1,61 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { normalizeUrl } from "../lib/seo";
+
+const {
+  title = "AL Farhan General Trading Co",
+  locale,
+  currentPath = "",
+  description = "AL Farhan General Trading Co — institutional commodity trading.",
+} = Astro.props;
+
+if (!locale) {
+  throw new Error("BaseLayout requires a locale prop (e.g. 'en' or 'ar').");
+}
+
+const pathname = Astro.url?.pathname ?? (currentPath ? `/${locale}/${currentPath}` : `/${locale}`);
+const cleanPathname = pathname.replace(/^\/+|\/+$/g, "");
+const pathParts = cleanPathname ? cleanPathname.split("/") : [];
+const hasLocalePrefix = pathParts[0] === "en" || pathParts[0] === "ar";
+const sharedPath = hasLocalePrefix ? pathParts.slice(1).join("/") : currentPath;
+
+const canonicalUrl = normalizeUrl(Astro.site, pathname);
+const enPath = sharedPath ? `/en/${sharedPath}` : "/en";
+const arPath = sharedPath ? `/ar/${sharedPath}` : "/ar";
+const enHref = normalizeUrl(Astro.site, enPath);
+const arHref = normalizeUrl(Astro.site, arPath);
+---
+
+<!doctype html>
+<html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="AL Farhan General Trading Co" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="alternate" hreflang="en" href={enHref} />
+    <link rel="alternate" hreflang="ar" href={arHref} />
+    <link rel="alternate" hreflang="x-default" href={normalizeUrl(Astro.site, "/en")} />
+  </head>
+  <body class="min-h-screen bg-white text-slate-900">
+    <Header locale={locale} currentPath={currentPath} />
+    <main class="mx-auto max-w-6xl px-4 py-10">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>
+

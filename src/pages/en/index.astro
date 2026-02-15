@@ -1,0 +1,165 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import background from "../../assets/background.svg";
+---
+
+<BaseLayout
+  title="ALFArhan General Trading Co. | Commodities Intermediary"
+  description="Buyer-oriented access to bulk commodity trade across sugar, wheat, barley, and sunflower oil."
+  lang="en"
+  dir="ltr"
+  locale="en"
+  currentPath=""
+>
+  <section class="relative w-full overflow-hidden bg-[#2c2c2c] py-24">
+    <div class="relative z-10 mx-auto max-w-[1140px] px-8 text-center">
+      <h1 class="mb-8 font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
+        We are AFGT
+      </h1>
+
+      <a
+        href="/en/who-we-are"
+        class="inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
+        data-slot="hero-cta-link"
+      >
+        <span data-slot="hero-cta-text">Who we are</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="mx-auto max-w-[1140px] px-8">
+      <p class="text-center font-serif text-2xl text-white/90" style="font-weight:400; line-height:1.4;" data-slot="section-2-body">
+        We provide structured intermediary support for institutional buyers seeking reliable access to bulk commodities.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="mx-auto max-w-[1140px] px-8">
+      <div class="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
+
+        <!-- Text Column -->
+        <div>
+          <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
+            Structured Commodity Access
+          </h2>
+
+          <p class="mt-6 text-lg leading-8 text-white/80" data-slot="section-3-body"></p>
+
+          <a
+            href="/en/products"
+            class="mt-8 inline-block border-b border-white pb-1 text-white transition-colors hover:text-gray-300"
+            data-slot="section-3-cta-link"
+          >
+            <span data-slot="section-3-cta-text">Explore Products</span>
+          </a>
+        </div>
+
+        <!-- Media Column -->
+        <figure class="h-[420px] w-full overflow-hidden">
+          <div class="h-full w-full object-cover" data-slot="section-3-image"></div>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#1b2230]">
+    <div class="mx-auto max-w-[1140px] px-8">
+
+      <div class="text-center">
+        <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
+          Commodity Categories
+        </h2>
+      </div>
+
+      <div class="mt-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+
+        <a href="/en/commodities/sugar" class="group block">
+          <figure class="h-[260px] overflow-hidden">
+            <div class="h-full w-full object-cover" data-slot="section-4-card-1-image"></div>
+          </figure>
+          <h3 class="mt-6 text-xl text-white group-hover:text-gray-300 transition-colors">
+            Sugar
+          </h3>
+        </a>
+
+        <a href="/en/commodities/wheat" class="group block">
+          <figure class="h-[260px] overflow-hidden">
+            <div class="h-full w-full object-cover" data-slot="section-4-card-2-image"></div>
+          </figure>
+          <h3 class="mt-6 text-xl text-white group-hover:text-gray-300 transition-colors">
+            Wheat
+          </h3>
+        </a>
+
+        <a href="/en/commodities/barley" class="group block">
+          <figure class="h-[260px] overflow-hidden">
+            <div class="h-full w-full object-cover" data-slot="section-4-card-3-image"></div>
+          </figure>
+          <h3 class="mt-6 text-xl text-white group-hover:text-gray-300 transition-colors">
+            Barley
+          </h3>
+        </a>
+
+        <a href="/en/commodities/sunflower-oil" class="group block">
+          <figure class="h-[260px] overflow-hidden">
+            <div class="h-full w-full object-cover" data-slot="section-4-card-4-image"></div>
+          </figure>
+          <h3 class="mt-6 text-xl text-white group-hover:text-gray-300 transition-colors">
+            Sunflower Oil
+          </h3>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#2c2c2c]">
+    <div class="mx-auto max-w-[1140px] px-8">
+
+      <div class="grid grid-cols-1 gap-16 text-center md:grid-cols-3">
+
+        <div>
+          <p class="font-serif text-5xl text-white" style="font-weight:400;" data-slot="section-5-metric-1-value"></p>
+          <p class="mt-4 text-white/70" data-slot="section-5-metric-1-label"></p>
+        </div>
+
+        <div>
+          <p class="font-serif text-5xl text-white" style="font-weight:400;" data-slot="section-5-metric-2-value"></p>
+          <p class="mt-4 text-white/70" data-slot="section-5-metric-2-label"></p>
+        </div>
+
+        <div>
+          <p class="font-serif text-5xl text-white" style="font-weight:400;" data-slot="section-5-metric-3-value"></p>
+          <p class="mt-4 text-white/70" data-slot="section-5-metric-3-label"></p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-32 bg-[#1b2230]">
+    <div class="mx-auto max-w-[1140px] px-8 text-center">
+
+      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
+        Engage With A Structured Commodity Intermediary
+      </h2>
+
+      <p class="mt-8 text-lg text-white/80 leading-8 max-w-2xl mx-auto" data-slot="cta-description"></p>
+
+      <a
+        href="/en/contact"
+        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
+        data-slot="cta-link"
+      >
+        <span data-slot="cta-text">Request Buyer Access</span>
+      </a>
+
+    </div>
+  </section>
+
+</BaseLayout>
