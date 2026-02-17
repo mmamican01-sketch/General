@@ -91,11 +91,11 @@ const { page } = Astro.props;
         <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-2-title">
           Overview
         </h2>
-        <p class="mt-6 text-slate-600 leading-8" data-slot="section-2-body-1">{page.overview[0]}</p>
-        <p class="mt-6 text-slate-600 leading-8" data-slot="section-2-body-2">{page.overview[1]}</p>
+        <p class="mt-6 text-[#1b2230]/70 leading-8" data-slot="section-2-body-1">{page.overview[0]}</p>
+        <p class="mt-6 text-[#1b2230]/70 leading-8" data-slot="section-2-body-2">{page.overview[1]}</p>
       </div>
       <figure class="h-[420px] w-full overflow-hidden">
-        <div class="h-full w-full object-cover" data-slot="section-2-image"></div>
+        <img src="/assets/figma/media-default.svg" alt={`${page.title} overview`} class="h-full w-full object-cover" loading="lazy" data-slot="section-2-image" />
       </figure>
     </div>
   </section>
@@ -109,7 +109,7 @@ const { page } = Astro.props;
         {page.specifications.map((item, index) => (
           <div>
             <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot={`section-3-card-${index + 1}-title`}>{item.label}</h3>
-            <p class="mt-4 text-slate-600 leading-7" data-slot={`section-3-card-${index + 1}-body`}>{item.value}</p>
+            <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot={`section-3-card-${index + 1}-body`}>{item.value}</p>
           </div>
         ))}
       </div>

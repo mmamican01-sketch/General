@@ -35,7 +35,7 @@ const primaryNavItems = [
 <header class="w-full bg-white">
   <!-- Tier A — Utility Bar -->
   <div class="w-full bg-[#f5f5f5]">
-    <div class="mx-auto max-w-[1400px] px-8 py-3">
+    <div class="mx-auto max-w-[1140px] px-8 py-3">
       <div class="flex items-center justify-end gap-8">
         {utilityLinks.map((item) => {
           const href = item.external ? item.href : buildHref(item.href);
@@ -81,7 +81,7 @@ const primaryNavItems = [
 
   <!-- Tier B — Primary Header -->
   <div class="w-full border-b border-gray-200 bg-white">
-    <div class="mx-auto max-w-[1400px] px-8 py-6">
+    <div class="mx-auto max-w-[1140px] px-8 py-6">
       <div class="flex items-center justify-between">
         <a href={base} class="flex items-center gap-3">
           <div class="h-10 w-10 shrink-0 bg-gradient-to-br from-blue-600 via-blue-500 to-teal-400 clip-polygon"></div>
@@ -105,15 +105,15 @@ const primaryNavItems = [
                       <div>
                         <p class="mb-3 text-xs font-medium uppercase tracking-wider text-gray-500">Categories</p>
                         <ul class="space-y-2">
-                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Placeholder 1</a></li>
-                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Placeholder 2</a></li>
+                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Bulk Commodities</a></li>
+                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Structured Access</a></li>
                         </ul>
                       </div>
                       <div>
                         <p class="mb-3 text-xs font-medium uppercase tracking-wider text-gray-500">Products</p>
                         <ul class="space-y-2">
-                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Placeholder A</a></li>
-                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Placeholder B</a></li>
+                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Institutional Support</a></li>
+                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Execution Coordination</a></li>
                         </ul>
                       </div>
                       <div>
@@ -123,8 +123,8 @@ const primaryNavItems = [
                       <div>
                         <p class="mb-3 text-xs font-medium uppercase tracking-wider text-gray-500">Pages / Resources</p>
                         <ul class="space-y-2">
-                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Placeholder X</a></li>
-                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Placeholder Y</a></li>
+                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Commodity Categories</a></li>
+                          <li><a href={buildHref("products")} class="text-sm text-[#2c2c2c] hover:text-[#000]">Product Details</a></li>
                         </ul>
                       </div>
                     </div>
@@ -147,7 +147,7 @@ const primaryNavItems = [
 
           <a
             href={switchHref}
-            class="rounded border border-slate-300 px-3 py-1.5 text-sm text-slate-700 transition-colors hover:bg-slate-50"
+            class="rounded border border-[#1b2230]/20 px-3 py-1.5 text-sm text-[#1b2230] transition-colors hover:bg-[#f8f8f8]"
             aria-label={isRtl ? "Switch to English" : "التبديل إلى العربية"}
           >
             {locale === "ar" ? "EN" : "AR"}
