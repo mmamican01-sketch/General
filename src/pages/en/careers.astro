@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
 ---
 
 <BaseLayout
@@ -11,16 +12,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   currentPath="careers"
 >
   <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+    <Container>
       <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
         Careers
       </h1>
       <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="hero-description"></p>
-    </div>
+    </Container>
   </section>
 
   <section class="py-24 bg-white">
-    <div class="mx-auto max-w-[1140px] px-8">
+    <Container>
       <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-2-title">
         Working At AFGT
       </h2>
@@ -38,11 +39,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           <p class="mt-4 text-[#1b2230]/70 leading-8" data-slot="section-2-card-3-body"></p>
         </div>
       </div>
-    </div>
+    </Container>
   </section>
 
   <section class="py-24 bg-[#f8f8f8]">
-    <div class="mx-auto max-w-[1140px] px-8">
+    <Container>
       <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
         Open Positions
       </h2>
@@ -60,11 +61,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </a>
         </li>
       </ul>
-    </div>
+    </Container>
   </section>
 
   <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+    <Container>
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
         Application Process
       </h2>
@@ -82,11 +83,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           <p class="mt-4 text-white/80 leading-8" data-slot="section-4-step-3-body"></p>
         </div>
       </div>
-    </div>
+    </Container>
   </section>
 
   <section class="py-32 bg-[#2c2c2c]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
+    <Container>
+      <div class="text-center">
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
         Questions / Contact
       </h2>
@@ -97,6 +99,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       >
         <span data-slot="cta-text">Request Buyer Access</span>
       </a>
-    </div>
+      </div>
+    </Container>
   </section>
 </BaseLayout>

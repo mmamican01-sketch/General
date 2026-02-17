@@ -1,12 +1,15 @@
 ---
+import Container from "./Container.astro";
 const { locale = "en" } = Astro.props;
 const isRtl = locale === "ar";
 ---
 
 <footer class="mt-auto border-t border-[#1b2230]/20 bg-[#f8f8f8]">
-  <div class="mx-auto max-w-[1140px] px-8 py-6">
+  <Container wide={true}>
+    <div class="py-6">
     <p class="text-center text-sm text-[#1b2230]/70">
       {isRtl ? "© شركة الفرهان العامة للتجارة. جميع الحقوق محفوظة." : "© AL Farhan General Trading Co. All rights reserved."}
     </p>
-  </div>
+    </div>
+  </Container>
 </footer>

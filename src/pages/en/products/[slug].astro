@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/Container.astro";
 
 export function getStaticPaths() {
   const pages = [
@@ -75,18 +76,19 @@ const { page } = Astro.props;
   currentPath={`products/${page.slug}`}
 >
   <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+    <Container>
       <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
         {page.title}
       </h1>
       <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="hero-description">
         {page.intro}
       </p>
-    </div>
+    </Container>
   </section>
 
   <section class="py-24 bg-white">
-    <div class="mx-auto grid max-w-[1140px] grid-cols-1 items-center gap-16 px-8 md:grid-cols-2">
+    <Container>
+      <div class="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
       <div>
         <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-2-title">
           Overview
@@ -97,11 +99,12 @@ const { page } = Astro.props;
       <figure class="h-[420px] w-full overflow-hidden">
         <img src="/assets/figma/media-default.svg" alt={`${page.title} overview`} class="h-full w-full object-cover" loading="lazy" data-slot="section-2-image" />
       </figure>
-    </div>
+      </div>
+    </Container>
   </section>
 
   <section class="py-24 bg-[#f8f8f8]">
-    <div class="mx-auto max-w-[1140px] px-8">
+    <Container>
       <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
         Specifications
       </h2>
@@ -113,22 +116,23 @@ const { page } = Astro.props;
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   </section>
 
   <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+    <Container>
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
         Origins / Certifications
       </h2>
       <ul class="mt-8 max-w-3xl space-y-3 text-lg leading-8 text-white/80">
         {page.origins.map((item, index) => <li data-slot={`section-4-item-${index + 1}`}>{item}</li>)}
       </ul>
-    </div>
+    </Container>
   </section>
 
   <section class="py-32 bg-[#2c2c2c]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
+    <Container>
+      <div class="text-center">
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
         Engage With AFGT
       </h2>
@@ -139,6 +143,7 @@ const { page } = Astro.props;
       >
         <span data-slot="cta-text">Request Structured Engagement</span>
       </a>
-    </div>
+      </div>
+    </Container>
   </section>
 </BaseLayout>

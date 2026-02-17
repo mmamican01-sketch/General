@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import background from "../../assets/background.svg";
+import Container from "../../components/Container.astro";
 ---
 
 <BaseLayout
@@ -11,32 +12,30 @@ import background from "../../assets/background.svg";
   locale="en"
   currentPath=""
 >
-  <section class="relative w-full overflow-hidden bg-[#2c2c2c] py-24">
-    <div class="relative z-10 mx-auto max-w-[1140px] px-8 text-center">
-      <h1 class="mb-8 font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
+  <section class="py-24 bg-[#2c2c2c]">
+    <Container>
+      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;">
         We are AFGT
       </h1>
-
       <a
         href="/en/who-we-are"
-        class="inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
-        data-slot="hero-cta-link"
+        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
       >
-        <span data-slot="hero-cta-text">Who we are</span>
+        Who we are
       </a>
-    </div>
+    </Container>
   </section>
 
   <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+    <Container>
       <p class="text-center font-serif text-2xl text-white/90" style="font-weight:400; line-height:1.4;" data-slot="section-2-body">
         We provide structured intermediary support for institutional buyers seeking reliable access to bulk commodities.
       </p>
-    </div>
+    </Container>
   </section>
 
   <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+    <Container>
       <div class="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
 
         <!-- Text Column -->
@@ -62,11 +61,11 @@ import background from "../../assets/background.svg";
         </figure>
 
       </div>
-    </div>
+    </Container>
   </section>
 
   <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+    <Container>
 
       <div class="text-center">
         <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
@@ -114,11 +113,11 @@ import background from "../../assets/background.svg";
 
       </div>
 
-    </div>
+    </Container>
   </section>
 
   <section class="py-24 bg-[#2c2c2c]">
-    <div class="mx-auto max-w-[1140px] px-8">
+    <Container>
 
       <div class="grid grid-cols-1 gap-16 text-center md:grid-cols-3">
 
@@ -139,11 +138,12 @@ import background from "../../assets/background.svg";
 
       </div>
 
-    </div>
+    </Container>
   </section>
 
   <section class="py-32 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
+    <Container>
+      <div class="text-center">
 
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
         Engage With A Structured Commodity Intermediary
@@ -158,8 +158,8 @@ import background from "../../assets/background.svg";
       >
         <span data-slot="cta-text">Request Buyer Access</span>
       </a>
-
-    </div>
+      </div>
+    </Container>
   </section>
 
 </BaseLayout>

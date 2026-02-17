@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
 
 const productRows = [
   {
@@ -34,17 +35,20 @@ const productRows = [
   currentPath="products"
 >
   <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
+    <Container>
+      <div class="text-center">
       <p class="text-sm text-white/70" data-slot="breadcrumb"></p>
       <h1 class="mt-6 font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
         Products & Services
       </h1>
       <p class="mt-8 text-lg leading-8 text-white/80" data-slot="hero-description"></p>
-    </div>
+      </div>
+    </Container>
   </section>
 
   <section class="py-24">
-    <div class="mx-auto max-w-[1140px] px-8 space-y-16">
+    <Container>
+      <div class="space-y-16">
       {productRows.map((row, index) => (
         <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
           <div class={index % 2 === 1 ? "md:order-2" : undefined}>
@@ -63,11 +67,13 @@ const productRows = [
           </figure>
         </div>
       ))}
-    </div>
+      </div>
+    </Container>
   </section>
 
   <section class="py-32 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
+    <Container>
+      <div class="text-center">
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
         Engage With A Structured Commodity Intermediary
       </h2>
@@ -78,6 +84,7 @@ const productRows = [
       >
         <span data-slot="cta-text">Request Buyer Access</span>
       </a>
-    </div>
+      </div>
+    </Container>
   </section>
 </BaseLayout>
