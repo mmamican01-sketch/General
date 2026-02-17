@@ -59,7 +59,7 @@ const productRows = [
             </a>
           </div>
           <figure class={`h-[320px] w-full overflow-hidden ${index % 2 === 1 ? "md:order-1" : ""}`}>
-            <div class="h-full w-full object-cover" data-slot={`row-${index + 1}-image`}></div>
+            <img src="/assets/figma/card-default.svg" alt="" class="h-full w-full object-cover" loading="lazy" data-slot={`row-${index + 1}-image`} />
           </figure>
         </div>
       ))}
