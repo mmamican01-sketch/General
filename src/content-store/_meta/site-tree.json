@@ -1,0 +1,214 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "locale": "root",
+      "file": "src/pages/index.astro",
+      "title": "AL Farhan General Trading",
+      "description": null
+    },
+    {
+      "route": "/ar",
+      "locale": "ar",
+      "file": "src/pages/ar/index.astro",
+      "title": "شركة الفرهان للتجارة العامة | وسيط في تجارة السلع",
+      "description": "وصول منظّم للمشترين لتجارة السلع بالجملة: السكر والقمح والشعير وزيت عباد الشمس."
+    },
+    {
+      "route": "/ar/about",
+      "locale": "ar",
+      "file": "src/pages/ar/about.astro",
+      "title": "عن شركة الفرهان للتجارة العامة | إطار تداول موجّه للمشتري",
+      "description": "تنسيق تداول سلع للمشترين المؤسسيين ضمن وضوح وثائقي وجاهزية امتثال."
+    },
+    {
+      "route": "/ar/careers",
+      "locale": "ar",
+      "file": "src/pages/ar/careers.astro",
+      "title": "الوظائف | نمو الفرق المؤسسية — AFGT",
+      "description": "إطار الوظائف في AFGT ويشمل ثقافة العمل، والفرص المتاحة، وآلية التقديم، ومسار التواصل."
+    },
+    {
+      "route": "/ar/careers/apply",
+      "locale": "ar",
+      "file": "src/pages/ar/careers/apply.astro",
+      "title": "التقديم لوظيفة",
+      "description": null
+    },
+    {
+      "route": "/ar/commodities",
+      "locale": "ar",
+      "file": "src/pages/ar/commodities/index.astro",
+      "title": "السلع | السكر والقمح والشعير وزيت عباد الشمس — الفرهان",
+      "description": "نظرة عامة على السلع المدعومة وآلية تواصل منظّمة للمشترين عبر الأسواق النشطة."
+    },
+    {
+      "route": "/ar/commodities/barley",
+      "locale": "ar",
+      "file": "src/pages/ar/commodities/barley.astro",
+      "title": "تداول الشعير من روسيا وأوكرانيا | وصول للمشتري — الفرهان",
+      "description": "تداول شعير موجّه للمشتري من روسيا وأوكرانيا إلى الشرق الأوسط وأفريقيا ضمن وصول سوقي منظّم."
+    },
+    {
+      "route": "/ar/commodities/sugar",
+      "locale": "ar",
+      "file": "src/pages/ar/commodities/sugar.astro",
+      "title": "تداول السكر | وصول للمشتري — شركة الفرهان",
+      "description": "وصول منظّم للمشتري لتداول السكر بالجملة ضمن مناشئ ومسارات مدعومة."
+    },
+    {
+      "route": "/ar/commodities/sunflower-oil",
+      "locale": "ar",
+      "file": "src/pages/ar/commodities/sunflower-oil.astro",
+      "title": "تداول زيت عباد الشمس | وصول للمشتري — شركة الفرهان",
+      "description": "وصول موجّه للمشترين لتداول زيت عباد الشمس بالجملة ضمن تواصل منظّم ومواءمة امتثال."
+    },
+    {
+      "route": "/ar/commodities/wheat",
+      "locale": "ar",
+      "file": "src/pages/ar/commodities/wheat.astro",
+      "title": "تداول القمح | وصول للمشتري — شركة الفرهان",
+      "description": "تنسيق تداول قمح موجّه للمشتري ضمن تواصل منظّم ووثائق امتثال."
+    },
+    {
+      "route": "/ar/contact",
+      "locale": "ar",
+      "file": "src/pages/ar/contact.astro",
+      "title": "تواصل مع شركة الفرهان | طلب وصول للمشتري واستفسار",
+      "description": "اطلب وصول المشتري وابدأ تواصلاً منظماً لتداول السلع بالجملة ضمن الأسواق المدعومة."
+    },
+    {
+      "route": "/ar/newsroom",
+      "locale": "ar",
+      "file": "src/pages/ar/newsroom.astro",
+      "title": "غرفة الأخبار",
+      "description": null
+    },
+    {
+      "route": "/ar/products",
+      "locale": "ar",
+      "file": "src/pages/ar/products.astro",
+      "title": "المنتجات والخدمات | Placeholder",
+      "description": "Placeholder page description."
+    },
+    {
+      "route": "/ar/sustainability",
+      "locale": "ar",
+      "file": "src/pages/ar/sustainability.astro",
+      "title": "الاستدامة | التموضع المؤسسي المنظم — AFGT",
+      "description": "منظور الاستدامة في AFGT عبر نماذج الوساطة المنظمة، ومجالات التركيز، والمعايير والالتزامات المؤسسية."
+    },
+    {
+      "route": "/ar/who-we-are",
+      "locale": "ar",
+      "file": "src/pages/ar/who-we-are.astro",
+      "title": "من نحن | الملف المؤسسي للوساطة المنظمة — AFGT",
+      "description": "ملف مؤسسي يوضح دور AFGT كنموذج وساطة منظم، وآلية التشغيل، والتموضع العالمي، ومسار التواصل."
+    },
+    {
+      "route": "/en",
+      "locale": "en",
+      "file": "src/pages/en/index.astro",
+      "title": "ALFArhan General Trading Co. | Commodities Intermediary",
+      "description": "Buyer-oriented access to bulk commodity trade across sugar, wheat, barley, and sunflower oil."
+    },
+    {
+      "route": "/en/about",
+      "locale": "en",
+      "file": "src/pages/en/about.astro",
+      "title": "About ALFArhan General Trading Co. | Buyer-Oriented Trading Framework",
+      "description": "Institutional-facing commodity trade coordination. Structured engagement, documentation clarity, and compliance readiness."
+    },
+    {
+      "route": "/en/careers",
+      "locale": "en",
+      "file": "src/pages/en/careers.astro",
+      "title": "Careers | Institutional Team Growth — ALFArhan",
+      "description": "Careers framework at AFGT covering operating culture, open positions, application process, and contact pathway."
+    },
+    {
+      "route": "/en/careers/apply",
+      "locale": "en",
+      "file": "src/pages/en/careers/apply.astro",
+      "title": "Apply",
+      "description": null
+    },
+    {
+      "route": "/en/commodities",
+      "locale": "en",
+      "file": "src/pages/en/commodities/index.astro",
+      "title": "Commodities | Sugar, Wheat, Barley & Sunflower Oil — ALFArhan",
+      "description": "Overview of supported commodity categories and structured buyer engagement across active markets."
+    },
+    {
+      "route": "/en/commodities/barley",
+      "locale": "en",
+      "file": "src/pages/en/commodities/barley.astro",
+      "title": "Barley Trading from Russia & Ukraine | Buyer Access — ALFArhan",
+      "description": "Buyer-focused barley trade from Russia and Ukraine to Middle East and Africa. Structured market access."
+    },
+    {
+      "route": "/en/commodities/sugar",
+      "locale": "en",
+      "file": "src/pages/en/commodities/sugar.astro",
+      "title": "Sugar Trading | Buyer Access — ALFArhan General Trading Co.",
+      "description": "Structured buyer access for bulk sugar trade engagement across supported origins and destination routes."
+    },
+    {
+      "route": "/en/commodities/sunflower-oil",
+      "locale": "en",
+      "file": "src/pages/en/commodities/sunflower-oil.astro",
+      "title": "Sunflower Oil Trading | Buyer Access — ALFArhan General Trading Co.",
+      "description": "Buyer-oriented access to bulk sunflower oil trade with structured engagement and compliance alignment."
+    },
+    {
+      "route": "/en/commodities/wheat",
+      "locale": "en",
+      "file": "src/pages/en/commodities/wheat.astro",
+      "title": "Wheat Trading | Buyer Access — ALFArhan General Trading Co.",
+      "description": "Buyer-oriented wheat trade coordination with structured engagement and compliance-first documentation flow."
+    },
+    {
+      "route": "/en/contact",
+      "locale": "en",
+      "file": "src/pages/en/contact.astro",
+      "title": "Contact ALFArhan General Trading Co. | Buyer Inquiry & Access Request",
+      "description": "Request buyer access and begin structured engagement for bulk commodity trade across supported markets."
+    },
+    {
+      "route": "/en/newsroom",
+      "locale": "en",
+      "file": "src/pages/en/newsroom.astro",
+      "title": "Newsroom",
+      "description": null
+    },
+    {
+      "route": "/en/products",
+      "locale": "en",
+      "file": "src/pages/en/products.astro",
+      "title": "Products & Services | Structured Intermediary Models — ALFArhan",
+      "description": "Institutional-facing product and service models for structured commodity engagement, supplier alignment, and execution support."
+    },
+    {
+      "route": "/en/products/:slug",
+      "locale": "en",
+      "file": "src/pages/en/products/[slug].astro",
+      "title": "`${product.name} | Products — ALFArhan`` (dynamic) / `Product not found | Products — ALFArhan` (fallback)",
+      "description": "{product.overview}` (dynamic) / `Product detail page not found.` (fallback)"
+    },
+    {
+      "route": "/en/sustainability",
+      "locale": "en",
+      "file": "src/pages/en/sustainability.astro",
+      "title": "Sustainability | Structured Institutional Positioning — ALFArhan",
+      "description": "Sustainability positioning across intermediary engagement models, focus areas, standards, and institutional commitments."
+    },
+    {
+      "route": "/en/who-we-are",
+      "locale": "en",
+      "file": "src/pages/en/who-we-are.astro",
+      "title": "Who We Are | Institutional Intermediary Profile — ALFArhan",
+      "description": "Institutional profile of AFGT, including role definition, operating model, global positioning, and engagement pathway."
+    }
+  ]
+}

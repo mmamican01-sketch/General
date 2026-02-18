@@ -1,0 +1,51 @@
+{
+  "routeKey": "commodities",
+  "route": "/en/commodities",
+  "generatedAt": "2026-02-18T21:39:09.974Z",
+  "slots": {
+    "hero-title": {
+      "type": "text",
+      "value": "Commodity Categories"
+    },
+    "hero-description": {
+      "type": "text",
+      "value": ""
+    },
+    "card-1-image": {
+      "type": "image",
+      "value": "/assets/figma/card-default.svg"
+    },
+    "card-2-image": {
+      "type": "image",
+      "value": "/assets/figma/card-default.svg"
+    },
+    "card-3-image": {
+      "type": "image",
+      "value": "/assets/figma/card-default.svg"
+    },
+    "card-4-image": {
+      "type": "image",
+      "value": "/assets/figma/card-default.svg"
+    },
+    "section-3-title": {
+      "type": "text",
+      "value": "Structured Intermediary Engagement"
+    },
+    "section-3-body": {
+      "type": "text",
+      "value": ""
+    },
+    "cta-title": {
+      "type": "text",
+      "value": "Engage With AFGT"
+    },
+    "cta-link": {
+      "type": "href",
+      "value": "/en/contact"
+    },
+    "cta-text": {
+      "type": "text",
+      "value": "Request Commodity Access"
+    }
+  }
+}

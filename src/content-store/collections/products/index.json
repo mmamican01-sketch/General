@@ -1,0 +1,11 @@
+{
+  "collection": "products",
+  "order": [
+    "sugar",
+    "wheat",
+    "oils",
+    "urea",
+    "maritime-transport"
+  ],
+  "updatedBy": "tools/generate-content-store.mjs"
+}

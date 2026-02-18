@@ -1,0 +1,11 @@
+{
+  "routeKey": "index",
+  "route": "/en/",
+  "generatedAt": "2026-02-18T21:45:18.3821670Z",
+  "slots": {
+    "dashboard-test": {
+      "type": "text",
+      "value": "updated-from-dashboard-api"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "route": "/en/sustainability",
+  "source": "src/pages/en/sustainability.astro",
+  "slots": {},
+  "warnings": [
+    "No data-slot attributes found in source page."
+  ]
+}
