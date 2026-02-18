@@ -10,7 +10,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   locale="ar"
   currentPath="who-we-are"
 >
-  <section class="py-24 bg-[#1b2230]">
+  <section class="py-24 bg-[var(--bg-section)]">
     <div class="mx-auto max-w-[1140px] px-8">
       <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;">
         من نحن
@@ -21,7 +21,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="py-24 bg-white">
+  <section class="py-24 section-white">
     <div class="mx-auto grid max-w-[1140px] grid-cols-1 items-center gap-16 px-8 md:grid-cols-2">
       <div>
         <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;">
@@ -40,7 +40,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="py-24 bg-[#f8f8f8]">
+  <section class="py-24 bg-[var(--bg-section)]">
     <div class="mx-auto max-w-[1140px] px-8">
       <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;">
         نموذج التشغيل
@@ -68,7 +68,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="py-24 bg-[#1b2230]">
+  <section class="py-24 bg-[var(--bg-section)]">
     <div class="mx-auto max-w-[1140px] px-8 text-center">
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;">
         التموضع العالمي
@@ -79,14 +79,14 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="py-32 bg-[#2c2c2c]">
+  <section class="py-32 bg-[var(--bg-section)]">
     <div class="mx-auto max-w-[1140px] px-8 text-center">
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;">
         تواصل مع AFGT
       </h2>
       <a
         href="/ar/contact"
-        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
+        class="mt-12 inline-block btn-primary px-10 py-4"
       >
         طلب وصول المشترين
       </a>

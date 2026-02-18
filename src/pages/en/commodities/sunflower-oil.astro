@@ -11,7 +11,7 @@ import Container from "../../../components/Container.astro";
   locale="en"
   currentPath="commodities/sunflower-oil"
 >
-  <section class="py-24 bg-[#1b2230]">
+  <section class="py-24 bg-[var(--bg-section)]">
     <Container>
       <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
         Sunflower Oil Commodity
@@ -20,7 +20,7 @@ import Container from "../../../components/Container.astro";
     </Container>
   </section>
 
-  <section class="py-24 bg-white">
+  <section class="py-24 section-white">
     <Container>
       <div class="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
       <div>
@@ -37,7 +37,7 @@ import Container from "../../../components/Container.astro";
     </Container>
   </section>
 
-  <section class="py-24 bg-[#f8f8f8]">
+  <section class="py-24 bg-[var(--bg-section)]">
     <Container>
       <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
         Key Specifications
@@ -63,7 +63,7 @@ import Container from "../../../components/Container.astro";
     </Container>
   </section>
 
-  <section class="py-24 bg-[#1b2230]">
+  <section class="py-24 bg-[var(--bg-section)]">
     <Container>
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
         Institutional Supply Alignment
@@ -72,7 +72,7 @@ import Container from "../../../components/Container.astro";
     </Container>
   </section>
 
-  <section class="py-32 bg-[#2c2c2c]">
+  <section class="py-32 bg-[var(--bg-section)]">
     <Container>
       <div class="text-center">
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
@@ -80,7 +80,7 @@ import Container from "../../../components/Container.astro";
       </h2>
       <a
         href="/en/contact"
-        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
+        class="mt-12 inline-block btn-primary px-10 py-4"
         data-slot="cta-link"
       >
         <span data-slot="cta-text">Request Structured Engagement</span>

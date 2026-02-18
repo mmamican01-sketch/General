@@ -1,15 +1,122 @@
 ---
-import Container from "./Container.astro";
 const { locale = "en" } = Astro.props;
-const isRtl = locale === "ar";
+const base = locale === "ar" ? "/ar" : "/en";
+
+function buildHref(path: string) {
+  const p = path ? `${base}/${path}` : base;
+  return p.replace(/\/+$/, "") || base;
+}
 ---
 
-<footer class="mt-auto border-t border-[#1b2230]/20 bg-[#f8f8f8]">
-  <Container wide={true}>
-    <div class="py-6">
-    <p class="text-center text-sm text-[#1b2230]/70">
-      {isRtl ? "© شركة الفرهان العامة للتجارة. جميع الحقوق محفوظة." : "© AL Farhan General Trading Co. All rights reserved."}
-    </p>
+<footer class="w-full bg-[#f5f5f5] mt-24">
+  <div class="max-w-[1400px] mx-auto px-8 py-16">
+    <div class="grid grid-cols-12 gap-8">
+      <div class="col-span-3">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-8 h-8 bg-gradient-to-br from-blue-600 via-blue-500 to-teal-400 clip-polygon"></div>
+          <span class="text-xl tracking-tight" style="font-family: Inter, sans-serif">AFGT</span>
+        </div>
+        <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+          AL Farhan General Trading is a diversified general trading company operating across multiple commodity sectors.
+        </p>
+      </div>
+
+      <div class="col-span-2">
+        <h4 class="text-sm mb-4 text-[#2c2c2c]" style="font-family: Inter, sans-serif">Company</h4>
+        <ul class="space-y-3">
+          <li>
+            <a href={buildHref("who-we-are")} class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors" style="font-family: Inter, sans-serif">
+              Who we are
+            </a>
+          </li>
+          <li>
+            <a href={buildHref("products")} class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors" style="font-family: Inter, sans-serif">
+              Products & Services
+            </a>
+          </li>
+          <li>
+            <a href={buildHref("sustainability")} class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors" style="font-family: Inter, sans-serif">
+              Sustainability
+            </a>
+          </li>
+          <li>
+            <a href={buildHref("careers")} class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors" style="font-family: Inter, sans-serif">
+              Careers
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-span-2">
+        <h4 class="text-sm mb-4 text-[#2c2c2c]" style="font-family: Inter, sans-serif">Resources</h4>
+        <ul class="space-y-3">
+          <li>
+            <a href="#" class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors" style="font-family: Inter, sans-serif">
+              Newsroom
+            </a>
+          </li>
+          <li>
+            <a href={buildHref("contact")} class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors" style="font-family: Inter, sans-serif">
+              Contact Us
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors" style="font-family: Inter, sans-serif">
+              Global sites
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-span-2">
+        <h4 class="text-sm mb-4 text-[#2c2c2c]" style="font-family: Inter, sans-serif">Legal</h4>
+        <ul class="space-y-3">
+          <li>
+            <a href="#" class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors" style="font-family: Inter, sans-serif">
+              Privacy Policy
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors" style="font-family: Inter, sans-serif">
+              Terms of Service
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors" style="font-family: Inter, sans-serif">
+              Cookie Policy
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-span-3">
+        <h4 class="text-sm mb-4 text-[#2c2c2c]" style="font-family: Inter, sans-serif">Follow Us</h4>
+        <div class="flex gap-4">
+          <a href="#" class="text-[#5c5c5c] hover:text-[#000] transition-colors" aria-label="LinkedIn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"></path>
+              <rect x="2" y="9" width="4" height="12" stroke-width="2"></rect>
+              <circle cx="4" cy="4" r="2" stroke-width="2"></circle>
+            </svg>
+          </a>
+          <a href="#" class="text-[#5c5c5c] hover:text-[#000] transition-colors" aria-label="Twitter">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 7.5v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-[#5c5c5c] hover:text-[#000] transition-colors" aria-label="Facebook">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
-  </Container>
+
+    <div class="mt-12 pt-8 border-t border-gray-300">
+      <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+        © 2026 AL Farhan General Trading. All rights reserved.
+      </p>
+    </div>
+  </div>
 </footer>

@@ -1,3 +1,7 @@
 @import "./fonts.css";
 @import "./tailwind.css";
 @import "./theme.css";
+
+.clip-polygon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}

@@ -11,7 +11,7 @@ import Container from "../../../components/Container.astro";
   locale="en"
   currentPath="commodities"
 >
-  <section class="py-24 bg-[#1b2230]">
+  <section class="py-24 bg-[var(--bg-section)]">
     <Container>
       <div class="text-center">
 
@@ -25,7 +25,7 @@ import Container from "../../../components/Container.astro";
     </Container>
   </section>
 
-  <section class="py-24 bg-[#2c2c2c]">
+  <section class="py-24 bg-[var(--bg-section)]">
     <Container>
 
       <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
@@ -71,7 +71,7 @@ import Container from "../../../components/Container.astro";
     </Container>
   </section>
 
-  <section class="py-24 bg-[#1b2230]">
+  <section class="py-24 bg-[var(--bg-section)]">
     <Container>
       <div class="text-center">
 
@@ -85,7 +85,7 @@ import Container from "../../../components/Container.astro";
     </Container>
   </section>
 
-  <section class="py-32 bg-[#2c2c2c]">
+  <section class="py-32 bg-[var(--bg-section)]">
     <Container>
       <div class="text-center">
 
@@ -95,7 +95,7 @@ import Container from "../../../components/Container.astro";
 
       <a
         href="/en/contact"
-        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
+        class="mt-12 inline-block btn-primary px-10 py-4"
         data-slot="cta-link"
       >
         <span data-slot="cta-text">Request Commodity Access</span>

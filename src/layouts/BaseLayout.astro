@@ -50,7 +50,7 @@ const arHref = normalizeUrl(Astro.site, arPath);
     <link rel="alternate" hreflang="ar" href={arHref} />
     <link rel="alternate" hreflang="x-default" href={normalizeUrl(Astro.site, "/en")} />
   </head>
-  <body class="min-h-screen bg-white text-[#1b2230]">
+  <body class="min-h-screen">
     <Header locale={locale} currentPath={currentPath} />
     <main class="w-full">
       <slot />

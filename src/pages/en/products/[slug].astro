@@ -1,149 +1,242 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import Container from "../../../components/Container.astro";
+
+const productsData = {
+  sugar: {
+    name: "Sugar",
+    image:
+      "https://images.unsplash.com/photo-1607980276836-232ac6344978?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdWdhciUyMHByb2R1Y3Rpb24lMjBpbmR1c3RyaWFsfGVufDF8fHx8MTc3MDc0MTYxMXww&ixlib=rb-4.1.0&q=80&w=1080",
+    overview:
+      "AFGT sources raw and refined sugar from certified mills across multiple producing regions. All sugar products meet international quality standards and are supplied with full traceability documentation.",
+    specifications: [
+      { label: "Product Types", value: "ICUMSA 45, Raw Cane Sugar, Refined Beet Sugar" },
+      { label: "Packaging", value: "Bulk vessels, 50kg bags, 1MT big bags" },
+      { label: "Contract Terms", value: "FOB, CFR, CIF" },
+      { label: "Minimum Order", value: "Vessel-sized shipments (12,500 MT+)" },
+    ],
+    origins: ["Brazil", "Thailand", "India", "European Union", "Australia"],
+    certifications: ["Bonsucro", "ISO 9001", "FSSC 22000", "Kosher", "Halal"],
+  },
+  wheat: {
+    name: "Wheat",
+    image:
+      "https://images.unsplash.com/photo-1657626625832-2c0851cdaa9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aGVhdCUyMGdyYWluJTIwZmFybWluZ3xlbnwxfHx8fDE3NzA3NDE2MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    overview:
+      "AFGT trades food-grade milling wheat and animal feed wheat from major producing regions. All wheat shipments are accompanied by phytosanitary certificates and quality analysis reports.",
+    specifications: [
+      { label: "Product Types", value: "Hard Red Winter, Soft White, Spring Wheat, Feed Wheat" },
+      { label: "Protein Content", value: "10.5% - 14.5% depending on grade" },
+      { label: "Contract Terms", value: "FOB, CFR, CIF" },
+      { label: "Shipment Size", value: "25,000 MT - 60,000 MT per vessel" },
+    ],
+    origins: ["USA", "Canada", "European Union", "Russia", "Australia", "Argentina"],
+    certifications: ["ISO 9001", "HACCP", "Non-GMO verification where applicable"],
+  },
+  oils: {
+    name: "Oils",
+    image:
+      "https://images.unsplash.com/photo-1759332637000-50311b115c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZWdldGFibGUlMjBvaWwlMjBwcm9kdWN0aW9ufGVufDF8fHx8MTc3MDc0MTYxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+    overview:
+      "AFGT supplies vegetable oils for industrial processing and consumer markets. All oil products are sourced from certified refineries with documented supply chain traceability.",
+    specifications: [
+      { label: "Product Types", value: "Sunflower, Soybean, Palm, Canola, Corn Oil" },
+      { label: "Packaging", value: "Flexitanks, ISO tanks, bulk vessels, bottled" },
+      { label: "Contract Terms", value: "FOB, CFR, CIF" },
+      { label: "Quality Standards", value: "Codex Alimentarius compliant" },
+    ],
+    origins: ["Ukraine", "Russia", "Argentina", "Malaysia", "Indonesia", "Brazil"],
+    certifications: ["RSPO (Palm Oil)", "ISO 9001", "HACCP", "Kosher", "Halal"],
+  },
+  urea: {
+    name: "Urea",
+    image:
+      "https://images.unsplash.com/photo-1725802867239-ab1379895088?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1cmVhJTIwZmVydGlsaXplciUyMGluZHVzdHJpYWx8ZW58MXx8fHwxNzcwNzQxNjEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    overview:
+      "AFGT sources agricultural-grade urea from established producers with consistent quality and reliable delivery schedules. All urea products meet international fertilizer standards.",
+    specifications: [
+      { label: "Product Type", value: "Prilled Urea, Granular Urea (46% N)" },
+      { label: "Packaging", value: "50kg bags, 1MT big bags, bulk vessels" },
+      { label: "Contract Terms", value: "FOB, CFR, CIF" },
+      { label: "Shipment Size", value: "5,000 MT - 50,000 MT" },
+    ],
+    origins: ["Middle East", "Russia", "China", "India", "North Africa"],
+    certifications: ["ISO 9001", "REACH (European Union)", "Industry standard compliance"],
+  },
+  "maritime-transport": {
+    name: "Maritime Transport",
+    image:
+      "https://images.unsplash.com/photo-1764041323714-de1d64fb8073?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJpdGltZSUyMGNhcmdvJTIwc2hpcCUyMG9jZWFufGVufDF8fHx8MTc3MDc0MTYxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+    overview:
+      "AFGT coordinates bulk cargo shipping for agricultural and industrial commodities. The company works with established vessel operators and maintains relationships across major shipping routes.",
+    specifications: [
+      { label: "Vessel Types", value: "Panamax, Supramax, Handysize bulk carriers" },
+      { label: "Cargo Types", value: "Grains, sugar, fertilizers, minerals" },
+      { label: "Services", value: "Voyage charter, time charter, freight management" },
+      { label: "Routes", value: "Global coverage including Americas, Europe, Asia, Africa" },
+    ],
+    origins: ["Global shipping network"],
+    certifications: ["ISO 9001", "Vessel vetting and compliance", "Insurance coverage"],
+  },
+} as const;
 
 export function getStaticPaths() {
-  const pages = [
-    {
-      slug: "institutional-procurement-support",
-      title: "Institutional Procurement Support",
-      intro: "",
-      overview: ["", ""],
-      specifications: [
-        { label: "Engagement Scope", value: "" },
-        { label: "Counterpart Model", value: "" },
-        { label: "Documentation Layer", value: "" },
-        { label: "Execution Basis", value: "" },
-      ],
-      origins: ["", "", ""],
-    },
-    {
-      slug: "supplier-verification-alignment",
-      title: "Supplier Verification Alignment",
-      intro: "",
-      overview: ["", ""],
-      specifications: [
-        { label: "Engagement Scope", value: "" },
-        { label: "Counterpart Model", value: "" },
-        { label: "Documentation Layer", value: "" },
-        { label: "Execution Basis", value: "" },
-      ],
-      origins: ["", "", ""],
-    },
-    {
-      slug: "documentation-transaction-structure",
-      title: "Documentation & Transaction Structure",
-      intro: "",
-      overview: ["", ""],
-      specifications: [
-        { label: "Engagement Scope", value: "" },
-        { label: "Counterpart Model", value: "" },
-        { label: "Documentation Layer", value: "" },
-        { label: "Execution Basis", value: "" },
-      ],
-      origins: ["", "", ""],
-    },
-    {
-      slug: "execution-coordination",
-      title: "Execution Coordination",
-      intro: "",
-      overview: ["", ""],
-      specifications: [
-        { label: "Engagement Scope", value: "" },
-        { label: "Counterpart Model", value: "" },
-        { label: "Documentation Layer", value: "" },
-        { label: "Execution Basis", value: "" },
-      ],
-      origins: ["", "", ""],
-    },
-  ];
-
-  return pages.map((page) => ({
-    params: { slug: page.slug },
-    props: { page },
+  const slugs = ["sugar", "wheat", "oils", "urea", "maritime-transport"];
+  return slugs.map((slug) => ({
+    params: { slug },
   }));
 }
 
-const { page } = Astro.props;
+const { slug } = Astro.params;
+const product = slug ? productsData[slug as keyof typeof productsData] : null;
 ---
 
-<BaseLayout
-  title={`${page.title} | Products — ALFArhan`}
-  description={page.intro}
-  lang="en"
-  dir="ltr"
-  locale="en"
-  currentPath={`products/${page.slug}`}
->
-  <section class="py-24 bg-[#1b2230]">
-    <Container>
-      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
-        {page.title}
-      </h1>
-      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="hero-description">
-        {page.intro}
-      </p>
-    </Container>
-  </section>
-
-  <section class="py-24 bg-white">
-    <Container>
-      <div class="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
-      <div>
-        <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-2-title">
-          Overview
-        </h2>
-        <p class="mt-6 text-[#1b2230]/70 leading-8" data-slot="section-2-body-1">{page.overview[0]}</p>
-        <p class="mt-6 text-[#1b2230]/70 leading-8" data-slot="section-2-body-2">{page.overview[1]}</p>
-      </div>
-      <figure class="h-[420px] w-full overflow-hidden">
-        <img src="/assets/figma/media-default.svg" alt={`${page.title} overview`} class="h-full w-full object-cover" loading="lazy" data-slot="section-2-image" />
-      </figure>
-      </div>
-    </Container>
-  </section>
-
-  <section class="py-24 bg-[#f8f8f8]">
-    <Container>
-      <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
-        Specifications
-      </h2>
-      <div class="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
-        {page.specifications.map((item, index) => (
-          <div>
-            <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot={`section-3-card-${index + 1}-title`}>{item.label}</h3>
-            <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot={`section-3-card-${index + 1}-body`}>{item.value}</p>
+{
+  !product ? (
+    <BaseLayout
+      title="Product not found | Products — ALFArhan"
+      description="Product detail page not found."
+      lang="en"
+      dir="ltr"
+      locale="en"
+      currentPath={`products/${slug ?? ""}`}
+    >
+      <div class="w-full">
+        <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px;">
+          <div class="max-w-[1140px] mx-auto px-8">
+            <h1 class="text-6xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Product not found
+            </h1>
+            <a
+              href="/en/products"
+              class="text-sm text-[#2c2c2c] link-accent hover:text-[#000] transition-colors"
+              style="font-family: Inter, sans-serif"
+            >
+              View all products
+            </a>
           </div>
-        ))}
+        </section>
       </div>
-    </Container>
-  </section>
+    </BaseLayout>
+  ) : (
+    <BaseLayout
+      title={`${product.name} | Products — ALFArhan`}
+      description={product.overview}
+      lang="en"
+      dir="ltr"
+      locale="en"
+      currentPath={`products/${slug}`}
+    >
+      <div class="w-full">
+        <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px;">
+          <div class="max-w-[1140px] mx-auto px-8">
+            <a
+              href="/en/products"
+              class="text-sm text-[#5c5c5c] hover:text-[#2c2c2c] transition-colors mb-6 inline-block"
+              style="font-family: Inter, sans-serif"
+            >
+              ← Back to Products
+            </a>
+            <h1 class="text-6xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              {product.name}
+            </h1>
+          </div>
+        </section>
 
-  <section class="py-24 bg-[#1b2230]">
-    <Container>
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
-        Origins / Certifications
-      </h2>
-      <ul class="mt-8 max-w-3xl space-y-3 text-lg leading-8 text-white/80">
-        {page.origins.map((item, index) => <li data-slot={`section-4-item-${index + 1}`}>{item}</li>)}
-      </ul>
-    </Container>
-  </section>
+        <section class="w-full bg-[var(--bg-section)]" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+          <div class="max-w-[1140px] mx-auto px-8">
+            <div class="grid grid-cols-12 gap-12 items-center">
+              <div class="col-span-6">
+                <div class="w-full aspect-[16/9] bg-gray-300 overflow-hidden">
+                  <img src={product.image} alt={product.name} class="w-full h-full object-cover" />
+                </div>
+              </div>
+              <div class="col-span-5">
+                <h2 class="text-3xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                  Overview
+                </h2>
+                <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+                  {product.overview}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-  <section class="py-32 bg-[#2c2c2c]">
-    <Container>
-      <div class="text-center">
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
-        Engage With AFGT
-      </h2>
-      <a
-        href="/en/contact"
-        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
-        data-slot="cta-link"
-      >
-        <span data-slot="cta-text">Request Structured Engagement</span>
-      </a>
+        <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+          <div class="max-w-[1140px] mx-auto px-8">
+            <h2 class="text-4xl mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Specifications
+            </h2>
+
+            <div class="space-y-6">
+              {product.specifications.map((spec) => (
+                <div class="grid grid-cols-12 gap-8 py-4 border-b border-gray-200">
+                  <div class="col-span-4">
+                    <h3 class="text-base text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                      {spec.label}
+                    </h3>
+                  </div>
+                  <div class="col-span-8">
+                    <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                      {spec.value}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section class="w-full bg-[var(--bg-section)]" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+          <div class="max-w-[1140px] mx-auto px-8">
+            <div class="grid grid-cols-12 gap-12">
+              <div class="col-span-6">
+                <h2 class="text-3xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                  Origins
+                </h2>
+                <ul class="space-y-2">
+                  {product.origins.map((origin) => (
+                    <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                      {origin}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="col-span-6">
+                <h2 class="text-3xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                  Certifications
+                </h2>
+                <ul class="space-y-2">
+                  {product.certifications.map((cert) => (
+                    <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                      {cert}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="w-full section-white" style="padding-top: 64px; padding-bottom: 64px; margin-top: 96px;">
+          <div class="max-w-[1140px] mx-auto px-8 text-center">
+            <h2 class="text-4xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Inquiries
+            </h2>
+            <p class="text-base text-[#5c5c5c] mb-8 max-w-2xl mx-auto" style="font-family: Inter, sans-serif">
+              For product inquiries, pricing, and contract terms, contact the trading desk.
+            </p>
+            <a
+              href="/en/contact"
+              class="inline-block btn-primary px-8 py-3"
+              style="font-family: Inter, sans-serif"
+            >
+              Contact us
+            </a>
+          </div>
+        </section>
       </div>
-    </Container>
-  </section>
-</BaseLayout>
+    </BaseLayout>
+  )
+}
