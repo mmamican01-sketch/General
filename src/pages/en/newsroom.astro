@@ -1,46 +1,49 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
 const locale = "en";
 ---
 
 <BaseLayout locale={locale} title="Newsroom">
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+  <section class="py-24 bg-[var(--bg-section)]">
+    <Container>
       <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;">Newsroom</h1>
       <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80">Institutional notices and publication records for AFGT.</p>
-    </div>
+    </Container>
   </section>
 
-  <section class="py-24 bg-white">
-    <div class="mx-auto max-w-[1140px] px-8">
+  <section class="py-24 section-white">
+    <Container>
       <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;">Company Updates</h2>
       <p class="mt-8 max-w-3xl text-lg leading-8 text-[#1b2230]/70">Operational and corporate updates will be published under this section.</p>
-    </div>
+    </Container>
   </section>
 
-  <section class="py-24 bg-[#f8f8f8]">
-    <div class="mx-auto max-w-[1140px] px-8">
+  <section class="py-24 bg-[var(--bg-section)]">
+    <Container>
       <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;">Announcements</h2>
       <p class="mt-8 max-w-3xl text-lg leading-8 text-[#1b2230]/70">Formal announcements and release notes are maintained for reference.</p>
-    </div>
+    </Container>
   </section>
 
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+  <section class="py-24 bg-[var(--bg-section)]">
+    <Container>
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;">Media Inquiries</h2>
       <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80">Media and institutional communications follow the designated inquiry pathway.</p>
-    </div>
+    </Container>
   </section>
 
-  <section class="py-32 bg-[#2c2c2c]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
+  <section class="py-32 bg-[var(--bg-section)]">
+    <Container>
+      <div class="text-center">
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;">Engage With AFGT</h2>
       <a
         href="/en/contact"
-        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
+        class="mt-12 inline-block btn-primary px-10 py-4"
       >
         Request Buyer Access
       </a>
-    </div>
+      </div>
+    </Container>
   </section>
 </BaseLayout>

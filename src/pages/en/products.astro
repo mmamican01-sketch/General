@@ -1,26 +1,41 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const productRows = [
+const products = [
   {
-    slug: "institutional-procurement-support",
-    title: "Institutional Procurement Support",
-    description: "",
+    name: "Sugar",
+    slug: "sugar",
+    image:
+      "https://images.unsplash.com/photo-1607980276836-232ac6344978?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdWdhciUyMHByb2R1Y3Rpb24lMjBpbmR1c3RyaWFsfGVufDF8fHx8MTc3MDc0MTYxMXww&ixlib=rb-4.1.0&q=80&w=1080",
+    description: "Raw and refined sugar products sourced from certified mills across multiple origins.",
   },
   {
-    slug: "supplier-verification-alignment",
-    title: "Supplier Verification Alignment",
-    description: "",
+    name: "Wheat",
+    slug: "wheat",
+    image:
+      "https://images.unsplash.com/photo-1657626625832-2c0851cdaa9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aGVhdCUyMGdyYWluJTIwZmFybWluZ3xlbnwxfHx8fDE3NzA3NDE2MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    description: "Food-grade wheat and feed wheat from major producing regions with full traceability.",
   },
   {
-    slug: "documentation-transaction-structure",
-    title: "Documentation & Transaction Structure",
-    description: "",
+    name: "Oils",
+    slug: "oils",
+    image:
+      "https://images.unsplash.com/photo-1759332637000-50311b115c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZWdldGFibGUlMjBvaWwlMjBwcm9kdWN0aW9ufGVufDF8fHx8MTc3MDc0MTYxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+    description: "Vegetable oils including sunflower, soybean, palm, and canola oil for industrial and consumer markets.",
   },
   {
-    slug: "execution-coordination",
-    title: "Execution Coordination",
-    description: "",
+    name: "Urea",
+    slug: "urea",
+    image:
+      "https://images.unsplash.com/photo-1725802867239-ab1379895088?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1cmVhJTIwZmVydGlsaXplciUyMGluZHVzdHJpYWx8ZW58MXx8fHwxNzcwNzQxNjEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    description: "Agricultural-grade urea fertilizer from established producers with quality certification.",
+  },
+  {
+    name: "Maritime Transport",
+    slug: "maritime-transport",
+    image:
+      "https://images.unsplash.com/photo-1764041323714-de1d64fb8073?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJpdGltZSUyMGNhcmdvJTIwc2hpcCUyMG9jZWFufGVufDF8fHx8MTc3MDc0MTYxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+    description: "Bulk cargo shipping services and vessel chartering for agricultural and industrial commodities.",
   },
 ];
 ---
@@ -33,51 +48,86 @@ const productRows = [
   locale="en"
   currentPath="products"
 >
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
-      <p class="text-sm text-white/70" data-slot="breadcrumb"></p>
-      <h1 class="mt-6 font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
-        Products & Services
-      </h1>
-      <p class="mt-8 text-lg leading-8 text-white/80" data-slot="hero-description"></p>
-    </div>
-  </section>
+  <div class="w-full">
+    <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h1 class="text-6xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Products & Services
+        </h1>
+        <p class="text-lg text-[#5c5c5c] max-w-3xl" style="font-family: Inter, sans-serif">
+          AFGT trades across five primary commodity groups with operations spanning global markets.
+        </p>
+      </div>
+    </section>
 
-  <section class="py-24">
-    <div class="mx-auto max-w-[1140px] px-8 space-y-16">
-      {productRows.map((row, index) => (
-        <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-          <div class={index % 2 === 1 ? "md:order-2" : undefined}>
-            <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot={`row-${index + 1}-title`}>{row.title}</h2>
-            <p class="mt-6 text-lg leading-8 text-[#1b2230]/80" data-slot={`row-${index + 1}-description`}>{row.description}</p>
-            <a
-              href={`/en/products/${row.slug}`}
-              class="mt-8 inline-block border-b border-[#1b2230] pb-1 text-[#1b2230] transition-colors hover:text-[#1b2230]/70"
-              data-slot={`row-${index + 1}-cta-link`}
-            >
-              <span data-slot={`row-${index + 1}-cta-text`}>View Details</span>
-            </a>
-          </div>
-          <figure class={`h-[320px] w-full overflow-hidden ${index % 2 === 1 ? "md:order-1" : ""}`}>
-            <img src="/assets/figma/card-default.svg" alt="" class="h-full w-full object-cover" loading="lazy" data-slot={`row-${index + 1}-image`} />
-          </figure>
+    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 96px; padding-bottom: 96px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <div class="space-y-24">
+          {products.map((product, index) => (
+            <div class="grid grid-cols-12 gap-12 items-center">
+              {index % 2 === 0 ? (
+                <>
+                  <div class="col-span-6">
+                    <a href={`/en/products/${product.slug}`} class="block group">
+                      <div class="w-full aspect-[16/9] bg-gray-300 overflow-hidden mb-4">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          class="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
+                        />
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-span-5">
+                    <h2 class="text-4xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                      {product.name}
+                    </h2>
+                    <p class="text-base text-[#5c5c5c] leading-relaxed mb-6" style="font-family: Inter, sans-serif">
+                      {product.description}
+                    </p>
+                    <a
+                      href={`/en/products/${product.slug}`}
+                      class="text-sm text-[#2c2c2c] link-accent hover:text-[#000] transition-colors"
+                      style="font-family: Inter, sans-serif"
+                    >
+                      View details
+                    </a>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div class="col-span-5">
+                    <h2 class="text-4xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                      {product.name}
+                    </h2>
+                    <p class="text-base text-[#5c5c5c] leading-relaxed mb-6" style="font-family: Inter, sans-serif">
+                      {product.description}
+                    </p>
+                    <a
+                      href={`/en/products/${product.slug}`}
+                      class="text-sm text-[#2c2c2c] link-accent hover:text-[#000] transition-colors"
+                      style="font-family: Inter, sans-serif"
+                    >
+                      View details
+                    </a>
+                  </div>
+                  <div class="col-span-6 col-start-7">
+                    <a href={`/en/products/${product.slug}`} class="block group">
+                      <div class="w-full aspect-[16/9] bg-gray-300 overflow-hidden mb-4">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          class="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
+                        />
+                      </div>
+                    </a>
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  </section>
-
-  <section class="py-32 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
-        Engage With A Structured Commodity Intermediary
-      </h2>
-      <a
-        href="/en/contact"
-        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
-        data-slot="cta-link"
-      >
-        <span data-slot="cta-text">Request Buyer Access</span>
-      </a>
-    </div>
-  </section>
+      </div>
+    </section>
+  </div>
 </BaseLayout>

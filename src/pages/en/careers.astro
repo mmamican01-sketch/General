@@ -1,5 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const openRoles = [
+  { title: "Commodities Trader", location: "Dubai, UAE", department: "Trading" },
+  { title: "Supply Chain Manager", location: "Singapore", department: "Operations" },
+  { title: "Risk Analyst", location: "Geneva, Switzerland", department: "Risk Management" },
+  { title: "Logistics Coordinator", location: "Rotterdam, Netherlands", department: "Logistics" },
+  { title: "Financial Controller", location: "Dubai, UAE", department: "Finance" },
+  { title: "Compliance Officer", location: "London, UK", department: "Legal & Compliance" },
+];
 ---
 
 <BaseLayout
@@ -10,93 +19,172 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   locale="en"
   currentPath="careers"
 >
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
-      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
-        Careers
-      </h1>
-      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="hero-description"></p>
-    </div>
-  </section>
+  <div class="w-full">
+    <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h1 class="text-6xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Careers
+        </h1>
+        <p class="text-lg text-[#5c5c5c] max-w-3xl" style="font-family: Inter, sans-serif">
+          Professional opportunities in global commodity trading and operations.
+        </p>
+      </div>
+    </section>
 
-  <section class="py-24 bg-white">
-    <div class="mx-auto max-w-[1140px] px-8">
-      <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-2-title">
-        Working At AFGT
-      </h2>
-      <div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-3">
-        <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-2-card-1-title">Professionalism</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-8" data-slot="section-2-card-1-body"></p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-2-card-2-title">Structure</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-8" data-slot="section-2-card-2-body"></p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-2-card-3-title">Global Exposure</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-8" data-slot="section-2-card-3-body"></p>
+    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h2 class="text-4xl mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Working at AFGT
+        </h2>
+
+        <div class="grid grid-cols-12 gap-12">
+          <div class="col-span-6">
+            <p class="text-base text-[#5c5c5c] leading-relaxed mb-5" style="font-family: Inter, sans-serif">
+              AFGT employs professionals across trading, operations, logistics, risk management, and support functions. The company operates in 25 countries with offices in major trading hubs.
+            </p>
+            <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+              Employees work in collaborative teams focused on commodity markets, supply chain management, and institutional partnerships.
+            </p>
+          </div>
+          <div class="col-span-6">
+            <p class="text-base text-[#5c5c5c] leading-relaxed mb-5" style="font-family: Inter, sans-serif">
+              The company provides professional development programs, market training, and international exposure across different commodity sectors and geographic markets.
+            </p>
+            <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+              AFGT maintains workplace standards aligned with international labor practices and regional employment regulations.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="py-24 bg-[#f8f8f8]">
-    <div class="mx-auto max-w-[1140px] px-8">
-      <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
-        Open Positions
-      </h2>
-      <ul class="mt-10 space-y-6">
-        <li class="border-b border-[#1b2230]/20 pb-6">
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;">Structured Engagement Analyst</h3>
-          <a href="/en/careers/apply" class="mt-4 inline-block border-b border-[#1b2230] pb-1 text-[#1b2230] transition-colors hover:text-[#1b2230]/70">
-            Submit Inquiry
-          </a>
-        </li>
-        <li class="border-b border-[#1b2230]/20 pb-6">
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;">Documentation Coordination Associate</h3>
-          <a href="/en/careers/apply" class="mt-4 inline-block border-b border-[#1b2230] pb-1 text-[#1b2230] transition-colors hover:text-[#1b2230]/70">
-            Submit Inquiry
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
+    <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h2 class="text-4xl mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Open positions
+        </h2>
 
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
-        Application Process
-      </h2>
-      <div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-3">
-        <div>
-          <h3 class="font-serif text-2xl text-white" style="font-weight:400;" data-slot="section-4-step-1-title">Step 01</h3>
-          <p class="mt-4 text-white/80 leading-8" data-slot="section-4-step-1-body"></p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl text-white" style="font-weight:400;" data-slot="section-4-step-2-title">Step 02</h3>
-          <p class="mt-4 text-white/80 leading-8" data-slot="section-4-step-2-body"></p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl text-white" style="font-weight:400;" data-slot="section-4-step-3-title">Step 03</h3>
-          <p class="mt-4 text-white/80 leading-8" data-slot="section-4-step-3-body"></p>
+        <div class="space-y-0">
+          {openRoles.map((role) => (
+            <div class="py-5 border-b border-gray-200 grid grid-cols-12 gap-8 items-center hover:bg-[#f9f9f9] transition-colors">
+              <div class="col-span-5">
+                <h3 class="text-lg text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                  {role.title}
+                </h3>
+              </div>
+              <div class="col-span-3">
+                <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                  {role.location}
+                </p>
+              </div>
+              <div class="col-span-2">
+                <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                  {role.department}
+                </p>
+              </div>
+              <div class="col-span-2 text-right">
+                <a
+                  href="#"
+                  class="text-sm text-[#2c2c2c] link-accent hover:text-[#000] transition-colors"
+                  style="font-family: Inter, sans-serif"
+                >
+                  View details
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="py-32 bg-[#2c2c2c]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
-        Questions / Contact
-      </h2>
-      <a
-        href="/en/contact"
-        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
-        data-slot="cta-link"
-      >
-        <span data-slot="cta-text">Request Buyer Access</span>
-      </a>
-    </div>
-  </section>
+    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h2 class="text-4xl mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Application process
+        </h2>
+
+        <div class="space-y-6">
+          <div class="grid grid-cols-12 gap-8">
+            <div class="col-span-1">
+              <span class="text-2xl text-[#5c5c5c]" style="font-family: Inter, sans-serif; font-weight: 500;">
+                1
+              </span>
+            </div>
+            <div class="col-span-11">
+              <h3 class="text-xl mb-2 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                Submit application
+              </h3>
+              <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                Review open positions and submit your application through the online portal. Include CV and relevant professional documentation.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-12 gap-8">
+            <div class="col-span-1">
+              <span class="text-2xl text-[#5c5c5c]" style="font-family: Inter, sans-serif; font-weight: 500;">
+                2
+              </span>
+            </div>
+            <div class="col-span-11">
+              <h3 class="text-xl mb-2 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                Initial review
+              </h3>
+              <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                Applications are reviewed by the relevant department. Qualified candidates are contacted within two weeks.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-12 gap-8">
+            <div class="col-span-1">
+              <span class="text-2xl text-[#5c5c5c]" style="font-family: Inter, sans-serif; font-weight: 500;">
+                3
+              </span>
+            </div>
+            <div class="col-span-11">
+              <h3 class="text-xl mb-2 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                Interview process
+              </h3>
+              <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                Selected candidates proceed to interviews with department managers and HR. Process may include technical assessments where relevant.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-12 gap-8">
+            <div class="col-span-1">
+              <span class="text-2xl text-[#5c5c5c]" style="font-family: Inter, sans-serif; font-weight: 500;">
+                4
+              </span>
+            </div>
+            <div class="col-span-11">
+              <h3 class="text-xl mb-2 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                Offer & onboarding
+              </h3>
+              <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                Successful candidates receive formal offer letters. Onboarding includes orientation, compliance training, and department-specific programs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full section-white" style="padding-top: 64px; padding-bottom: 64px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h2 class="text-4xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Questions
+        </h2>
+        <p class="text-base text-[#5c5c5c] mb-4" style="font-family: Inter, sans-serif">
+          For inquiries about career opportunities, contact the Human Resources department.
+        </p>
+        <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+          Email:
+          {" "}
+          <a href="mailto:careers@afgt.ae" class="link-accent hover:text-[#2c2c2c] transition-colors">careers@afgt.ae</a>
+        </p>
+      </div>
+    </section>
+  </div>
 </BaseLayout>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
 ---
 
 <BaseLayout
@@ -10,43 +11,45 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   locale="en"
   currentPath="about"
 >
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+  <section class="py-24 bg-[var(--bg-section)]">
+    <Container>
       <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;">About AFGT</h1>
       <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80">Institutional intermediary profile and operating scope.</p>
-    </div>
+    </Container>
   </section>
 
-  <section class="py-24 bg-white">
-    <div class="mx-auto max-w-[1140px] px-8">
+  <section class="py-24 section-white">
+    <Container>
       <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;">Overview</h2>
       <p class="mt-8 max-w-3xl text-lg leading-8 text-[#1b2230]/70">Structured trade engagement model for institutional counterpart coordination.</p>
-    </div>
+    </Container>
   </section>
 
-  <section class="py-24 bg-[#f8f8f8]">
-    <div class="mx-auto max-w-[1140px] px-8">
+  <section class="py-24 bg-[var(--bg-section)]">
+    <Container>
       <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;">Operating Footprint</h2>
       <p class="mt-8 max-w-3xl text-lg leading-8 text-[#1b2230]/70">Coverage across defined sourcing and buyer corridors under documented workflows.</p>
-    </div>
+    </Container>
   </section>
 
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+  <section class="py-24 bg-[var(--bg-section)]">
+    <Container>
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;">Positioning</h2>
       <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80">Neutral intermediary positioning with compliance-aware communication standards.</p>
-    </div>
+    </Container>
   </section>
 
-  <section class="py-32 bg-[#2c2c2c]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
+  <section class="py-32 bg-[var(--bg-section)]">
+    <Container>
+      <div class="text-center">
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;">Engage With AFGT</h2>
       <a
         href="/en/contact"
-        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
+        class="mt-12 inline-block btn-primary px-10 py-4"
       >
         Request Buyer Access
       </a>
-    </div>
+      </div>
+    </Container>
   </section>
 </BaseLayout>

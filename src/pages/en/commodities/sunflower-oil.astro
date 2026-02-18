@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/Container.astro";
 ---
 
 <BaseLayout
@@ -10,17 +11,18 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
   locale="en"
   currentPath="commodities/sunflower-oil"
 >
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+  <section class="py-24 bg-[var(--bg-section)]">
+    <Container>
       <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
         Sunflower Oil Commodity
       </h1>
       <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="hero-description"></p>
-    </div>
+    </Container>
   </section>
 
-  <section class="py-24 bg-white">
-    <div class="mx-auto grid max-w-[1140px] grid-cols-1 items-center gap-16 px-8 md:grid-cols-2">
+  <section class="py-24 section-white">
+    <Container>
+      <div class="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
       <div>
         <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-2-title">
           Commodity Overview
@@ -31,11 +33,12 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
       <figure class="h-[420px] w-full overflow-hidden">
         <img src="/assets/figma/media-default.svg" alt="Sunflower oil commodity overview" class="h-full w-full object-cover" loading="lazy" data-slot="section-2-image" />
       </figure>
-    </div>
+      </div>
+    </Container>
   </section>
 
-  <section class="py-24 bg-[#f8f8f8]">
-    <div class="mx-auto max-w-[1140px] px-8">
+  <section class="py-24 bg-[var(--bg-section)]">
+    <Container>
       <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
         Key Specifications
       </h2>
@@ -57,30 +60,32 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
           <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-4-body"></p>
         </div>
       </div>
-    </div>
+    </Container>
   </section>
 
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
+  <section class="py-24 bg-[var(--bg-section)]">
+    <Container>
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
         Institutional Supply Alignment
       </h2>
       <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="section-4-body"></p>
-    </div>
+    </Container>
   </section>
 
-  <section class="py-32 bg-[#2c2c2c]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
+  <section class="py-32 bg-[var(--bg-section)]">
+    <Container>
+      <div class="text-center">
       <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
         Engage With AFGT
       </h2>
       <a
         href="/en/contact"
-        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
+        class="mt-12 inline-block btn-primary px-10 py-4"
         data-slot="cta-link"
       >
         <span data-slot="cta-text">Request Structured Engagement</span>
       </a>
-    </div>
+      </div>
+    </Container>
   </section>
 </BaseLayout>

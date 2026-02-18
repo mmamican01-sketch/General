@@ -10,73 +10,206 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   locale="en"
   currentPath="who-we-are"
 >
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
-      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
-        Who We Are
-      </h1>
-      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="hero-description"></p>
-    </div>
-  </section>
+  <div class="w-full">
+    <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h1 class="text-6xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Who We Are
+        </h1>
+        <p class="text-lg text-[#5c5c5c] max-w-3xl" style="font-family: Inter, sans-serif">
+          A diversified general trading company operating across multiple commodity sectors.
+        </p>
+      </div>
+    </section>
 
-  <section class="py-24 bg-white">
-    <div class="mx-auto grid max-w-[1140px] grid-cols-1 items-center gap-16 px-8 md:grid-cols-2">
-      <div>
-        <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-2-title">
-          Our Role
+    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <div class="grid grid-cols-12 gap-12">
+          <div class="col-span-6">
+            <h2 class="text-3xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Company overview
+            </h2>
+            <p class="text-base text-[#5c5c5c] leading-relaxed mb-5" style="font-family: Inter, sans-serif">
+              AL Farhan General Trading (AFGT) is a diversified trading company headquartered in Dubai, United Arab Emirates. AFGT operates across multiple commodity sectors with a focus on institutional partnerships.
+            </p>
+            <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+              The company serves markets across the Middle East, Africa, Asia Pacific, and Europe through a network of strategic partnerships and operational facilities.
+            </p>
+          </div>
+          <div class="col-span-6">
+            <h2 class="text-3xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Market presence
+            </h2>
+            <p class="text-base text-[#5c5c5c] leading-relaxed mb-5" style="font-family: Inter, sans-serif">
+              AFGT operates in 25 countries with a presence spanning four continents. The company manages commodity flows across sugar, wheat, oils, urea, and maritime transport sectors.
+            </p>
+            <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+              Through direct trading relationships and long-term supply agreements, AFGT connects producers and consumers across global markets.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h2 class="text-4xl mb-10 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          How we operate
         </h2>
-        <p class="mt-6 text-[#1b2230]/70 leading-8" data-slot="section-2-body-1"></p>
-        <p class="mt-6 text-[#1b2230]/70 leading-8" data-slot="section-2-body-2"></p>
+
+        <div class="grid grid-cols-12 gap-12">
+          <div class="col-span-4">
+            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Trading operations
+            </h3>
+            <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+              AFGT conducts direct commodity trading across physical and contract-based markets. Operations are managed through regional offices with local market expertise.
+            </p>
+          </div>
+
+          <div class="col-span-4">
+            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Risk management
+            </h3>
+            <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+              The company maintains structured risk management protocols across all trading activities, including counterparty assessment, position monitoring, and hedging strategies.
+            </p>
+          </div>
+
+          <div class="col-span-4">
+            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Logistics coordination
+            </h3>
+            <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+              AFGT coordinates end-to-end logistics across maritime, rail, and road transport networks, ensuring reliable delivery timelines and supply chain transparency.
+            </p>
+          </div>
+        </div>
       </div>
-      <figure class="h-[420px] w-full overflow-hidden">
-        <img src="/assets/figma/media-default.svg" alt="Our intermediary role" class="h-full w-full object-cover" loading="lazy" data-slot="section-2-image" />
-      </figure>
-    </div>
-  </section>
+    </section>
 
-  <section class="py-24 bg-[#f8f8f8]">
-    <div class="mx-auto max-w-[1140px] px-8">
-      <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
-        Operating Model
-      </h2>
-      <div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-3">
-        <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-1-title">Supplier Alignment</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-8" data-slot="section-3-card-1-body"></p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-2-title">Institutional Interface</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-8" data-slot="section-3-card-2-body"></p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-3-title">Transaction Structuring</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-8" data-slot="section-3-card-3-body"></p>
+    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h2 class="text-4xl mb-10 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Global presence
+        </h2>
+
+        <div class="grid grid-cols-12 gap-12">
+          <div class="col-span-3">
+            <h3 class="text-lg mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Middle East & Africa
+            </h3>
+            <ul class="space-y-2">
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Dubai, UAE</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Riyadh, Saudi Arabia</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Cairo, Egypt</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Lagos, Nigeria</li>
+            </ul>
+          </div>
+
+          <div class="col-span-3">
+            <h3 class="text-lg mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Asia Pacific
+            </h3>
+            <ul class="space-y-2">
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Singapore</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Mumbai, India</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Shanghai, China</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Jakarta, Indonesia</li>
+            </ul>
+          </div>
+
+          <div class="col-span-3">
+            <h3 class="text-lg mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Europe
+            </h3>
+            <ul class="space-y-2">
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">London, UK</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Geneva, Switzerland</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Rotterdam, Netherlands</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Hamburg, Germany</li>
+            </ul>
+          </div>
+
+          <div class="col-span-3">
+            <h3 class="text-lg mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Americas
+            </h3>
+            <ul class="space-y-2">
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">New York, USA</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Sao Paulo, Brazil</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Buenos Aires, Argentina</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
-        Global Positioning
-      </h2>
-      <p class="mx-auto mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="section-4-body"></p>
-    </div>
-  </section>
+    <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h2 class="text-4xl mb-10 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Principles
+        </h2>
 
-  <section class="py-32 bg-[#2c2c2c]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
-        Engage With AFGT
-      </h2>
-      <a
-        href="/en/contact"
-        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
-        data-slot="cta-link"
-      >
-        <span data-slot="cta-text">Request Buyer Access</span>
-      </a>
-    </div>
-  </section>
+        <div class="space-y-8">
+          <div>
+            <h3 class="text-xl mb-2 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Transparency
+            </h3>
+            <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+              Clear communication and accurate reporting across all trading operations and partnerships.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-xl mb-2 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Reliability
+            </h3>
+            <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+              Consistent delivery performance and contract fulfillment across all market conditions.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-xl mb-2 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Long-term partnerships
+            </h3>
+            <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+              Building enduring relationships with producers, consumers, and logistics partners across global markets.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-xl mb-2 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Market expertise
+            </h3>
+            <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+              Deep understanding of commodity markets, supply chain dynamics, and regional trade flows.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 64px; padding-bottom: 64px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h2 class="text-4xl mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Standards & compliance
+        </h2>
+
+        <div class="grid grid-cols-12 gap-8">
+          <div class="col-span-6">
+            <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+              AFGT operates in accordance with international trading standards and regional regulatory frameworks. The company maintains compliance with customs, import-export regulations, and quality certification requirements across all operating jurisdictions.
+            </p>
+          </div>
+          <div class="col-span-6">
+            <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+              All trading activities are subject to internal audit procedures, financial controls, and third-party verification processes where applicable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>

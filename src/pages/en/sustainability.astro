@@ -10,76 +10,184 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   locale="en"
   currentPath="sustainability"
 >
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8">
-      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
-        Sustainability
-      </h1>
-      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="hero-description"></p>
-    </div>
-  </section>
+  <div class="w-full">
+    <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h1 class="text-6xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Sustainability
+        </h1>
+        <p class="text-lg text-[#5c5c5c] max-w-3xl" style="font-family: Inter, sans-serif">
+          Responsible trading practices across our supply chain operations.
+        </p>
+      </div>
+    </section>
 
-  <section class="py-24 bg-white">
-    <div class="mx-auto grid max-w-[1140px] grid-cols-1 gap-16 px-8 md:grid-cols-2">
-      <div>
-        <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-2-title">
+    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h2 class="text-4xl mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
           Approach
         </h2>
-        <p class="mt-6 text-[#1b2230]/70 leading-8" data-slot="section-2-body-1"></p>
-      </div>
-      <div>
-        <p class="mt-14 text-[#1b2230]/70 leading-8 md:mt-0" data-slot="section-2-body-2"></p>
-      </div>
-    </div>
-  </section>
 
-  <section class="py-24 bg-[#f8f8f8]">
-    <div class="mx-auto max-w-[1140px] px-8">
-      <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
-        Focus Areas
-      </h2>
-      <div class="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
-        <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-1-title">Supply Chain Transparency</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-1-body"></p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-2-title">Regulatory Alignment</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-2-body"></p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-3-title">Ethical Intermediation</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-3-body"></p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-4-title">Risk Governance</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-4-body"></p>
+        <div class="grid grid-cols-12 gap-12">
+          <div class="col-span-6">
+            <p class="text-base text-[#5c5c5c] leading-relaxed mb-5" style="font-family: Inter, sans-serif">
+              AFGT integrates sustainability considerations into commodity sourcing, supply chain management, and trading operations. The company works with partners who maintain recognized environmental and social standards.
+            </p>
+            <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+              Sustainability practices are assessed through supplier audits, certification verification, and operational monitoring across the supply chain.
+            </p>
+          </div>
+          <div class="col-span-6">
+            <p class="text-base text-[#5c5c5c] leading-relaxed mb-5" style="font-family: Inter, sans-serif">
+              The company prioritizes long-term partnerships with producers and logistics providers who demonstrate commitment to sustainable practices and transparent operations.
+            </p>
+            <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+              AFGT participates in industry initiatives aimed at improving sustainability standards across global commodity markets.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="py-24 bg-[#1b2230]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
-        Standards & Commitments
-      </h2>
-      <p class="mx-auto mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="section-4-body"></p>
-    </div>
-  </section>
+    <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h2 class="text-4xl mb-10 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Focus areas
+        </h2>
 
-  <section class="py-32 bg-[#2c2c2c]">
-    <div class="mx-auto max-w-[1140px] px-8 text-center">
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
-        Engage With AFGT
-      </h2>
-      <a
-        href="/en/contact"
-        class="mt-12 inline-block rounded-full border border-white bg-white px-10 py-4 text-[#1b2230] transition-colors hover:bg-transparent hover:text-white"
-        data-slot="cta-link"
-      >
-        <span data-slot="cta-text">Request Buyer Access</span>
-      </a>
-    </div>
-  </section>
+        <div class="space-y-12">
+          <div>
+            <h3 class="text-2xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Environment
+            </h3>
+            <div class="grid grid-cols-12 gap-8">
+              <div class="col-span-6">
+                <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+                  AFGT monitors environmental impact across sourcing and logistics operations. The company works with certified suppliers and transportation partners who maintain documented environmental management systems.
+                </p>
+              </div>
+              <div class="col-span-6">
+                <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+                  Carbon footprint tracking is applied to maritime transport operations. Route optimization and vessel efficiency are integrated into logistics planning.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-2xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Supply chain
+            </h3>
+            <div class="grid grid-cols-12 gap-8">
+              <div class="col-span-6">
+                <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+                  Supplier due diligence includes verification of environmental certifications, labor practices, and traceability documentation. Third-party audits are conducted where required by industry standards.
+                </p>
+              </div>
+              <div class="col-span-6">
+                <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+                  AFGT maintains direct relationships with producers to ensure visibility into sourcing practices and adherence to sustainability commitments.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-2xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              People
+            </h3>
+            <div class="grid grid-cols-12 gap-8">
+              <div class="col-span-6">
+                <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+                  The company maintains workplace safety standards and professional development programs for employees across all operational locations.
+                </p>
+              </div>
+              <div class="col-span-6">
+                <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+                  AFGT expects all partners and suppliers to comply with labor laws, fair employment practices, and health and safety regulations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h2 class="text-4xl mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Standards & commitments
+        </h2>
+
+        <div class="space-y-4">
+          <div class="pb-4 border-b border-gray-300">
+            <h3 class="text-lg mb-2 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              ISO 14001 Environmental Management
+            </h3>
+            <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+              Applied to operational facilities and logistics partners where applicable.
+            </p>
+          </div>
+
+          <div class="pb-4 border-b border-gray-300">
+            <h3 class="text-lg mb-2 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Sustainable Agriculture Certifications
+            </h3>
+            <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+              Verification of supplier certifications including Bonsucro, RSPO, and RTRS where relevant to commodity sourcing.
+            </p>
+          </div>
+
+          <div class="pb-4 border-b border-gray-300">
+            <h3 class="text-lg mb-2 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              UN Global Compact
+            </h3>
+            <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+              Alignment with principles covering human rights, labor, environment, and anti-corruption.
+            </p>
+          </div>
+
+          <div class="pb-4">
+            <h3 class="text-lg mb-2 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Code of Conduct
+            </h3>
+            <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+              Internal policies governing ethical business practices, anti-bribery measures, and regulatory compliance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full section-white" style="padding-top: 64px; padding-bottom: 64px; margin-top: 96px;">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h2 class="text-4xl mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          Reporting & transparency
+        </h2>
+
+        <div class="grid grid-cols-12 gap-8">
+          <div class="col-span-6">
+            <p class="text-base text-[#5c5c5c] leading-relaxed mb-5" style="font-family: Inter, sans-serif">
+              AFGT publishes annual sustainability reports documenting progress across environmental, social, and governance metrics.
+            </p>
+            <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+              <a href="#" class="link-accent hover:text-[#2c2c2c] transition-colors">
+                Annual Sustainability Report 2025
+              </a>
+            </p>
+          </div>
+          <div class="col-span-6">
+            <p class="text-base text-[#5c5c5c] leading-relaxed mb-5" style="font-family: Inter, sans-serif">
+              Sustainability performance data is independently verified and aligned with global reporting frameworks.
+            </p>
+            <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+              <a href="#" class="link-accent hover:text-[#2c2c2c] transition-colors">
+                Sustainability Policy Framework
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
