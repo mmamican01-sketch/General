@@ -1,0 +1,6 @@
+{
+  "routeKey": "products__slug",
+  "route": "/en/products/[slug]",
+  "generatedAt": "2026-02-18T21:39:09.974Z",
+  "slots": {}
+}

@@ -1,0 +1,15 @@
+{
+  "routeKey": "contact",
+  "route": "/en/contact",
+  "generatedAt": "2026-02-19T00:00:00.000Z",
+  "slots": {
+    "hero-title": { "type": "text", "value": "Contact" },
+    "hero-description": { "type": "text", "value": "Get in touch with AL Farhan General Trading (AFGT) for inquiries and information." },
+    "head-office-address": { "type": "text", "value": "Business Bay\nDubai, United Arab Emirates\nP.O. Box 123456" },
+    "email-primary": { "type": "text", "value": "info@afgt.ae" },
+    "email-secondary": { "type": "text", "value": "inquiries@afgt.ae" },
+    "phone": { "type": "text", "value": "+971 4 456 7890" },
+    "form-title": { "type": "text", "value": "Send us a message" },
+    "global-title": { "type": "text", "value": "Global presence" }
+  }
+}

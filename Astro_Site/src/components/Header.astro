@@ -1,0 +1,140 @@
+---
+const { locale = "en", currentPath = "" } = Astro.props;
+
+const base = locale === "ar" ? "/ar" : "/en";
+
+function buildHref(path: string) {
+  const p = path ? `${base}/${path}` : base;
+  return p.replace(/\/+$/, "") || base;
+}
+
+function isActive(path: string) {
+  const normalized = currentPath.replace(/\/+$/, "") || "";
+  const normalizedPath = path.replace(/\/+$/, "") || "";
+  return normalized === normalizedPath || (normalizedPath && normalized.startsWith(normalizedPath + "/"));
+}
+---
+
+<header class="w-full bg-white">
+  <!-- Utility Bar - Tier A -->
+  <div class="w-full bg-[#f5f5f5]">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3">
+      <div class="flex justify-end items-center gap-4 sm:gap-6 lg:gap-8 overflow-x-auto">
+        <a href="#" class="flex items-center gap-1 text-sm text-[#2c2c2c] hover:text-[#000] transition-colors">
+          Apply for a role
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+        <a href="#" class="text-sm text-[#2c2c2c] hover:text-[#000] transition-colors">
+          Newsroom
+        </a>
+        <a href={buildHref("contact")} class="text-sm text-[#2c2c2c] hover:text-[#000] transition-colors">
+          Contact Us
+        </a>
+        <button class="flex items-center gap-1 text-sm text-[#2c2c2c] hover:text-[#000] transition-colors">
+          Global sites
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <button class="bg-[#2c2c2c] p-2 hover:bg-[#000] transition-colors" aria-label="Search">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" stroke-width="2"></circle>
+            <path d="m21 21-4.3-4.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Header - Tier B -->
+  <div class="w-full bg-white border-b border-gray-200">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+        <a href={base} class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 via-blue-500 to-teal-400 clip-polygon"></div>
+          <span class="text-xl sm:text-2xl tracking-tight" style="font-family: Inter, sans-serif">AFGT</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 lg:gap-12" aria-label="Main navigation">
+          <a href={buildHref("who-we-are")} class="text-[#2c2c2c] hover:text-[#000] transition-colors" style="font-family: Cormorant Garamond, serif" aria-current={isActive("who-we-are") ? "page" : undefined}>
+            Who we are
+          </a>
+          <a href={buildHref("products")} class="text-[#2c2c2c] hover:text-[#000] transition-colors" style="font-family: Cormorant Garamond, serif" aria-current={isActive("products") ? "page" : undefined}>
+            Products & Services
+          </a>
+          <a href={buildHref("sustainability")} class="text-[#2c2c2c] hover:text-[#000] transition-colors" style="font-family: Cormorant Garamond, serif" aria-current={isActive("sustainability") ? "page" : undefined}>
+            Sustainability
+          </a>
+          <a href={buildHref("careers")} class="text-[#2c2c2c] hover:text-[#000] transition-colors" style="font-family: Cormorant Garamond, serif" aria-current={isActive("careers") ? "page" : undefined}>
+            Careers
+          </a>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <button
+          type="button"
+          class="md:hidden p-2 -mr-2 text-[#2c2c2c] hover:text-[#000]"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          data-mobile-menu-toggle
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav overlay -->
+    <div id="mobile-nav" class="md:hidden fixed inset-0 z-50 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-200" data-mobile-nav-overlay aria-hidden="true"></div>
+    <nav id="mobile-nav-drawer" class="md:hidden fixed top-0 right-0 z-50 h-full w-[min(320px,85vw)] bg-white shadow-xl transform translate-x-full transition-transform duration-200 flex flex-col" aria-label="Mobile navigation" aria-hidden="true">
+      <div class="p-4 flex justify-between items-center border-b border-gray-200">
+        <span class="text-lg font-medium text-[#2c2c2c]">Menu</span>
+        <button type="button" class="p-2 -mr-2 text-[#2c2c2c]" aria-label="Close menu" data-mobile-menu-close>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+      <div class="p-4 flex flex-col gap-4">
+        <a href={buildHref("who-we-are")} class="text-lg text-[#2c2c2c] hover:text-[#000] py-2" style="font-family: Cormorant Garamond, serif" data-mobile-nav-link>Who we are</a>
+        <a href={buildHref("products")} class="text-lg text-[#2c2c2c] hover:text-[#000] py-2" style="font-family: Cormorant Garamond, serif" data-mobile-nav-link>Products & Services</a>
+        <a href={buildHref("sustainability")} class="text-lg text-[#2c2c2c] hover:text-[#000] py-2" style="font-family: Cormorant Garamond, serif" data-mobile-nav-link>Sustainability</a>
+        <a href={buildHref("careers")} class="text-lg text-[#2c2c2c] hover:text-[#000] py-2" style="font-family: Cormorant Garamond, serif" data-mobile-nav-link>Careers</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  function initMobileNav() {
+    const toggle = document.querySelector("[data-mobile-menu-toggle]");
+    const closeBtn = document.querySelector("[data-mobile-menu-close]");
+    const overlay = document.querySelector("[data-mobile-nav-overlay]");
+    const drawer = document.getElementById("mobile-nav-drawer");
+    const links = document.querySelectorAll("[data-mobile-nav-link]");
+
+    function open() {
+      if (!overlay || !drawer) return;
+      overlay.classList.remove("opacity-0", "pointer-events-none");
+      overlay.classList.add("opacity-100");
+      drawer.classList.remove("translate-x-full");
+      drawer.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+    function close() {
+      if (!overlay || !drawer) return;
+      overlay.classList.add("opacity-0", "pointer-events-none");
+      overlay.classList.remove("opacity-100");
+      drawer.classList.add("translate-x-full");
+      drawer.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+    toggle?.addEventListener("click", open);
+    closeBtn?.addEventListener("click", close);
+    overlay?.addEventListener("click", close);
+    links.forEach((l) => l.addEventListener("click", close));
+  }
+  initMobileNav();
+</script>

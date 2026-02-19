@@ -1,0 +1,86 @@
+{
+  "route": "/en/commodities/wheat",
+  "source": "src/pages/en/commodities/wheat.astro",
+  "slots": {
+    "hero-title": {
+      "type": "text",
+      "value": ""
+    },
+    "hero-description": {
+      "type": "richtext",
+      "value": ""
+    },
+    "section-2-title": {
+      "type": "text",
+      "value": ""
+    },
+    "section-2-body-1": {
+      "type": "richtext",
+      "value": ""
+    },
+    "section-2-body-2": {
+      "type": "richtext",
+      "value": ""
+    },
+    "section-2-image": {
+      "type": "image",
+      "value": ""
+    },
+    "section-3-title": {
+      "type": "text",
+      "value": ""
+    },
+    "section-3-card-1-title": {
+      "type": "text",
+      "value": ""
+    },
+    "section-3-card-1-body": {
+      "type": "richtext",
+      "value": ""
+    },
+    "section-3-card-2-title": {
+      "type": "text",
+      "value": ""
+    },
+    "section-3-card-2-body": {
+      "type": "richtext",
+      "value": ""
+    },
+    "section-3-card-3-title": {
+      "type": "text",
+      "value": ""
+    },
+    "section-3-card-3-body": {
+      "type": "richtext",
+      "value": ""
+    },
+    "section-3-card-4-title": {
+      "type": "text",
+      "value": ""
+    },
+    "section-3-card-4-body": {
+      "type": "richtext",
+      "value": ""
+    },
+    "section-4-title": {
+      "type": "text",
+      "value": ""
+    },
+    "section-4-body": {
+      "type": "richtext",
+      "value": ""
+    },
+    "cta-title": {
+      "type": "text",
+      "value": ""
+    },
+    "cta-link": {
+      "type": "link",
+      "value": ""
+    },
+    "cta-text": {
+      "type": "text",
+      "value": ""
+    }
+  }
+}

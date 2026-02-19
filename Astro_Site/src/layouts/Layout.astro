@@ -1,0 +1,9 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const { locale, title, currentPath = "", description } = Astro.props;
+---
+
+<BaseLayout locale={locale} title={title} currentPath={currentPath} description={description}>
+  <slot />
+</BaseLayout>

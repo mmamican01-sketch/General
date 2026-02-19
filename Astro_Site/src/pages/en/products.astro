@@ -1,0 +1,101 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { loadAllProducts, loadPageContent, getSlot } from "../../lib/contentStore";
+
+const content = await loadPageContent("products");
+const productDocs = loadAllProducts();
+const products = productDocs.map((p) => ({
+  name: p.title || p.slug,
+  slug: p.slug,
+  image: p.heroImage || "/assets/figma/media-default.svg",
+  description: p.description || p.overview || "",
+}));
+---
+
+<BaseLayout
+  title="Products & Services | Structured Intermediary Models — ALFArhan"
+  description="Institutional-facing product and service models for structured commodity engagement, supplier alignment, and execution support."
+  lang="en"
+  dir="ltr"
+  locale="en"
+  currentPath="products"
+>
+  <div class="w-full">
+    <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl sm:text-4xl lg:text-6xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;" data-slot="hero-title">{getSlot(content, "hero-title", "Products & Services")}</h1>
+        <p class="text-lg text-[#5c5c5c] max-w-3xl" style="font-family: Inter, sans-serif" data-slot="hero-description">{getSlot(content, "hero-description", "AFGT trades across five primary commodity groups with operations spanning global markets.")}</p>
+      </div>
+    </section>
+
+    <section class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="space-y-12 sm:space-y-16 lg:space-y-24">
+          {products.map((product, index) => (
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {index % 2 === 0 ? (
+                <>
+                  <div class="md:col-span-6 order-2 md:order-1">
+                    <a href={`/en/products/${product.slug}`} class="block group">
+                      <div class="w-full aspect-[16/9] bg-gray-300 overflow-hidden mb-4">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          class="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
+                        />
+                      </div>
+                    </a>
+                  </div>
+                  <div class="md:col-span-5 order-1 md:order-2">
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                      {product.name}
+                    </h2>
+                    <p class="text-base text-[#5c5c5c] leading-relaxed mb-6" style="font-family: Inter, sans-serif">
+                      {product.description}
+                    </p>
+                    <a
+                      href={`/en/products/${product.slug}`}
+                      class="text-sm text-[#2c2c2c] link-accent hover:text-[#000] transition-colors"
+                      style="font-family: Inter, sans-serif"
+                    >
+                      View details
+                    </a>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div class="md:col-span-5 order-2 md:order-1">
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                      {product.name}
+                    </h2>
+                    <p class="text-base text-[#5c5c5c] leading-relaxed mb-6" style="font-family: Inter, sans-serif">
+                      {product.description}
+                    </p>
+                    <a
+                      href={`/en/products/${product.slug}`}
+                      class="text-sm text-[#2c2c2c] link-accent hover:text-[#000] transition-colors"
+                      style="font-family: Inter, sans-serif"
+                    >
+                      View details
+                    </a>
+                  </div>
+                  <div class="md:col-span-6 md:col-start-7 order-1 md:order-2">
+                    <a href={`/en/products/${product.slug}`} class="block group">
+                      <div class="w-full aspect-[16/9] bg-gray-300 overflow-hidden mb-4">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          class="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
+                        />
+                      </div>
+                    </a>
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

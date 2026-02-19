@@ -1,0 +1,172 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { loadPageContent, getSlot } from "../../lib/contentStore";
+
+const content = await loadPageContent("contact");
+---
+
+<BaseLayout
+  title="Contact ALFArhan General Trading Co. | Buyer Inquiry & Access Request"
+  description="Request buyer access and begin structured engagement for bulk commodity trade across supported markets."
+  lang="en"
+  dir="ltr"
+  locale="en"
+  currentPath="contact"
+>
+  <div class="w-full">
+    <section class="w-full section-white py-12 sm:py-16 lg:py-24">
+      <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl sm:text-4xl lg:text-6xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;" data-slot="hero-title">
+          {getSlot(content, "hero-title", "Contact")}
+        </h1>
+        <p class="text-lg text-[#5c5c5c]" style="font-family: Inter, sans-serif" data-slot="hero-description">
+          {getSlot(content, "hero-description", "Get in touch with AL Farhan General Trading (AFGT) for inquiries and information.")}
+        </p>
+      </div>
+    </section>
+
+    <section class="w-full bg-[var(--bg-section)] py-20">
+      <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+          <div class="md:col-span-4">
+            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;" data-slot="head-office-title">Head Office</h3>
+            <p class="text-sm text-[#5c5c5c] leading-relaxed whitespace-pre-line" style="font-family: Inter, sans-serif" data-slot="head-office-address">
+              {getSlot(content, "head-office-address", "Business Bay\nDubai, United Arab Emirates\nP.O. Box 123456")}
+            </p>
+          </div>
+
+          <div class="md:col-span-4">
+            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">Email</h3>
+            <a
+              href={`mailto:${getSlot(content, "email-primary", "info@afgt.ae")}`}
+              class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors block"
+              style="font-family: Inter, sans-serif"
+              data-slot="email-primary"
+            >
+              {getSlot(content, "email-primary", "info@afgt.ae")}
+            </a>
+            <a
+              href={`mailto:${getSlot(content, "email-secondary", "inquiries@afgt.ae")}`}
+              class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors block mt-2"
+              style="font-family: Inter, sans-serif"
+              data-slot="email-secondary"
+            >
+              {getSlot(content, "email-secondary", "inquiries@afgt.ae")}
+            </a>
+          </div>
+
+          <div class="md:col-span-4">
+            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">Phone</h3>
+            <a
+              href={`tel:${getSlot(content, "phone", "+97144567890").replace(/\s/g, "")}`}
+              class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors block"
+              style="font-family: Inter, sans-serif"
+              data-slot="phone"
+            >
+              {getSlot(content, "phone", "+971 4 456 7890")}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full section-white py-20">
+      <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;" data-slot="form-title">{getSlot(content, "form-title", "Send us a message")}</h2>
+
+        <form class="space-y-6">
+          <div>
+            <label for="name" class="block text-sm mb-2 text-[#2c2c2c]" style="font-family: Inter, sans-serif">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full px-4 py-3 border border-gray-300 bg-white text-[#2c2c2c] focus:outline-none focus:border-gray-500 transition-colors"
+              style="font-family: Inter, sans-serif"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm mb-2 text-[#2c2c2c]" style="font-family: Inter, sans-serif">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full px-4 py-3 border border-gray-300 bg-white text-[#2c2c2c] focus:outline-none focus:border-gray-500 transition-colors"
+              style="font-family: Inter, sans-serif"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm mb-2 text-[#2c2c2c]" style="font-family: Inter, sans-serif">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="6"
+              class="w-full px-4 py-3 border border-gray-300 bg-white text-[#2c2c2c] resize-none focus:outline-none focus:border-gray-500 transition-colors"
+              style="font-family: Inter, sans-serif"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="btn-primary px-8 py-3"
+            style="font-family: Inter, sans-serif"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <section class="w-full bg-[var(--bg-section)] py-20">
+      <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;" data-slot="global-title">{getSlot(content, "global-title", "Global presence")}</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8">
+          <div class="md:col-span-4">
+            <h3 class="text-lg mb-3 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Middle East & Africa
+            </h3>
+            <ul class="space-y-2">
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Dubai, UAE</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Riyadh, Saudi Arabia</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Cairo, Egypt</li>
+            </ul>
+          </div>
+
+          <div class="md:col-span-4">
+            <h3 class="text-lg mb-3 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Asia Pacific
+            </h3>
+            <ul class="space-y-2">
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Singapore</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Mumbai, India</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Shanghai, China</li>
+            </ul>
+          </div>
+
+          <div class="md:col-span-4">
+            <h3 class="text-lg mb-3 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Europe
+            </h3>
+            <ul class="space-y-2">
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">London, UK</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Geneva, Switzerland</li>
+              <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">Rotterdam, Netherlands</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

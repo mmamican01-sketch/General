@@ -1,0 +1,8 @@
+{
+  "route": "/en/products",
+  "source": "src/pages/en/products.astro",
+  "slots": {},
+  "warnings": [
+    "No data-slot attributes found in source page."
+  ]
+}

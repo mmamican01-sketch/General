@@ -1,0 +1,82 @@
+{
+  "locale": "en",
+  "brand": {
+    "shortName": "AFGT",
+    "description": "AL Farhan General Trading is a diversified general trading company operating across multiple commodity sectors."
+  },
+  "columns": [
+    {
+      "key": "company",
+      "title": "Company",
+      "links": [
+        {
+          "label": "Who we are",
+          "href": "/en/who-we-are"
+        },
+        {
+          "label": "Products & Services",
+          "href": "/en/products"
+        },
+        {
+          "label": "Sustainability",
+          "href": "/en/sustainability"
+        },
+        {
+          "label": "Careers",
+          "href": "/en/careers"
+        }
+      ]
+    },
+    {
+      "key": "resources",
+      "title": "Resources",
+      "links": [
+        {
+          "label": "Newsroom",
+          "href": "/en/newsroom"
+        },
+        {
+          "label": "Contact Us",
+          "href": "/en/contact"
+        },
+        {
+          "label": "Global sites",
+          "href": "#"
+        }
+      ]
+    },
+    {
+      "key": "legal",
+      "title": "Legal",
+      "links": [
+        {
+          "label": "Privacy Policy",
+          "href": "#"
+        },
+        {
+          "label": "Terms of Service",
+          "href": "#"
+        },
+        {
+          "label": "Cookie Policy",
+          "href": "#"
+        }
+      ]
+    }
+  ],
+  "social": [
+    {
+      "platform": "LinkedIn",
+      "href": "#"
+    },
+    {
+      "platform": "Twitter",
+      "href": "#"
+    },
+    {
+      "platform": "Facebook",
+      "href": "#"
+    }
+  ],
+  "copyright": "© 2026 AL Farhan General Trading. All rights reserved."
+}

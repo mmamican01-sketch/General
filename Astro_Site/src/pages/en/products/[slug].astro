@@ -1,0 +1,177 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { loadProduct } from "../../../lib/contentStore";
+
+export function getStaticPaths() {
+  const slugs = ["sugar", "wheat", "oils", "urea", "maritime-transport"];
+  return slugs.map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const productDoc = slug ? loadProduct(slug) : null;
+
+const product = productDoc
+  ? {
+      name: productDoc.title || productDoc.slug,
+      image: productDoc.heroImage || "/assets/figma/media-default.svg",
+      overview: productDoc.overview || "",
+      specifications: productDoc.specifications || [],
+      origins: productDoc.origins || [],
+      certifications: productDoc.certifications || [],
+      cta: productDoc.cta || { label: "Contact us", href: "/en/contact" },
+    }
+  : null;
+---
+
+{
+  !product ? (
+    <BaseLayout
+      title="Product not found | Products — ALFArhan"
+      description="Product detail page not found."
+      lang="en"
+      dir="ltr"
+      locale="en"
+      currentPath={`products/${slug ?? ""}`}
+    >
+      <div class="w-full">
+        <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24">
+          <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-6xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Product not found
+            </h1>
+            <a
+              href="/en/products"
+              class="text-sm text-[#2c2c2c] link-accent hover:text-[#000] transition-colors"
+              style="font-family: Inter, sans-serif"
+            >
+              View all products
+            </a>
+          </div>
+        </section>
+      </div>
+    </BaseLayout>
+  ) : (
+    <BaseLayout
+      title={`${product.name} | Products — ALFArhan`}
+      description={product.overview}
+      lang="en"
+      dir="ltr"
+      locale="en"
+      currentPath={`products/${slug}`}
+    >
+      <div class="w-full">
+        <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24">
+          <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+            <a
+              href="/en/products"
+              class="text-sm text-[#5c5c5c] hover:text-[#2c2c2c] transition-colors mb-6 inline-block"
+              style="font-family: Inter, sans-serif"
+            >
+              ← Back to Products
+            </a>
+            <h1 class="text-3xl sm:text-4xl lg:text-6xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              {product.name}
+            </h1>
+          </div>
+        </section>
+
+        <section class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+          <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <div class="md:col-span-6 order-2 md:order-1">
+                <div class="w-full aspect-[16/9] bg-gray-300 overflow-hidden">
+                  <img src={product.image} alt={product.name} class="w-full h-full object-cover" />
+                </div>
+              </div>
+              <div class="md:col-span-5 order-1 md:order-2">
+                <h2 class="text-2xl sm:text-3xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                  Overview
+                </h2>
+                <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+                  {product.overview}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+          <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Specifications
+            </h2>
+
+            <div class="space-y-6">
+              {product.specifications.map((spec) => (
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-8 py-4 border-b border-gray-200">
+                  <div class="md:col-span-4">
+                    <h3 class="text-base text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                      {spec.label}
+                    </h3>
+                  </div>
+                  <div class="md:col-span-8">
+                    <p class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                      {spec.value}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+          <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+              <div class="md:col-span-6">
+                <h2 class="text-xl sm:text-2xl lg:text-3xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                  Origins
+                </h2>
+                <ul class="space-y-2">
+                  {product.origins.map((origin) => (
+                    <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                      {origin}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="md:col-span-6">
+                <h2 class="text-xl sm:text-2xl lg:text-3xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+                  Certifications
+                </h2>
+                <ul class="space-y-2">
+                  {product.certifications.map((cert) => (
+                    <li class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                      {cert}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+          <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              Inquiries
+            </h2>
+            <p class="text-base text-[#5c5c5c] mb-8 max-w-2xl mx-auto" style="font-family: Inter, sans-serif">
+              For product inquiries, pricing, and contract terms, contact the trading desk.
+            </p>
+            <a
+              href={product.cta?.href || "/en/contact"}
+              class="inline-block btn-primary px-8 py-3"
+              style="font-family: Inter, sans-serif"
+            >
+              {product.cta?.label || "Contact us"}
+            </a>
+          </div>
+        </section>
+      </div>
+    </BaseLayout>
+  )
+}

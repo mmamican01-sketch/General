@@ -1,0 +1,85 @@
+{
+  "assets": [
+    {
+      "path": "public/assets/figma/card-default.svg",
+      "type": "image/svg+xml",
+      "sizeBytes": 287,
+      "publicUrl": "/assets/figma/card-default.svg",
+      "referencedByPages": [
+        "/en/commodities"
+      ],
+      "referencedByFiles": [
+        "src/pages/en/commodities/index.astro"
+      ]
+    },
+    {
+      "path": "public/assets/figma/media-default.svg",
+      "type": "image/svg+xml",
+      "sizeBytes": 317,
+      "publicUrl": "/assets/figma/media-default.svg",
+      "referencedByPages": [
+        "/en/commodities/barley",
+        "/en/commodities/sugar",
+        "/en/commodities/sunflower-oil",
+        "/en/commodities/wheat"
+      ],
+      "referencedByFiles": [
+        "src/pages/en/commodities/barley.astro",
+        "src/pages/en/commodities/sugar.astro",
+        "src/pages/en/commodities/sunflower-oil.astro",
+        "src/pages/en/commodities/wheat.astro"
+      ]
+    },
+    {
+      "path": "public/favicon.ico",
+      "type": "image/x-icon",
+      "sizeBytes": 655,
+      "publicUrl": "/favicon.ico",
+      "referencedByPages": [],
+      "referencedByFiles": [
+        "src/layouts/BaseLayout.astro"
+      ]
+    },
+    {
+      "path": "public/favicon.svg",
+      "type": "image/svg+xml",
+      "sizeBytes": 749,
+      "publicUrl": "/favicon.svg",
+      "referencedByPages": [
+        "/ar/who-we-are"
+      ],
+      "referencedByFiles": [
+        "src/layouts/BaseLayout.astro",
+        "src/pages/ar/who-we-are.astro"
+      ]
+    },
+    {
+      "path": "public/robots.txt",
+      "type": "text/plain",
+      "sizeBytes": 76,
+      "publicUrl": "/robots.txt",
+      "referencedByPages": [],
+      "referencedByFiles": []
+    },
+    {
+      "path": "src/assets/astro.svg",
+      "type": "image/svg+xml",
+      "sizeBytes": 2914,
+      "publicUrl": null,
+      "referencedByPages": [],
+      "referencedByFiles": [
+        "src/components/Welcome.astro"
+      ]
+    },
+    {
+      "path": "src/assets/background.svg",
+      "type": "image/svg+xml",
+      "sizeBytes": 1454,
+      "publicUrl": null,
+      "referencedByPages": [],
+      "referencedByFiles": [
+        "src/components/Welcome.astro"
+      ]
+    }
+  ]
+}
