@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { loadPageContent, getSlot } from "../../lib/contentStore";
+
+const content = await loadPageContent("contact");
 ---
 
 <BaseLayout
@@ -11,61 +14,56 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   currentPath="contact"
 >
   <div class="w-full">
-    <section class="w-full section-white py-24">
-      <div class="max-w-[900px] mx-auto px-8">
-        <h1 class="text-6xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
-          Contact
+    <section class="w-full section-white py-12 sm:py-16 lg:py-24">
+      <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl sm:text-4xl lg:text-6xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;" data-slot="hero-title">
+          {getSlot(content, "hero-title", "Contact")}
         </h1>
-        <p class="text-lg text-[#5c5c5c]" style="font-family: Inter, sans-serif">
-          Get in touch with AL Farhan General Trading (AFGT) for inquiries and information.
+        <p class="text-lg text-[#5c5c5c]" style="font-family: Inter, sans-serif" data-slot="hero-description">
+          {getSlot(content, "hero-description", "Get in touch with AL Farhan General Trading (AFGT) for inquiries and information.")}
         </p>
       </div>
     </section>
 
     <section class="w-full bg-[var(--bg-section)] py-20">
-      <div class="max-w-[900px] mx-auto px-8">
-        <div class="grid grid-cols-12 gap-12">
-          <div class="col-span-4">
-            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
-              Head Office
-            </h3>
-            <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
-              Business Bay<br />
-              Dubai, United Arab Emirates<br />
-              P.O. Box 123456
+      <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+          <div class="md:col-span-4">
+            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;" data-slot="head-office-title">Head Office</h3>
+            <p class="text-sm text-[#5c5c5c] leading-relaxed whitespace-pre-line" style="font-family: Inter, sans-serif" data-slot="head-office-address">
+              {getSlot(content, "head-office-address", "Business Bay\nDubai, United Arab Emirates\nP.O. Box 123456")}
             </p>
           </div>
 
-          <div class="col-span-4">
-            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
-              Email
-            </h3>
+          <div class="md:col-span-4">
+            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">Email</h3>
             <a
-              href="mailto:info@afgt.ae"
+              href={`mailto:${getSlot(content, "email-primary", "info@afgt.ae")}`}
               class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors block"
               style="font-family: Inter, sans-serif"
+              data-slot="email-primary"
             >
-              info@afgt.ae
+              {getSlot(content, "email-primary", "info@afgt.ae")}
             </a>
             <a
-              href="mailto:inquiries@afgt.ae"
+              href={`mailto:${getSlot(content, "email-secondary", "inquiries@afgt.ae")}`}
               class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors block mt-2"
               style="font-family: Inter, sans-serif"
+              data-slot="email-secondary"
             >
-              inquiries@afgt.ae
+              {getSlot(content, "email-secondary", "inquiries@afgt.ae")}
             </a>
           </div>
 
-          <div class="col-span-4">
-            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
-              Phone
-            </h3>
+          <div class="md:col-span-4">
+            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">Phone</h3>
             <a
-              href="tel:+97144567890"
+              href={`tel:${getSlot(content, "phone", "+97144567890").replace(/\s/g, "")}`}
               class="text-sm text-[#5c5c5c] hover:text-[#000] transition-colors block"
               style="font-family: Inter, sans-serif"
+              data-slot="phone"
             >
-              +971 4 456 7890
+              {getSlot(content, "phone", "+971 4 456 7890")}
             </a>
           </div>
         </div>
@@ -73,10 +71,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </section>
 
     <section class="w-full section-white py-20">
-      <div class="max-w-[900px] mx-auto px-8">
-        <h2 class="text-4xl mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
-          Send us a message
-        </h2>
+      <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;" data-slot="form-title">{getSlot(content, "form-title", "Send us a message")}</h2>
 
         <form class="space-y-6">
           <div>
@@ -133,13 +129,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </section>
 
     <section class="w-full bg-[var(--bg-section)] py-20">
-      <div class="max-w-[900px] mx-auto px-8">
-        <h2 class="text-4xl mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
-          Global presence
-        </h2>
+      <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;" data-slot="global-title">{getSlot(content, "global-title", "Global presence")}</h2>
 
-        <div class="grid grid-cols-12 gap-8">
-          <div class="col-span-4">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8">
+          <div class="md:col-span-4">
             <h3 class="text-lg mb-3 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
               Middle East & Africa
             </h3>
@@ -150,7 +144,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </ul>
           </div>
 
-          <div class="col-span-4">
+          <div class="md:col-span-4">
             <h3 class="text-lg mb-3 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
               Asia Pacific
             </h3>
@@ -161,7 +155,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </ul>
           </div>
 
-          <div class="col-span-4">
+          <div class="md:col-span-4">
             <h3 class="text-lg mb-3 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
               Europe
             </h3>

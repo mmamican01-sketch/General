@@ -1,0 +1,46 @@
+{
+  "locale": "en",
+  "utilityBar": {
+    "links": [
+      {
+        "label": "Apply for a role",
+        "href": "/en/careers/apply",
+        "icon": "external"
+      },
+      {
+        "label": "Newsroom",
+        "href": "/en/newsroom"
+      },
+      {
+        "label": "Contact Us",
+        "href": "/en/contact"
+      }
+    ],
+    "globalSitesLabel": "Global sites",
+    "searchLabel": "Search"
+  },
+  "primaryNav": {
+    "brand": {
+      "shortName": "AFGT",
+      "href": "/en"
+    },
+    "items": [
+      {
+        "label": "Who we are",
+        "href": "/en/who-we-are"
+      },
+      {
+        "label": "Products & Services",
+        "href": "/en/products"
+      },
+      {
+        "label": "Sustainability",
+        "href": "/en/sustainability"
+      },
+      {
+        "label": "Careers",
+        "href": "/en/careers"
+      }
+    ]
+  }
+}

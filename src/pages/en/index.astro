@@ -1,38 +1,34 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { loadPageContent, getSlot, loadAllProducts } from "../../lib/contentStore";
 
-const products = [
-  {
-    name: "Sugar",
-    slug: "sugar",
-    image:
-      "https://images.unsplash.com/photo-1607980276836-232ac6344978?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdWdhciUyMHByb2R1Y3Rpb24lMjBpbmR1c3RyaWFsfGVufDF8fHx8MTc3MDc0MTYxMXww&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-  {
-    name: "Wheat",
-    slug: "wheat",
-    image:
-      "https://images.unsplash.com/photo-1657626625832-2c0851cdaa9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aGVhdCUyMGdyYWluJTIwZmFybWluZ3xlbnwxfHx8fDE3NzA3NDE2MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-  {
-    name: "Oils",
-    slug: "oils",
-    image:
-      "https://images.unsplash.com/photo-1759332637000-50311b115c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZWdldGFibGUlMjBvaWwlMjBwcm9kdWN0aW9ufGVufDF8fHx8MTc3MDc0MTYxMnww&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-  {
-    name: "Urea",
-    slug: "urea",
-    image:
-      "https://images.unsplash.com/photo-1725802867239-ab1379895088?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1cmVhJTIwZmVydGlsaXplciUyMGluZHVzdHJpYWx8ZW58MXx8fHwxNzcwNzQxNjEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-  {
-    name: "Maritime Transport",
-    slug: "maritime-transport",
-    image:
-      "https://images.unsplash.com/photo-1764041323714-de1d64fb8073?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJpdGltZSUyMGNhcmdvJTIwc2hpcCUyMG9jZWFufGVufDF8fHx8MTc3MDc0MTYxMnww&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-];
+const productDocs = loadAllProducts();
+const products = productDocs.map((p) => ({
+  name: p.title || p.slug,
+  slug: p.slug,
+  image: p.heroImage || "/assets/figma/media-default.svg",
+}));
+
+const content = await loadPageContent("index");
+const heroTitle = getSlot(content, "hero-title", "We are AFGT");
+const heroHref = getSlot(content, "hero-link", "/en/who-we-are");
+const heroLinkLabel = getSlot(content, "hero-link-label", "Who we are");
+const sectionTitle = getSlot(
+  content,
+  "section-1-title",
+  "Building global trade partnerships across diverse commodity sectors"
+);
+const institutionalImage = getSlot(
+  content,
+  "section-2-image",
+  "https://images.unsplash.com/photo-1760246964044-1384f71665b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZyUyMG1vZGVybnxlbnwxfHx8fDE3NzA3MTE3MjV8MA&ixlib=rb-4.1.0&q=80&w=1080"
+);
+const institutionalTitle = getSlot(content, "section-2-title", "Institutional excellence");
+const institutionalBody = getSlot(
+  content,
+  "section-2-body",
+  "AL Farhan General Trading (AFGT) operates with the highest standards of institutional integrity across global markets. Our commitment to transparency and reliability defines every partnership."
+);
 ---
 
 <BaseLayout
@@ -44,62 +40,62 @@ const products = [
   currentPath=""
 >
   <div class="w-full">
-    <section class="relative w-full h-[75vh] bg-[var(--bg-section)] flex items-center justify-center overflow-hidden">
+    <section class="relative w-full min-h-[50vh] sm:min-h-[60vh] lg:min-h-[75vh] bg-[var(--bg-section)] flex items-center justify-center overflow-hidden py-16 sm:py-24">
       <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
 
-      <div class="relative z-10 text-center max-w-4xl px-8">
-        <h1 class="text-7xl text-white mb-8" style="font-family: Cormorant Garamond, serif; font-weight: 400; line-height: 1.2;">
-          We are AFGT
+      <div class="relative z-10 text-center max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl text-white mb-6 sm:mb-8" style="font-family: Cormorant Garamond, serif; font-weight: 400; line-height: 1.2;">
+          {heroTitle}
         </h1>
         <a
-          href="/en/who-we-are"
+          href={heroHref}
           class="inline-block btn-primary px-8 py-3"
           style="font-family: Inter, sans-serif"
         >
-          Who we are
+          {heroLinkLabel}
         </a>
       </div>
     </section>
 
-    <section class="w-full section-white" style="padding-top: 64px; padding-bottom: 64px; margin-top: 96px;">
-      <div class="max-w-[1140px] mx-auto px-8 text-center">
-        <h2 class="text-5xl text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400; line-height: 1.3;">
-          Building global trade partnerships across diverse commodity sectors
+    <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400; line-height: 1.3;">
+          {sectionTitle}
         </h2>
       </div>
     </section>
 
-    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
-      <div class="max-w-[1140px] mx-auto px-8">
-        <div class="grid grid-cols-12 gap-12 items-center">
-          <div class="col-span-6">
+    <section class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div class="md:col-span-6 order-2 md:order-1">
             <div class="w-full aspect-[16/9] bg-gray-300 overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1760246964044-1384f71665b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZyUyMG1vZGVybnxlbnwxfHx8fDE3NzA3MTE3MjV8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                src={institutionalImage}
                 alt="Corporate"
                 class="w-full h-full object-cover"
               />
             </div>
           </div>
-          <div class="col-span-5">
-            <h2 class="text-4xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
-              Institutional excellence
+          <div class="md:col-span-5 order-1 md:order-2">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+              {institutionalTitle}
             </h2>
             <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
-              AL Farhan General Trading (AFGT) operates with the highest standards of institutional integrity across global markets. Our commitment to transparency and reliability defines every partnership.
+              {institutionalBody}
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="w-full section-white" style="padding-top: 96px; padding-bottom: 96px; margin-top: 96px;">
-      <div class="max-w-[1140px] mx-auto px-8">
-        <h2 class="text-4xl text-center text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400; margin-bottom: 40px;">
+    <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl text-center text-[#2c2c2c] mb-6 sm:mb-10" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
           Product Groups
         </h2>
 
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
           {products.map((product) => (
             <a href={`/en/products/${product.slug}`} class="group">
               <div class="w-full aspect-[16/9] bg-gray-200 overflow-hidden mb-3">
@@ -116,7 +112,7 @@ const products = [
           ))}
         </div>
 
-        <div class="text-center" style="margin-top: 48px;">
+        <div class="text-center mt-8 sm:mt-12">
           <a
             href="/en/products"
             class="inline-block btn-primary px-8 py-3"
@@ -128,35 +124,35 @@ const products = [
       </div>
     </section>
 
-    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
-      <div class="max-w-[1140px] mx-auto px-8">
-        <div class="grid grid-cols-12 gap-8">
-          <div class="col-span-3 text-center">
-            <div class="text-6xl mb-2 text-[#2c2c2c]" style="font-family: Inter, sans-serif; font-weight: 500;">
+    <section class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-12 gap-6 sm:gap-8">
+          <div class="md:col-span-3 text-center">
+            <div class="text-4xl sm:text-5xl lg:text-6xl mb-2 text-[#2c2c2c]" style="font-family: Inter, sans-serif; font-weight: 500;">
               150+
             </div>
             <div class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
               Global partners
             </div>
           </div>
-          <div class="col-span-3 text-center">
-            <div class="text-6xl mb-2 text-[#2c2c2c]" style="font-family: Inter, sans-serif; font-weight: 500;">
+          <div class="md:col-span-3 text-center">
+            <div class="text-4xl sm:text-5xl lg:text-6xl mb-2 text-[#2c2c2c]" style="font-family: Inter, sans-serif; font-weight: 500;">
               25
             </div>
             <div class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
               Countries served
             </div>
           </div>
-          <div class="col-span-3 text-center">
-            <div class="text-6xl mb-2 text-[#2c2c2c]" style="font-family: Inter, sans-serif; font-weight: 500;">
+          <div class="md:col-span-3 text-center">
+            <div class="text-4xl sm:text-5xl lg:text-6xl mb-2 text-[#2c2c2c]" style="font-family: Inter, sans-serif; font-weight: 500;">
               12
             </div>
             <div class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
               Commodity sectors
             </div>
           </div>
-          <div class="col-span-3 text-center">
-            <div class="text-6xl mb-2 text-[#2c2c2c]" style="font-family: Inter, sans-serif; font-weight: 500;">
+          <div class="md:col-span-3 text-center">
+            <div class="text-4xl sm:text-5xl lg:text-6xl mb-2 text-[#2c2c2c]" style="font-family: Inter, sans-serif; font-weight: 500;">
               15+
             </div>
             <div class="text-sm text-[#5c5c5c]" style="font-family: Inter, sans-serif">
@@ -167,18 +163,18 @@ const products = [
       </div>
     </section>
 
-    <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
-      <div class="max-w-[1140px] mx-auto px-8">
-        <div class="grid grid-cols-12 gap-12 items-center">
-          <div class="col-span-5">
-            <h2 class="text-4xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+    <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div class="md:col-span-5 order-2 md:order-1">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
               Sustainable practices
             </h2>
             <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
               AFGT is committed to responsible trading practices that support long-term sustainability across our supply chains and partner networks.
             </p>
           </div>
-          <div class="col-span-6 col-start-7">
+          <div class="md:col-span-6 md:col-start-7 order-1 md:order-2">
             <div class="w-full aspect-[16/9] bg-gray-300 overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1654436192650-7f5aa98954a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZ3JpY3VsdHVyYWwlMjBmaWVsZCUyMGhhcnZlc3R8ZW58MXx8fHwxNzcwNjk5Mjg2fDA&ixlib=rb-4.1.0&q=80&w=1080"
@@ -191,9 +187,9 @@ const products = [
       </div>
     </section>
 
-    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 64px; padding-bottom: 64px; margin-top: 96px;">
-      <div class="max-w-[1140px] mx-auto px-8 text-center">
-        <h2 class="text-5xl text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400; line-height: 1.3;">
+    <section class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400; line-height: 1.3;">
           Connecting markets. Building trust.
         </h2>
       </div>

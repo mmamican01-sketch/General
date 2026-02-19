@@ -1,0 +1,87 @@
+{
+  "routeKey": "commodities__wheat",
+  "route": "/en/commodities/wheat",
+  "generatedAt": "2026-02-18T21:39:09.974Z",
+  "slots": {
+    "hero-title": {
+      "type": "text",
+      "value": "Wheat Commodity"
+    },
+    "hero-description": {
+      "type": "text",
+      "value": ""
+    },
+    "section-2-title": {
+      "type": "text",
+      "value": "Commodity Overview"
+    },
+    "section-2-body-1": {
+      "type": "text",
+      "value": ""
+    },
+    "section-2-body-2": {
+      "type": "text",
+      "value": ""
+    },
+    "section-2-image": {
+      "type": "image",
+      "value": "/assets/figma/media-default.svg"
+    },
+    "section-3-title": {
+      "type": "text",
+      "value": "Key Specifications"
+    },
+    "section-3-card-1-title": {
+      "type": "text",
+      "value": "Protein Range"
+    },
+    "section-3-card-1-body": {
+      "type": "text",
+      "value": ""
+    },
+    "section-3-card-2-title": {
+      "type": "text",
+      "value": "Moisture Standards"
+    },
+    "section-3-card-2-body": {
+      "type": "text",
+      "value": ""
+    },
+    "section-3-card-3-title": {
+      "type": "text",
+      "value": "Origin Options"
+    },
+    "section-3-card-3-body": {
+      "type": "text",
+      "value": ""
+    },
+    "section-3-card-4-title": {
+      "type": "text",
+      "value": "Shipment Terms"
+    },
+    "section-3-card-4-body": {
+      "type": "text",
+      "value": ""
+    },
+    "section-4-title": {
+      "type": "text",
+      "value": "Institutional Supply Alignment"
+    },
+    "section-4-body": {
+      "type": "text",
+      "value": ""
+    },
+    "cta-title": {
+      "type": "text",
+      "value": "Engage With AFGT"
+    },
+    "cta-link": {
+      "type": "href",
+      "value": "/en/contact"
+    },
+    "cta-text": {
+      "type": "text",
+      "value": "Request Structured Engagement"
+    }
+  }
+}

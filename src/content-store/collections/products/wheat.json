@@ -1,0 +1,16 @@
+{
+  "slug": "wheat",
+  "title": "Wheat",
+  "heroImage": "https://images.unsplash.com/photo-1657626625832-2c0851cdaa9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aGVhdCUyMGdyYWluJTIwZmFybWluZ3xlbnwxfHx8fDE3NzA3NDE2MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+  "description": "Food-grade wheat and feed wheat from major producing regions with full traceability.",
+  "overview": "AFGT trades food-grade milling wheat and animal feed wheat from major producing regions. All wheat shipments are accompanied by phytosanitary certificates and quality analysis reports.",
+  "specifications": [
+    { "label": "Product Types", "value": "Hard Red Winter, Soft White, Spring Wheat, Feed Wheat" },
+    { "label": "Protein Content", "value": "10.5% - 14.5% depending on grade" },
+    { "label": "Contract Terms", "value": "FOB, CFR, CIF" },
+    { "label": "Shipment Size", "value": "25,000 MT - 60,000 MT per vessel" }
+  ],
+  "origins": ["USA", "Canada", "European Union", "Russia", "Australia", "Argentina"],
+  "certifications": ["ISO 9001", "HACCP", "Non-GMO verification where applicable"],
+  "cta": { "label": "Request Buyer Access", "href": "/en/contact" }
+}

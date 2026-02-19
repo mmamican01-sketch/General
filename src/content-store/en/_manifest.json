@@ -1,0 +1,90 @@
+{
+  "locale": "en",
+  "pages": [
+    {
+      "routeKey": "index",
+      "route": "/en/",
+      "file": "pages/index.json"
+    },
+    {
+      "routeKey": "about",
+      "route": "/en/about",
+      "file": "pages/about.json"
+    },
+    {
+      "routeKey": "careers",
+      "route": "/en/careers",
+      "file": "pages/careers.json"
+    },
+    {
+      "routeKey": "careers__apply",
+      "route": "/en/careers/apply",
+      "file": "pages/careers__apply.json"
+    },
+    {
+      "routeKey": "commodities",
+      "route": "/en/commodities",
+      "file": "pages/commodities.json"
+    },
+    {
+      "routeKey": "commodities__barley",
+      "route": "/en/commodities/barley",
+      "file": "pages/commodities__barley.json"
+    },
+    {
+      "routeKey": "commodities__sugar",
+      "route": "/en/commodities/sugar",
+      "file": "pages/commodities__sugar.json"
+    },
+    {
+      "routeKey": "commodities__sunflower-oil",
+      "route": "/en/commodities/sunflower-oil",
+      "file": "pages/commodities__sunflower-oil.json"
+    },
+    {
+      "routeKey": "commodities__wheat",
+      "route": "/en/commodities/wheat",
+      "file": "pages/commodities__wheat.json"
+    },
+    {
+      "routeKey": "contact",
+      "route": "/en/contact",
+      "file": "pages/contact.json"
+    },
+    {
+      "routeKey": "newsroom",
+      "route": "/en/newsroom",
+      "file": "pages/newsroom.json"
+    },
+    {
+      "routeKey": "products",
+      "route": "/en/products",
+      "file": "pages/products.json"
+    },
+    {
+      "routeKey": "products__slug",
+      "route": "/en/products/[slug]",
+      "file": "pages/products__slug.json"
+    },
+    {
+      "routeKey": "sustainability",
+      "route": "/en/sustainability",
+      "file": "pages/sustainability.json"
+    },
+    {
+      "routeKey": "who-we-are",
+      "route": "/en/who-we-are",
+      "file": "pages/who-we-are.json"
+    }
+  ],
+  "globals": [
+    {
+      "key": "header",
+      "file": "globals/header.json"
+    },
+    {
+      "key": "footer",
+      "file": "globals/footer.json"
+    }
+  ]
+}

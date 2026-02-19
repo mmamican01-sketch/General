@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { loadPageContent, getSlot } from "../../lib/contentStore";
+
+const content = await loadPageContent("who-we-are");
 ---
 
 <BaseLayout
@@ -11,55 +14,39 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   currentPath="who-we-are"
 >
   <div class="w-full">
-    <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px;">
-      <div class="max-w-[1140px] mx-auto px-8">
-        <h1 class="text-6xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
-          Who We Are
-        </h1>
-        <p class="text-lg text-[#5c5c5c] max-w-3xl" style="font-family: Inter, sans-serif">
-          A diversified general trading company operating across multiple commodity sectors.
-        </p>
+    <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl sm:text-4xl lg:text-6xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;" data-slot="hero-title">{getSlot(content, "hero-title", "Who We Are")}</h1>
+        <p class="text-lg text-[#5c5c5c] max-w-3xl" style="font-family: Inter, sans-serif" data-slot="hero-description">{getSlot(content, "hero-description", "A diversified general trading company operating across multiple commodity sectors.")}</p>
       </div>
     </section>
 
-    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
-      <div class="max-w-[1140px] mx-auto px-8">
-        <div class="grid grid-cols-12 gap-12">
-          <div class="col-span-6">
-            <h2 class="text-3xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
-              Company overview
-            </h2>
-            <p class="text-base text-[#5c5c5c] leading-relaxed mb-5" style="font-family: Inter, sans-serif">
-              AL Farhan General Trading (AFGT) is a diversified trading company headquartered in Dubai, United Arab Emirates. AFGT operates across multiple commodity sectors with a focus on institutional partnerships.
-            </p>
-            <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
-              The company serves markets across the Middle East, Africa, Asia Pacific, and Europe through a network of strategic partnerships and operational facilities.
-            </p>
+    <section class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+          <div class="md:col-span-6">
+            <h2 class="text-3xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;" data-slot="section-1-title">{getSlot(content, "section-1-title", "Company overview")}</h2>
+            <p class="text-base text-[#5c5c5c] leading-relaxed mb-5" style="font-family: Inter, sans-serif" data-slot="section-1-body-1">{getSlot(content, "section-1-body-1", "AL Farhan General Trading (AFGT) is a diversified trading company headquartered in Dubai, United Arab Emirates. AFGT operates across multiple commodity sectors with a focus on institutional partnerships.")}</p>
+            <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif" data-slot="section-1-body-2">{getSlot(content, "section-1-body-2", "The company serves markets across the Middle East, Africa, Asia Pacific, and Europe through a network of strategic partnerships and operational facilities.")}</p>
           </div>
-          <div class="col-span-6">
-            <h2 class="text-3xl mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
-              Market presence
-            </h2>
-            <p class="text-base text-[#5c5c5c] leading-relaxed mb-5" style="font-family: Inter, sans-serif">
-              AFGT operates in 25 countries with a presence spanning four continents. The company manages commodity flows across sugar, wheat, oils, urea, and maritime transport sectors.
-            </p>
-            <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
-              Through direct trading relationships and long-term supply agreements, AFGT connects producers and consumers across global markets.
-            </p>
+          <div class="md:col-span-6">
+            <h2 class="text-2xl sm:text-3xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;" data-slot="section-2-title">{getSlot(content, "section-2-title", "Market presence")}</h2>
+            <p class="text-base text-[#5c5c5c] leading-relaxed mb-5" style="font-family: Inter, sans-serif" data-slot="section-2-body-1">{getSlot(content, "section-2-body-1", "AFGT operates in 25 countries with a presence spanning four continents. The company manages commodity flows across sugar, wheat, oils, urea, and maritime transport sectors.")}</p>
+            <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif" data-slot="section-2-body-2">{getSlot(content, "section-2-body-2", "Through direct trading relationships and long-term supply agreements, AFGT connects producers and consumers across global markets.")}</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
-      <div class="max-w-[1140px] mx-auto px-8">
-        <h2 class="text-4xl mb-10 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+    <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-10 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
           How we operate
         </h2>
 
-        <div class="grid grid-cols-12 gap-12">
-          <div class="col-span-4">
-            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+          <div class="md:col-span-4">
+            <h3 class="text-lg sm:text-xl mb-3 sm:mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
               Trading operations
             </h3>
             <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
@@ -68,7 +55,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
 
           <div class="col-span-4">
-            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+            <h3 class="text-lg sm:text-xl mb-3 sm:mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
               Risk management
             </h3>
             <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
@@ -77,7 +64,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
 
           <div class="col-span-4">
-            <h3 class="text-xl mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+            <h3 class="text-lg sm:text-xl mb-3 sm:mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
               Logistics coordination
             </h3>
             <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
@@ -88,15 +75,15 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </div>
     </section>
 
-    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
-      <div class="max-w-[1140px] mx-auto px-8">
-        <h2 class="text-4xl mb-10 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+    <section class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-10 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
           Global presence
         </h2>
 
-        <div class="grid grid-cols-12 gap-12">
-          <div class="col-span-3">
-            <h3 class="text-lg mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+          <div class="md:col-span-3">
+            <h3 class="text-base sm:text-lg mb-3 sm:mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
               Middle East & Africa
             </h3>
             <ul class="space-y-2">
@@ -107,8 +94,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </ul>
           </div>
 
-          <div class="col-span-3">
-            <h3 class="text-lg mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          <div class="md:col-span-3">
+            <h3 class="text-base sm:text-lg mb-3 sm:mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
               Asia Pacific
             </h3>
             <ul class="space-y-2">
@@ -119,8 +106,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </ul>
           </div>
 
-          <div class="col-span-3">
-            <h3 class="text-lg mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          <div class="md:col-span-3">
+            <h3 class="text-base sm:text-lg mb-3 sm:mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
               Europe
             </h3>
             <ul class="space-y-2">
@@ -131,8 +118,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </ul>
           </div>
 
-          <div class="col-span-3">
-            <h3 class="text-lg mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+          <div class="md:col-span-3">
+            <h3 class="text-base sm:text-lg mb-3 sm:mb-4 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
               Americas
             </h3>
             <ul class="space-y-2">
@@ -145,9 +132,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </div>
     </section>
 
-    <section class="w-full section-white" style="padding-top: 72px; padding-bottom: 72px; margin-top: 96px;">
-      <div class="max-w-[1140px] mx-auto px-8">
-        <h2 class="text-4xl mb-10 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+    <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-10 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
           Principles
         </h2>
 
@@ -191,19 +178,19 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </div>
     </section>
 
-    <section class="w-full bg-[var(--bg-section)]" style="padding-top: 64px; padding-bottom: 64px; margin-top: 96px;">
-      <div class="max-w-[1140px] mx-auto px-8">
-        <h2 class="text-4xl mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+    <section class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-8 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
           Standards & compliance
         </h2>
 
-        <div class="grid grid-cols-12 gap-8">
-          <div class="col-span-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8">
+          <div class="md:col-span-6">
             <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
               AFGT operates in accordance with international trading standards and regional regulatory frameworks. The company maintains compliance with customs, import-export regulations, and quality certification requirements across all operating jurisdictions.
             </p>
           </div>
-          <div class="col-span-6">
+          <div class="md:col-span-6">
             <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
               All trading activities are subject to internal audit procedures, financial controls, and third-party verification processes where applicable.
             </p>

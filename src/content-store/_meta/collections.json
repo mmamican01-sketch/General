@@ -1,0 +1,125 @@
+{
+  "dynamicRoutes": [
+    {
+      "route": "/en/products/:slug",
+      "file": "src/pages/en/products/[slug].astro",
+      "getStaticPaths": true,
+      "slugSource": {
+        "type": "const-array",
+        "name": "slugs",
+        "values": [
+          "sugar",
+          "wheat",
+          "oils",
+          "urea",
+          "maritime-transport"
+        ]
+      },
+      "recordSource": {
+        "type": "const-object",
+        "name": "productsData",
+        "keyedBy": "slug"
+      }
+    }
+  ],
+  "collections": {
+    "Product": {
+      "sourceFiles": [
+        "src/pages/en/products.astro",
+        "src/pages/en/products/[slug].astro",
+        "src/pages/en/index.astro"
+      ],
+      "primaryKey": "slug",
+      "fields": {
+        "slug": "string",
+        "name": "string",
+        "heroImage": "string(url)",
+        "description": "string (listing cards)",
+        "overview": "string (detail page)",
+        "specifications": "array<{ label: string, value: string }>",
+        "origins": "array<string>",
+        "certifications": "array<string>"
+      }
+    },
+    "Role": {
+      "sourceFiles": [
+        "src/pages/en/careers.astro"
+      ],
+      "primaryKey": "title",
+      "fields": {
+        "title": "string",
+        "location": "string",
+        "department": "string"
+      }
+    },
+    "Commodity": {
+      "sourceFiles": [
+        "src/pages/en/commodities/index.astro",
+        "src/pages/en/commodities/sugar.astro",
+        "src/pages/en/commodities/wheat.astro",
+        "src/pages/en/commodities/barley.astro",
+        "src/pages/en/commodities/sunflower-oil.astro"
+      ],
+      "primaryKey": "slug",
+      "fields": {
+        "slug": "string",
+        "title": "string",
+        "description": "string",
+        "heroTitle": "slot:text",
+        "heroDescription": "slot:text",
+        "section2Title": "slot:text",
+        "section2Body1": "slot:text",
+        "section2Body2": "slot:text",
+        "section2Image": "slot:image",
+        "specCards": "array<{ title: slot:text, body: slot:text }>",
+        "section4Title": "slot:text",
+        "section4Body": "slot:text",
+        "ctaTitle": "slot:text",
+        "ctaLink": "slot:link",
+        "ctaText": "slot:text"
+      }
+    }
+  },
+  "relations": [
+    {
+      "page": "/en",
+      "file": "src/pages/en/index.astro",
+      "usesCollection": "Product",
+      "binding": "const products[] for Product Groups teaser cards"
+    },
+    {
+      "page": "/en/products",
+      "file": "src/pages/en/products.astro",
+      "usesCollection": "Product",
+      "binding": "const products[] listing loop"
+    },
+    {
+      "page": "/en/products/:slug",
+      "file": "src/pages/en/products/[slug].astro",
+      "usesCollection": "Product",
+      "binding": "productsData[slug] with getStaticPaths slugs[]"
+    },
+    {
+      "page": "/en/careers",
+      "file": "src/pages/en/careers.astro",
+      "usesCollection": "Role",
+      "binding": "openRoles[] mapped to rows"
+    },
+    {
+      "page": "/en/commodities",
+      "file": "src/pages/en/commodities/index.astro",
+      "usesCollection": "Commodity",
+      "binding": "static card grid + content slots"
+    },
+    {
+      "page": "/en/commodities/{slug}",
+      "file": "src/pages/en/commodities/{barley|sugar|sunflower-oil|wheat}.astro",
+      "usesCollection": "Commodity",
+      "binding": "static page templates with content slots"
+    }
+  ],
+  "notes": [
+    "No dedicated content collection APIs detected; current structured data is page-local constants.",
+    "Arabic pages are mostly static and do not currently consume Product/Role collections as arrays."
+  ]
+}

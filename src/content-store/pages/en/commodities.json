@@ -1,0 +1,50 @@
+{
+  "route": "/en/commodities",
+  "source": "src/pages/en/commodities/index.astro",
+  "slots": {
+    "hero-title": {
+      "type": "text",
+      "value": ""
+    },
+    "hero-description": {
+      "type": "richtext",
+      "value": ""
+    },
+    "card-1-image": {
+      "type": "image",
+      "value": ""
+    },
+    "card-2-image": {
+      "type": "image",
+      "value": ""
+    },
+    "card-3-image": {
+      "type": "image",
+      "value": ""
+    },
+    "card-4-image": {
+      "type": "image",
+      "value": ""
+    },
+    "section-3-title": {
+      "type": "text",
+      "value": ""
+    },
+    "section-3-body": {
+      "type": "richtext",
+      "value": ""
+    },
+    "cta-title": {
+      "type": "text",
+      "value": ""
+    },
+    "cta-link": {
+      "type": "link",
+      "value": ""
+    },
+    "cta-text": {
+      "type": "text",
+      "value": ""
+    }
+  }
+}
