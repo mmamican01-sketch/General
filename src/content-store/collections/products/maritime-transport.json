@@ -1,13 +1,16 @@
 {
   "slug": "maritime-transport",
-  "title": "",
-  "heroImage": "/assets/figma/media-default.svg",
-  "overview": "",
-  "specifications": [],
-  "origins": [],
-  "certifications": [],
-  "cta": {
-    "label": "Request Buyer Access",
-    "href": "/en/contact"
-  }
+  "title": "Maritime Transport",
+  "heroImage": "https://images.unsplash.com/photo-1764041323714-de1d64fb8073?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJpdGltZSUyMGNhcmdvJTIwc2hpcCUyMG9jZWFufGVufDF8fHx8MTc3MDc0MTYxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+  "description": "Bulk cargo shipping services and vessel chartering for agricultural and industrial commodities.",
+  "overview": "AFGT coordinates bulk cargo shipping for agricultural and industrial commodities. The company works with established vessel operators and maintains relationships across major shipping routes.",
+  "specifications": [
+    { "label": "Vessel Types", "value": "Panamax, Supramax, Handysize bulk carriers" },
+    { "label": "Cargo Types", "value": "Grains, sugar, fertilizers, minerals" },
+    { "label": "Services", "value": "Voyage charter, time charter, freight management" },
+    { "label": "Routes", "value": "Global coverage including Americas, Europe, Asia, Africa" }
+  ],
+  "origins": ["Global shipping network"],
+  "certifications": ["ISO 9001", "Vessel vetting and compliance", "Insurance coverage"],
+  "cta": { "label": "Request Buyer Access", "href": "/en/contact" }
 }

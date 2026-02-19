@@ -1,28 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { DashboardShell } from "@/components/DashboardShell";
 
-type PageItem = { key: string; file: string };
+type PageItem = {
+  key: string;
+  path: string;
+  file: string;
+  slots: Array<{ key: string; type: string }>;
+};
 
 export default function PagesListPage() {
   const [pages, setPages] = useState<PageItem[]>([]);
-  const [newKey, setNewKey] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [newKey, setNewKey] = useState("");
 
-  async function load() {
-    setLoading(true);
-    setError("");
-    const res = await fetch("/api/pages");
-    const data = await res.json();
-    if (!res.ok) {
-      setError(data.error || "Failed to load pages");
-      setLoading(false);
-      return;
-    }
-    setPages(data.pages || []);
-    setLoading(false);
-  }
+  const load = () => {
+    fetch("/api/index")
+      .then((r) => r.json())
+      .then((data) => setPages(data.pages || []))
+      .catch((e) => setError(String(e)))
+      .finally(() => setLoading(false));
+  };
 
   useEffect(() => {
     load();
@@ -35,61 +36,66 @@ export default function PagesListPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ key: newKey.trim() }),
     });
-    if (!res.ok) {
-      const data = await res.json();
-      alert(data.error || "Failed to create page");
-      return;
+    const data = await res.json();
+    if (!res.ok) alert(data.error || "Failed to create");
+    else {
+      setNewKey("");
+      load();
     }
-    setNewKey("");
-    await load();
   }
 
   return (
-    <div className="container">
-      <div className="row" style={{ justifyContent: "space-between", marginBottom: 16 }}>
-        <h1 className="title" style={{ margin: 0 }}>
-          Pages
-        </h1>
-        <a className="button secondary" href="/">
-          Back
-        </a>
-      </div>
-
-      <div className="card" style={{ marginBottom: 16 }}>
-        <div className="row">
-          <input
-            className="input"
-            placeholder="new-page-key"
-            value={newKey}
-            onChange={(e) => setNewKey(e.target.value)}
-          />
-          <button className="button" onClick={createPage}>
-            Create
-          </button>
+    <DashboardShell breadcrumbs={["Pages"]}>
+      <div className="container">
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+          <h1 className="title" style={{ margin: 0 }}>
+            Pages
+          </h1>
+          <Link className="button secondary" href="/">
+            Back
+          </Link>
         </div>
-      </div>
 
-      <div className="card">
-        {loading ? <p>Loading...</p> : null}
-        {error ? <p style={{ color: "#b91c1c" }}>{error}</p> : null}
-        {!loading && !error ? (
-          <ul className="list">
-            {pages.map((p) => (
-              <li key={p.key}>
-                <div className="row" style={{ justifyContent: "space-between" }}>
-                  <div>
-                    <strong>{p.key}</strong>
-                    <div className="muted">{p.file}</div>
+        {error && <p style={{ color: "#b91c1c", marginBottom: 16 }}>{error}</p>}
+
+        <div className="card" style={{ marginBottom: 16 }}>
+          <div className="row">
+            <input
+              className="input"
+              placeholder="New page key (e.g. my-page)"
+              value={newKey}
+              onChange={(e) => setNewKey(e.target.value)}
+            />
+            <button className="button" onClick={createPage}>
+              Create
+            </button>
+          </div>
+        </div>
+
+        {loading ? (
+          <div className="card">Loading…</div>
+        ) : (
+          <div className="card">
+            <ul className="list">
+              {pages.map((p) => (
+                <li key={p.key}>
+                  <div className="row" style={{ justifyContent: "space-between" }}>
+                    <div>
+                      <strong>{p.key}</strong>
+                      <div className="muted" style={{ fontSize: 12 }}>
+                        {p.path} • {p.slots.length} slots
+                      </div>
+                    </div>
+                    <Link className="button secondary" href={`/pages/${p.key}`}>
+                      Edit
+                    </Link>
                   </div>
-                  <a className="button secondary" href={`/pages/${p.key}`}>
-                    Edit
-                  </a>
-                </div>
-              </li>
-            ))}
-          </ul>
-        ) : null}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
-    </div>
+    </DashboardShell>
   );
 }

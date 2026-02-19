@@ -61,19 +61,62 @@
   },
   "/en": {
     "file": "src/pages/en/index.astro",
-    "slots": []
+    "slots": [
+      { "key": "hero-title", "type": "text", "selectorHint": "[data-slot='hero-title']" },
+      { "key": "hero-link", "type": "link", "selectorHint": "[data-slot='hero-link']" },
+      { "key": "hero-link-label", "type": "text", "selectorHint": "[data-slot='hero-link-label']" },
+      { "key": "section-1-title", "type": "text", "selectorHint": "[data-slot='section-1-title']" },
+      { "key": "section-2-image", "type": "image", "selectorHint": "[data-slot='section-2-image']" },
+      { "key": "section-2-title", "type": "text", "selectorHint": "[data-slot='section-2-title']" },
+      { "key": "section-2-body", "type": "text", "selectorHint": "[data-slot='section-2-body']" }
+    ]
   },
   "/en/about": {
     "file": "src/pages/en/about.astro",
-    "slots": []
+    "slots": [
+      {"key": "hero-title", "type": "text", "selectorHint": "[data-slot='hero-title']"},
+      {"key": "hero-description", "type": "text", "selectorHint": "[data-slot='hero-description']"},
+      {"key": "section-1-title", "type": "text", "selectorHint": "[data-slot='section-1-title']"},
+      {"key": "section-1-body", "type": "text", "selectorHint": "[data-slot='section-1-body']"},
+      {"key": "section-2-title", "type": "text", "selectorHint": "[data-slot='section-2-title']"},
+      {"key": "section-2-body", "type": "text", "selectorHint": "[data-slot='section-2-body']"},
+      {"key": "section-3-title", "type": "text", "selectorHint": "[data-slot='section-3-title']"},
+      {"key": "section-3-body", "type": "text", "selectorHint": "[data-slot='section-3-body']"},
+      {"key": "cta-title", "type": "text", "selectorHint": "[data-slot='cta-title']"},
+      {"key": "cta-link", "type": "link", "selectorHint": "[data-slot='cta-link']"},
+      {"key": "cta-text", "type": "text", "selectorHint": "[data-slot='cta-text']"}
+    ]
   },
   "/en/careers": {
     "file": "src/pages/en/careers.astro",
-    "slots": []
+    "slots": [
+      { "key": "hero-title", "type": "text", "selectorHint": "[data-slot='hero-title']" },
+      { "key": "hero-description", "type": "text", "selectorHint": "[data-slot='hero-description']" },
+      { "key": "section-1-title", "type": "text", "selectorHint": "[data-slot='section-1-title']" },
+      { "key": "section-1-body-1", "type": "text", "selectorHint": "[data-slot='section-1-body-1']" },
+      { "key": "section-1-body-2", "type": "text", "selectorHint": "[data-slot='section-1-body-2']" },
+      { "key": "section-1-body-3", "type": "text", "selectorHint": "[data-slot='section-1-body-3']" },
+      { "key": "section-1-body-4", "type": "text", "selectorHint": "[data-slot='section-1-body-4']" },
+      { "key": "section-2-title", "type": "text", "selectorHint": "[data-slot='section-2-title']" },
+      { "key": "questions-title", "type": "text", "selectorHint": "[data-slot='questions-title']" },
+      { "key": "questions-body", "type": "text", "selectorHint": "[data-slot='questions-body']" }
+    ]
   },
   "/en/careers/apply": {
     "file": "src/pages/en/careers/apply.astro",
-    "slots": []
+    "slots": [
+      { "key": "hero-title", "type": "text", "selectorHint": "[data-slot='hero-title']" },
+      { "key": "hero-description", "type": "text", "selectorHint": "[data-slot='hero-description']" },
+      { "key": "section-1-title", "type": "text", "selectorHint": "[data-slot='section-1-title']" },
+      { "key": "section-1-body", "type": "text", "selectorHint": "[data-slot='section-1-body']" },
+      { "key": "section-2-title", "type": "text", "selectorHint": "[data-slot='section-2-title']" },
+      { "key": "section-2-body", "type": "text", "selectorHint": "[data-slot='section-2-body']" },
+      { "key": "section-3-title", "type": "text", "selectorHint": "[data-slot='section-3-title']" },
+      { "key": "section-3-body", "type": "text", "selectorHint": "[data-slot='section-3-body']" },
+      { "key": "cta-title", "type": "text", "selectorHint": "[data-slot='cta-title']" },
+      { "key": "cta-link", "type": "link", "selectorHint": "[data-slot='cta-link']" },
+      { "key": "cta-text", "type": "text", "selectorHint": "[data-slot='cta-text']" }
+    ]
   },
   "/en/commodities": {
     "file": "src/pages/en/commodities/index.astro",
@@ -81,9 +124,17 @@
       { "key": "hero-title", "type": "text", "selectorHint": "[data-slot='hero-title']" },
       { "key": "hero-description", "type": "text", "selectorHint": "[data-slot='hero-description']" },
       { "key": "card-1-image", "type": "image", "selectorHint": "[data-slot='card-1-image']" },
+      { "key": "card-1-title", "type": "text", "selectorHint": "[data-slot='card-1-title']" },
+      { "key": "card-1-link", "type": "link", "selectorHint": "[data-slot='card-1-link']" },
       { "key": "card-2-image", "type": "image", "selectorHint": "[data-slot='card-2-image']" },
+      { "key": "card-2-title", "type": "text", "selectorHint": "[data-slot='card-2-title']" },
+      { "key": "card-2-link", "type": "link", "selectorHint": "[data-slot='card-2-link']" },
       { "key": "card-3-image", "type": "image", "selectorHint": "[data-slot='card-3-image']" },
+      { "key": "card-3-title", "type": "text", "selectorHint": "[data-slot='card-3-title']" },
+      { "key": "card-3-link", "type": "link", "selectorHint": "[data-slot='card-3-link']" },
       { "key": "card-4-image", "type": "image", "selectorHint": "[data-slot='card-4-image']" },
+      { "key": "card-4-title", "type": "text", "selectorHint": "[data-slot='card-4-title']" },
+      { "key": "card-4-link", "type": "link", "selectorHint": "[data-slot='card-4-link']" },
       { "key": "section-3-title", "type": "text", "selectorHint": "[data-slot='section-3-title']" },
       { "key": "section-3-body", "type": "text", "selectorHint": "[data-slot='section-3-body']" },
       { "key": "cta-title", "type": "text", "selectorHint": "[data-slot='cta-title']" },
@@ -193,15 +244,39 @@
   },
   "/en/contact": {
     "file": "src/pages/en/contact.astro",
-    "slots": []
+    "slots": [
+      { "key": "hero-title", "type": "text", "selectorHint": "[data-slot='hero-title']" },
+      { "key": "hero-description", "type": "text", "selectorHint": "[data-slot='hero-description']" },
+      { "key": "head-office-address", "type": "text", "selectorHint": "[data-slot='head-office-address']" },
+      { "key": "email-primary", "type": "text", "selectorHint": "[data-slot='email-primary']" },
+      { "key": "email-secondary", "type": "text", "selectorHint": "[data-slot='email-secondary']" },
+      { "key": "phone", "type": "text", "selectorHint": "[data-slot='phone']" },
+      { "key": "form-title", "type": "text", "selectorHint": "[data-slot='form-title']" },
+      { "key": "global-title", "type": "text", "selectorHint": "[data-slot='global-title']" }
+    ]
   },
   "/en/newsroom": {
     "file": "src/pages/en/newsroom.astro",
-    "slots": []
+    "slots": [
+      { "key": "hero-title", "type": "text", "selectorHint": "[data-slot='hero-title']" },
+      { "key": "hero-description", "type": "text", "selectorHint": "[data-slot='hero-description']" },
+      { "key": "section-1-title", "type": "text", "selectorHint": "[data-slot='section-1-title']" },
+      { "key": "section-1-body", "type": "text", "selectorHint": "[data-slot='section-1-body']" },
+      { "key": "section-2-title", "type": "text", "selectorHint": "[data-slot='section-2-title']" },
+      { "key": "section-2-body", "type": "text", "selectorHint": "[data-slot='section-2-body']" },
+      { "key": "section-3-title", "type": "text", "selectorHint": "[data-slot='section-3-title']" },
+      { "key": "section-3-body", "type": "text", "selectorHint": "[data-slot='section-3-body']" },
+      { "key": "cta-title", "type": "text", "selectorHint": "[data-slot='cta-title']" },
+      { "key": "cta-link", "type": "link", "selectorHint": "[data-slot='cta-link']" },
+      { "key": "cta-text", "type": "text", "selectorHint": "[data-slot='cta-text']" }
+    ]
   },
   "/en/products": {
     "file": "src/pages/en/products.astro",
-    "slots": []
+    "slots": [
+      { "key": "hero-title", "type": "text", "selectorHint": "[data-slot='hero-title']" },
+      { "key": "hero-description", "type": "text", "selectorHint": "[data-slot='hero-description']" }
+    ]
   },
   "/en/products/:slug": {
     "file": "src/pages/en/products/[slug].astro",
@@ -209,10 +284,27 @@
   },
   "/en/sustainability": {
     "file": "src/pages/en/sustainability.astro",
-    "slots": []
+    "slots": [
+      { "key": "hero-title", "type": "text", "selectorHint": "[data-slot='hero-title']" },
+      { "key": "hero-description", "type": "text", "selectorHint": "[data-slot='hero-description']" },
+      { "key": "section-1-title", "type": "text", "selectorHint": "[data-slot='section-1-title']" },
+      { "key": "section-1-body-1", "type": "text", "selectorHint": "[data-slot='section-1-body-1']" },
+      { "key": "section-1-body-2", "type": "text", "selectorHint": "[data-slot='section-1-body-2']" },
+      { "key": "section-1-body-3", "type": "text", "selectorHint": "[data-slot='section-1-body-3']" },
+      { "key": "section-1-body-4", "type": "text", "selectorHint": "[data-slot='section-1-body-4']" }
+    ]
   },
   "/en/who-we-are": {
     "file": "src/pages/en/who-we-are.astro",
-    "slots": []
+    "slots": [
+      { "key": "hero-title", "type": "text", "selectorHint": "[data-slot='hero-title']" },
+      { "key": "hero-description", "type": "text", "selectorHint": "[data-slot='hero-description']" },
+      { "key": "section-1-title", "type": "text", "selectorHint": "[data-slot='section-1-title']" },
+      { "key": "section-1-body-1", "type": "text", "selectorHint": "[data-slot='section-1-body-1']" },
+      { "key": "section-1-body-2", "type": "text", "selectorHint": "[data-slot='section-1-body-2']" },
+      { "key": "section-2-title", "type": "text", "selectorHint": "[data-slot='section-2-title']" },
+      { "key": "section-2-body-1", "type": "text", "selectorHint": "[data-slot='section-2-body-1']" },
+      { "key": "section-2-body-2", "type": "text", "selectorHint": "[data-slot='section-2-body-2']" }
+    ]
   }
 }

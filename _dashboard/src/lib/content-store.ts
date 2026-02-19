@@ -23,7 +23,9 @@ export async function readJsonFile<T>(filePath: string): Promise<T> {
 
 export async function writeJsonFile(filePath: string, value: unknown): Promise<void> {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
-  await fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  const tmpPath = `${filePath}.tmp.${Date.now()}`;
+  await fs.writeFile(tmpPath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  await fs.rename(tmpPath, filePath);
 }
 
 export async function listJsonFiles(dirPath: string): Promise<string[]> {

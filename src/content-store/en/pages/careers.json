@@ -1,6 +1,17 @@
 {
   "routeKey": "careers",
   "route": "/en/careers",
-  "generatedAt": "2026-02-18T21:39:09.974Z",
-  "slots": {}
+  "generatedAt": "2026-02-19T00:00:00.000Z",
+  "slots": {
+    "hero-title": { "type": "text", "value": "Careers" },
+    "hero-description": { "type": "text", "value": "Professional opportunities in global commodity trading and operations." },
+    "section-1-title": { "type": "text", "value": "Working at AFGT" },
+    "section-1-body-1": { "type": "text", "value": "AFGT employs professionals across trading, operations, logistics, risk management, and support functions. The company operates in 25 countries with offices in major trading hubs." },
+    "section-1-body-2": { "type": "text", "value": "Employees work in collaborative teams focused on commodity markets, supply chain management, and institutional partnerships." },
+    "section-1-body-3": { "type": "text", "value": "The company provides professional development programs, market training, and international exposure across different commodity sectors and geographic markets." },
+    "section-1-body-4": { "type": "text", "value": "AFGT maintains workplace standards aligned with international labor practices and regional employment regulations." },
+    "section-2-title": { "type": "text", "value": "Open positions" },
+    "questions-title": { "type": "text", "value": "Questions" },
+    "questions-body": { "type": "text", "value": "For inquiries about career opportunities, contact the Human Resources department." }
+  }
 }

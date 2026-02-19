@@ -77,3 +77,39 @@ export function getSlot(content: ContentDoc | null | undefined, key: string, fal
   warnOnce(`Missing slot "${key}"`);
   return fallback;
 }
+
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import fs from "node:fs";
+
+export type ProductDoc = {
+  slug: string;
+  title?: string;
+  heroImage?: string;
+  description?: string;
+  overview?: string;
+  specifications?: Array<{ label?: string; value?: string }>;
+  origins?: string[];
+  certifications?: string[];
+  cta?: { label?: string; href?: string };
+};
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const PRODUCTS_DIR = path.join(__dirname, "..", "content-store", "collections", "products");
+
+export function loadProduct(slug: string): ProductDoc | null {
+  try {
+    const filePath = path.join(PRODUCTS_DIR, `${slug}.json`);
+    const raw = fs.readFileSync(filePath, "utf8");
+    return JSON.parse(raw) as ProductDoc;
+  } catch {
+    return null;
+  }
+}
+
+export function loadAllProducts(): ProductDoc[] {
+  const slugs = ["sugar", "wheat", "oils", "urea", "maritime-transport"];
+  return slugs
+    .map((slug) => loadProduct(slug))
+    .filter((p): p is ProductDoc => p !== null);
+}

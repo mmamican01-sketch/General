@@ -1,51 +1,26 @@
 {
   "routeKey": "commodities",
   "route": "/en/commodities",
-  "generatedAt": "2026-02-18T21:39:09.974Z",
+  "generatedAt": "2026-02-19T00:00:00.000Z",
   "slots": {
-    "hero-title": {
-      "type": "text",
-      "value": "Commodity Categories"
-    },
-    "hero-description": {
-      "type": "text",
-      "value": ""
-    },
-    "card-1-image": {
-      "type": "image",
-      "value": "/assets/figma/card-default.svg"
-    },
-    "card-2-image": {
-      "type": "image",
-      "value": "/assets/figma/card-default.svg"
-    },
-    "card-3-image": {
-      "type": "image",
-      "value": "/assets/figma/card-default.svg"
-    },
-    "card-4-image": {
-      "type": "image",
-      "value": "/assets/figma/card-default.svg"
-    },
-    "section-3-title": {
-      "type": "text",
-      "value": "Structured Intermediary Engagement"
-    },
-    "section-3-body": {
-      "type": "text",
-      "value": ""
-    },
-    "cta-title": {
-      "type": "text",
-      "value": "Engage With AFGT"
-    },
-    "cta-link": {
-      "type": "href",
-      "value": "/en/contact"
-    },
-    "cta-text": {
-      "type": "text",
-      "value": "Request Commodity Access"
-    }
+    "hero-title": { "type": "text", "value": "Commodity Categories" },
+    "hero-description": { "type": "text", "value": "" },
+    "card-1-image": { "type": "image", "value": "/assets/figma/card-default.svg" },
+    "card-1-title": { "type": "text", "value": "Sugar" },
+    "card-1-link": { "type": "link", "value": "/en/commodities/sugar" },
+    "card-2-image": { "type": "image", "value": "/assets/figma/card-default.svg" },
+    "card-2-title": { "type": "text", "value": "Wheat" },
+    "card-2-link": { "type": "link", "value": "/en/commodities/wheat" },
+    "card-3-image": { "type": "image", "value": "/assets/figma/card-default.svg" },
+    "card-3-title": { "type": "text", "value": "Barley" },
+    "card-3-link": { "type": "link", "value": "/en/commodities/barley" },
+    "card-4-image": { "type": "image", "value": "/assets/figma/card-default.svg" },
+    "card-4-title": { "type": "text", "value": "Sunflower Oil" },
+    "card-4-link": { "type": "link", "value": "/en/commodities/sunflower-oil" },
+    "section-3-title": { "type": "text", "value": "Structured Intermediary Engagement" },
+    "section-3-body": { "type": "text", "value": "" },
+    "cta-title": { "type": "text", "value": "Engage With AFGT" },
+    "cta-link": { "type": "link", "value": "/en/contact" },
+    "cta-text": { "type": "text", "value": "Request Commodity Access" }
   }
 }

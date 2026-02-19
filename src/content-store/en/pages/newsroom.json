@@ -1,6 +1,18 @@
 {
   "routeKey": "newsroom",
   "route": "/en/newsroom",
-  "generatedAt": "2026-02-18T21:39:09.974Z",
-  "slots": {}
+  "generatedAt": "2026-02-19T00:00:00.000Z",
+  "slots": {
+    "hero-title": { "type": "text", "value": "Newsroom" },
+    "hero-description": { "type": "text", "value": "Institutional notices and publication records for AFGT." },
+    "section-1-title": { "type": "text", "value": "Company Updates" },
+    "section-1-body": { "type": "text", "value": "Operational and corporate updates will be published under this section." },
+    "section-2-title": { "type": "text", "value": "Announcements" },
+    "section-2-body": { "type": "text", "value": "Formal announcements and release notes are maintained for reference." },
+    "section-3-title": { "type": "text", "value": "Media Inquiries" },
+    "section-3-body": { "type": "text", "value": "Media and institutional communications follow the designated inquiry pathway." },
+    "cta-title": { "type": "text", "value": "Engage With AFGT" },
+    "cta-link": { "type": "link", "value": "/en/contact" },
+    "cta-text": { "type": "text", "value": "Request Buyer Access" }
+  }
 }

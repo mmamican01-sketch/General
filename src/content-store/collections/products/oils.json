@@ -1,11 +1,42 @@
 {
   "slug": "oils",
-  "title": "",
-  "heroImage": "/assets/figma/media-default.svg",
-  "overview": "",
-  "specifications": [],
-  "origins": [],
-  "certifications": [],
+  "title": "Oils",
+  "heroImage": "https://images.unsplash.com/photo-1759332637000-50311b115c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZWdldGFibGUlMjBvaWwlMjBwcm9kdWN0aW9ufGVufDF8fHx8MTc3MDc0MTYxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+  "description": "Vegetable oils including sunflower, soybean, palm, and canola oil for industrial and consumer markets.",
+  "overview": "AFGT supplies vegetable oils for industrial processing and consumer markets. All oil products are sourced from certified refineries with documented supply chain traceability.",
+  "specifications": [
+    {
+      "label": "Product Types",
+      "value": "Sunflower, Soybean, Palm, Canola, Corn Oil"
+    },
+    {
+      "label": "Packaging",
+      "value": "Flexitanks, ISO tanks, bulk vessels, bottled"
+    },
+    {
+      "label": "Contract Terms",
+      "value": "FOB, CFR, CIF"
+    },
+    {
+      "label": "Quality Standards",
+      "value": "Codex Alimentarius compliant"
+    }
+  ],
+  "origins": [
+    "Ukraine",
+    "Russia",
+    "Argentina",
+    "Malaysia",
+    "Indonesia",
+    "Brazil"
+  ],
+  "certifications": [
+    "RSPO (Palm Oil)",
+    "ISO 9001",
+    "HACCP",
+    "Kosher",
+    "Halal"
+  ],
   "cta": {
     "label": "Request Buyer Access",
     "href": "/en/contact"

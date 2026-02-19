@@ -1,158 +1,276 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useParams } from "next/navigation";
+import Link from "next/link";
+import * as Tabs from "@radix-ui/react-tabs";
+import { DashboardShell } from "@/components/DashboardShell";
+import { LivePreview } from "@/components/LivePreview";
+import { MediaPicker } from "@/components/MediaPicker";
+import { getAstroSiteUrl } from "@/lib/astro-url";
+const AUTOSAVE_DEBOUNCE_MS = 600;
 
 type Slot = { type: string; value: string; note?: string };
+type SeoData = { title?: string; description?: string; image?: string };
 type PageDoc = {
   routeKey: string;
   route: string;
   generatedAt?: string;
   slots: Record<string, Slot>;
+  seo?: SeoData;
 };
+
+type SlotDef = { key: string; type: string };
+
+function SlotField({
+  slotKey,
+  slotType,
+  value,
+  onChange,
+}: {
+  slotKey: string;
+  slotType: string;
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  const label = slotKey.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  if (slotType === "image") {
+    return (
+      <div className="card" style={{ marginBottom: 16 }}>
+        <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>{label}</label>
+        <MediaPicker value={value} onChange={onChange} />
+      </div>
+    );
+  }
+  if (slotType === "link" || slotType === "href") {
+    return (
+      <div className="card" style={{ marginBottom: 16 }}>
+        <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>{label}</label>
+        <input
+          className="input"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder="/en/..."
+        />
+      </div>
+    );
+  }
+  const isLong = slotType === "richtext" || slotKey.includes("body") || slotKey.includes("description");
+  return (
+    <div className="card" style={{ marginBottom: 16 }}>
+      <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>{label}</label>
+      <textarea
+        className="textarea"
+        rows={isLong ? 4 : 2}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    </div>
+  );
+}
 
 export default function PageEditor() {
   const params = useParams<{ key: string }>();
-  const [key, setKey] = useState("");
+  const key = params?.key ?? "";
+
   const [doc, setDoc] = useState<PageDoc | null>(null);
-  const [selected, setSelected] = useState("");
-  const [value, setValue] = useState("");
-  const [status, setStatus] = useState("");
-  const [error, setError] = useState("");
+  const [slotsMeta, setSlotsMeta] = useState<SlotDef[]>([]);
+  const [status, setStatus] = useState<"saved" | "unsaved" | "saving">("saved");
+  const [loading, setLoading] = useState(true);
+  const autosaveRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    setKey(params?.key || "");
-  }, [params]);
+  const previewPath = key === "index" ? "/en/" : `/en/${key.replace(/__/g, "/")}`;
+  const previewUrl = `${getAstroSiteUrl()}${previewPath}`;
 
-  async function load(targetKey: string) {
-    const res = await fetch(`/api/pages/${targetKey}`);
-    const data = await res.json();
-    if (!res.ok) {
-      setError(data.error || "Failed to load page");
-      return;
-    }
-    setDoc(data);
-    const first = Object.keys(data.slots || {})[0] || "";
-    setSelected(first);
-    setValue(first ? (data.slots[first]?.value ?? "") : "");
-  }
-
-  useEffect(() => {
-    if (key) void load(key);
+  const load = useCallback(() => {
+    if (!key) return;
+    setLoading(true);
+    Promise.all([
+      fetch(`/api/content?page=${encodeURIComponent(key)}&locale=en`),
+      fetch("/api/index"),
+    ])
+      .then(async ([contentRes, indexRes]) => {
+        const content = await contentRes.json();
+        const index = await indexRes.json();
+        setDoc(content);
+        const pageMeta = (index.pages || []).find((p: { key: string }) => p.key === key);
+        setSlotsMeta(pageMeta?.slots || []);
+      })
+      .finally(() => setLoading(false));
   }, [key]);
 
-  const slotKeys = useMemo(() => Object.keys(doc?.slots || {}), [doc]);
-
   useEffect(() => {
-    if (!selected || !doc) return;
-    setValue(doc.slots[selected]?.value ?? "");
-  }, [selected, doc]);
+    load();
+  }, [load]);
 
-  async function save() {
-    if (!doc || !selected) return;
-    const next: PageDoc = {
-      ...doc,
-      slots: {
-        ...doc.slots,
-        [selected]: {
-          ...doc.slots[selected],
-          value,
-        },
-      },
-    };
-    const res = await fetch(`/api/pages/${key}`, {
+  const save = useCallback(async () => {
+    if (!doc || !key) return;
+    setStatus("saving");
+    const res = await fetch(`/api/content?page=${encodeURIComponent(key)}&locale=en`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(next),
+      body: JSON.stringify(doc),
     });
-    const data = await res.json();
-    if (!res.ok) {
-      setStatus(`Save failed: ${data.error || "unknown error"}`);
-      return;
+    if (res.ok) {
+      setStatus("saved");
+    } else {
+      setStatus("unsaved");
     }
-    setDoc(next);
-    setStatus("Saved");
-  }
+  }, [doc, key]);
 
-  async function remove() {
-    if (!confirm(`Delete page "${key}"?`)) return;
-    const res = await fetch(`/api/pages/${key}`, { method: "DELETE" });
-    if (!res.ok) {
-      const data = await res.json();
-      setStatus(`Delete failed: ${data.error || "unknown error"}`);
-      return;
-    }
-    window.location.href = "/pages";
-  }
+  const updateSlot = useCallback((slotKey: string, value: string) => {
+    setDoc((d) => {
+      if (!d) return null;
+      const slotDef = slotsMeta.find((s) => s.key === slotKey);
+      const type = slotDef?.type ?? d.slots?.[slotKey]?.type ?? "text";
+      return {
+        ...d,
+        slots: {
+          ...d.slots,
+          [slotKey]: { ...d.slots[slotKey], type, value },
+        },
+      };
+    });
+    setStatus("unsaved");
+  }, [slotsMeta]);
 
-  if (!key) {
-    return <div className="container">Loading...</div>;
-  }
+  const scheduleAutosave = useCallback(() => {
+    if (autosaveRef.current) clearTimeout(autosaveRef.current);
+    autosaveRef.current = setTimeout(() => {
+      if (doc && key && status === "unsaved") save();
+      autosaveRef.current = null;
+    }, AUTOSAVE_DEBOUNCE_MS);
+  }, [doc, key, status, save]);
+
+  useEffect(() => {
+    if (status === "unsaved" && doc) scheduleAutosave();
+    return () => {
+      if (autosaveRef.current) clearTimeout(autosaveRef.current);
+    };
+  }, [status, doc, scheduleAutosave]);
+
+  const allSlotKeys = Array.from(
+    new Set([...Object.keys(doc?.slots || {}), ...slotsMeta.map((s) => s.key)])
+  );
+
+  if (!key) return null;
 
   return (
-    <div className="container">
-      <div className="row" style={{ justifyContent: "space-between", marginBottom: 16 }}>
-        <h1 className="title" style={{ margin: 0 }}>
-          Page Editor: {key}
-        </h1>
-        <div className="row">
-          <a className="button secondary" href="/pages">
-            Back
-          </a>
-          <button className="button secondary" onClick={remove}>
-            Delete
-          </button>
-        </div>
-      </div>
+    <DashboardShell
+      breadcrumbs={["Pages", key]}
+      status={status}
+      previewUrl={previewPath}
+    >
+      <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
+        <div style={{ flex: "0 0 420px", overflow: "auto", borderRight: "1px solid var(--line)" }}>
+          <div className="container" style={{ padding: 24 }}>
+            <div style={{ marginBottom: 16 }}>
+              <Link className="button secondary" href="/pages">
+                ← Back
+              </Link>
+            </div>
 
-      {error ? <p style={{ color: "#b91c1c" }}>{error}</p> : null}
-
-      {doc ? (
-        <div className="grid" style={{ gridTemplateColumns: "280px 1fr" }}>
-          <div className="card">
-            <h3 style={{ marginTop: 0 }}>Slots</h3>
-            <ul className="list">
-              {slotKeys.map((k) => (
-                <li key={k}>
-                  <button
-                    className="button secondary"
-                    style={{
-                      width: "100%",
-                      textAlign: "left",
-                      borderColor: selected === k ? "#111827" : "#e5e7eb",
-                    }}
-                    onClick={() => setSelected(k)}
-                  >
-                    {k}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="card">
-            <h3 style={{ marginTop: 0 }}>Value</h3>
-            {selected ? (
+            {loading ? (
+              <div className="card">Loading…</div>
+            ) : doc ? (
               <>
-                <p className="muted" style={{ marginBottom: 8 }}>
-                  Type: {doc.slots[selected]?.type}
-                </p>
-                <textarea className="textarea" value={value} onChange={(e) => setValue(e.target.value)} />
-                <div className="row" style={{ marginTop: 12 }}>
-                  <button className="button" onClick={save}>
-                    Save
-                  </button>
-                  {status ? <span className="muted">{status}</span> : null}
-                </div>
+                <Tabs.Root defaultValue="content">
+                  <Tabs.List style={{ display: "flex", gap: 4, marginBottom: 16 }}>
+                    <Tabs.Trigger value="content" style={{ padding: "8px 16px", border: "1px solid var(--line)", background: "transparent", borderRadius: 6, cursor: "pointer" }}>
+                      Content
+                    </Tabs.Trigger>
+                    <Tabs.Trigger value="seo" style={{ padding: "8px 16px", border: "1px solid var(--line)", background: "transparent", borderRadius: 6, cursor: "pointer" }}>
+                      SEO
+                    </Tabs.Trigger>
+                    <Tabs.Trigger value="media" style={{ padding: "8px 16px", border: "1px solid var(--line)", background: "transparent", borderRadius: 6, cursor: "pointer" }}>
+                      Media
+                    </Tabs.Trigger>
+                  </Tabs.List>
+
+                  <Tabs.Content value="content">
+                    {allSlotKeys
+                      .filter((k) => {
+                        const t = slotsMeta.find((s) => s.key === k)?.type ?? doc.slots?.[k]?.type ?? "text";
+                        return t !== "image";
+                      })
+                      .map((slotKey) => {
+                        const slotDef = slotsMeta.find((s) => s.key === slotKey);
+                        const slotType = slotDef?.type ?? doc.slots?.[slotKey]?.type ?? "text";
+                        const value = doc.slots?.[slotKey]?.value ?? "";
+                        return (
+                          <SlotField
+                            key={slotKey}
+                            slotKey={slotKey}
+                            slotType={slotType}
+                            value={value}
+                            onChange={(v) => updateSlot(slotKey, v)}
+                          />
+                        );
+                      })}
+                  </Tabs.Content>
+
+                  <Tabs.Content value="seo">
+                    <div className="card" style={{ marginBottom: 16 }}>
+                      <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>Meta Title</label>
+                      <input
+                        className="input"
+                        value={doc.seo?.title ?? ""}
+                        onChange={(e) => { setDoc((d) => d ? { ...d, seo: { ...d.seo, title: e.target.value } } : null); setStatus("unsaved"); }}
+                      />
+                    </div>
+                    <div className="card" style={{ marginBottom: 16 }}>
+                      <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>Meta Description</label>
+                      <textarea
+                        className="textarea"
+                        rows={3}
+                        value={doc.seo?.description ?? ""}
+                        onChange={(e) => { setDoc((d) => d ? { ...d, seo: { ...d.seo, description: e.target.value } } : null); setStatus("unsaved"); }}
+                      />
+                    </div>
+                    <div className="card" style={{ marginBottom: 16 }}>
+                      <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>OG Image</label>
+                      <MediaPicker
+                        value={doc.seo?.image ?? ""}
+                        onChange={(v) => { setDoc((d) => d ? { ...d, seo: { ...d.seo, image: v } } : null); setStatus("unsaved"); }}
+                      />
+                    </div>
+                  </Tabs.Content>
+
+                  <Tabs.Content value="media">
+                    {allSlotKeys
+                      .filter((k) => {
+                        const t = slotsMeta.find((s) => s.key === k)?.type ?? doc.slots?.[k]?.type ?? "";
+                        return t === "image";
+                      })
+                      .map((slotKey) => {
+                        const value = doc.slots?.[slotKey]?.value ?? "";
+                        return (
+                          <SlotField
+                            key={slotKey}
+                            slotKey={slotKey}
+                            slotType="image"
+                            value={value}
+                            onChange={(v) => updateSlot(slotKey, v)}
+                          />
+                        );
+                      })}
+                  </Tabs.Content>
+                </Tabs.Root>
+
+                <button className="button" onClick={save} style={{ marginTop: 16, width: "100%" }}>
+                  Save
+                </button>
               </>
             ) : (
-              <p className="muted">No slots found in this page JSON.</p>
+              <div className="card">Failed to load page.</div>
             )}
           </div>
         </div>
-      ) : (
-        <div className="card">Loading page content...</div>
-      )}
-    </div>
+
+        <div style={{ flex: 1, minWidth: 0, padding: 16 }}>
+          <LivePreview url={previewUrl} currentRoute={key} />
+        </div>
+      </div>
+    </DashboardShell>
   );
 }

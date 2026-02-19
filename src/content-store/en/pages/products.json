@@ -1,6 +1,9 @@
 {
   "routeKey": "products",
   "route": "/en/products",
-  "generatedAt": "2026-02-18T21:39:09.974Z",
-  "slots": {}
+  "generatedAt": "2026-02-19T00:00:00.000Z",
+  "slots": {
+    "hero-title": { "type": "text", "value": "Products & Services" },
+    "hero-description": { "type": "text", "value": "AFGT trades across five primary commodity groups with operations spanning global markets." }
+  }
 }

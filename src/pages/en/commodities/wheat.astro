@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Container from "../../../components/Container.astro";
+import { loadPageContent, getSlot } from "../../../lib/contentStore";
+
+const content = await loadPageContent("commodities__wheat");
 ---
 
 <BaseLayout
@@ -13,10 +16,8 @@ import Container from "../../../components/Container.astro";
 >
   <section class="py-24 bg-[var(--bg-section)]">
     <Container>
-      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">
-        Wheat Commodity
-      </h1>
-      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="hero-description"></p>
+      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">{getSlot(content, "hero-title", "Wheat Commodity")}</h1>
+      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="hero-description">{getSlot(content, "hero-description", "")}</p>
     </Container>
   </section>
 
@@ -24,14 +25,12 @@ import Container from "../../../components/Container.astro";
     <Container>
       <div class="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
       <div>
-        <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-2-title">
-          Commodity Overview
-        </h2>
-        <p class="mt-6 text-[#1b2230]/70 leading-8" data-slot="section-2-body-1"></p>
-        <p class="mt-6 text-[#1b2230]/70 leading-8" data-slot="section-2-body-2"></p>
+        <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-2-title">{getSlot(content, "section-2-title", "Commodity Overview")}</h2>
+        <p class="mt-6 text-[#1b2230]/70 leading-8" data-slot="section-2-body-1">{getSlot(content, "section-2-body-1", "")}</p>
+        <p class="mt-6 text-[#1b2230]/70 leading-8" data-slot="section-2-body-2">{getSlot(content, "section-2-body-2", "")}</p>
       </div>
       <figure class="h-[420px] w-full overflow-hidden">
-        <img src="/assets/figma/media-default.svg" alt="Wheat commodity overview" class="h-full w-full object-cover" loading="lazy" data-slot="section-2-image" />
+        <img src={getSlot(content, "section-2-image", "/assets/figma/media-default.svg")} alt="Wheat commodity overview" class="h-full w-full object-cover" loading="lazy" data-slot="section-2-image" />
       </figure>
       </div>
     </Container>
@@ -39,25 +38,23 @@ import Container from "../../../components/Container.astro";
 
   <section class="py-24 bg-[var(--bg-section)]">
     <Container>
-      <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">
-        Key Specifications
-      </h2>
+      <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">{getSlot(content, "section-3-title", "Key Specifications")}</h2>
       <div class="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-1-title">Protein Range</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-1-body"></p>
+          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-1-title">{getSlot(content, "section-3-card-1-title", "Protein Range")}</h3>
+          <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-1-body">{getSlot(content, "section-3-card-1-body", "")}</p>
         </div>
         <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-2-title">Moisture Standards</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-2-body"></p>
+          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-2-title">{getSlot(content, "section-3-card-2-title", "Moisture Standards")}</h3>
+          <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-2-body">{getSlot(content, "section-3-card-2-body", "")}</p>
         </div>
         <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-3-title">Origin Options</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-3-body"></p>
+          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-3-title">{getSlot(content, "section-3-card-3-title", "Origin Options")}</h3>
+          <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-3-body">{getSlot(content, "section-3-card-3-body", "")}</p>
         </div>
         <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-4-title">Shipment Terms</h3>
-          <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-4-body"></p>
+          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;" data-slot="section-3-card-4-title">{getSlot(content, "section-3-card-4-title", "Shipment Terms")}</h3>
+          <p class="mt-4 text-[#1b2230]/70 leading-7" data-slot="section-3-card-4-body">{getSlot(content, "section-3-card-4-body", "")}</p>
         </div>
       </div>
     </Container>
@@ -65,25 +62,21 @@ import Container from "../../../components/Container.astro";
 
   <section class="py-24 bg-[var(--bg-section)]">
     <Container>
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">
-        Institutional Supply Alignment
-      </h2>
-      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="section-4-body"></p>
+      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-4-title">{getSlot(content, "section-4-title", "Institutional Supply Alignment")}</h2>
+      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80" data-slot="section-4-body">{getSlot(content, "section-4-body", "")}</p>
     </Container>
   </section>
 
   <section class="py-32 bg-[var(--bg-section)]">
     <Container>
       <div class="text-center">
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">
-        Engage With AFGT
-      </h2>
+      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">{getSlot(content, "cta-title", "Engage With AFGT")}</h2>
       <a
-        href="/en/contact"
+        href={getSlot(content, "cta-link", "/en/contact")}
         class="mt-12 inline-block btn-primary px-10 py-4"
         data-slot="cta-link"
       >
-        <span data-slot="cta-text">Request Structured Engagement</span>
+        <span data-slot="cta-text">{getSlot(content, "cta-text", "Request Structured Engagement")}</span>
       </a>
       </div>
     </Container>
