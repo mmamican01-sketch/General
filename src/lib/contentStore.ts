@@ -72,7 +72,7 @@ export async function loadGlobalContent(key: "header" | "footer"): Promise<Conte
 export function getSlot(content: ContentDoc | null | undefined, key: string, fallback: string): string {
   const value = content?.slots?.[key]?.value;
   if (typeof value === "string") {
-    return value.length > 0 ? value : fallback;
+    return value;
   }
   warnOnce(`Missing slot "${key}"`);
   return fallback;
@@ -95,7 +95,7 @@ export type ProductDoc = {
 };
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PRODUCTS_DIR = path.join(__dirname, "..", "content-store", "collections", "products");
+const PRODUCTS_DIR = path.join(process.cwd(), "src", "content-store", "collections", "products");
 
 export function loadProduct(slug: string): ProductDoc | null {
   try {
@@ -108,7 +108,15 @@ export function loadProduct(slug: string): ProductDoc | null {
 }
 
 export function loadAllProducts(): ProductDoc[] {
-  const slugs = ["sugar", "wheat", "oils", "urea", "maritime-transport"];
+  let slugs: string[] = [];
+  try {
+    const indexPath = path.join(PRODUCTS_DIR, "index.json");
+    const indexRaw = fs.readFileSync(indexPath, "utf8");
+    const index = JSON.parse(indexRaw) as { order?: string[] };
+    slugs = index.order ?? [];
+  } catch {
+    slugs = ["sugar", "wheat", "oils", "urea", "maritime-transport"];
+  }
   return slugs
     .map((slug) => loadProduct(slug))
     .filter((p): p is ProductDoc => p !== null);

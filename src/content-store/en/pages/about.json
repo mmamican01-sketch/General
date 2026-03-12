@@ -9,7 +9,7 @@
     },
     "hero-description": {
       "type": "text",
-      "value": "Institutional intermediary profile and operating scope."
+      "value": "AFGT operates within the international agricultural commodity trading landscape, facilitating structured engagement between buyers and established global supply markets.\n\nThe company supports disciplined trade communication and alignment across key commodity sectors including wheat, barley, sugar, and sunflower oil."
     },
     "section-1-title": {
       "type": "text",
@@ -17,7 +17,7 @@
     },
     "section-1-body": {
       "type": "text",
-      "value": "Structured trade engagement model for institutional counterpart coordination."
+      "value": "AFGT functions as an international commodity trading intermediary participating in global agricultural trade flows.\n\nOperating within established commodity markets, the company focuses on facilitating structured trade engagement between international buyers and supply regions through clear communication, organized interaction, and disciplined coordination between counterparties."
     },
     "section-2-title": {
       "type": "text",
@@ -25,7 +25,7 @@
     },
     "section-2-body": {
       "type": "text",
-      "value": "Coverage across defined sourcing and buyer corridors under documented workflows."
+      "value": "Coverage across defined sourcing and buyer corridors under documented workflows.AFGT engages across commodity trade corridors that connect major agricultural supply regions with international buyer markets.\n\nThese trade flows may involve sourcing regions such as Brazil, Russia, Ukraine, Europe, and Africa, which represent important production zones within global agricultural commodity trade.\n\nThrough these corridors, AFGT supports structured engagement within international commodity markets."
     },
     "section-3-title": {
       "type": "text",
@@ -33,7 +33,7 @@
     },
     "section-3-body": {
       "type": "text",
-      "value": "Neutral intermediary positioning with compliance-aware communication standards."
+      "value": "AFGT maintains a neutral intermediary position within the commodity trading ecosystem.\n\nThe company emphasizes compliance-aware communication, clarity of role, and disciplined interaction between trading counterparties, supporting structured engagement across international commodity markets."
     },
     "cta-title": {
       "type": "text",
@@ -47,5 +47,10 @@
       "type": "text",
       "value": "Request Buyer Access"
     }
+  },
+  "seo": {
+    "title": "About AFGT | Global Commodity Trading Intermediary",
+    "description": "AFGT is a global commodity trading intermediary connecting institutional buyers, suppliers, and brokers across international commodity markets through structured trade coordination and verified sourcing networks.",
+    "image": "/assets/figma/ChatGPT-Image-Mar-10--2026--11_16_05-PM-1773173813175.png"
   }
 }

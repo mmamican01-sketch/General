@@ -5,11 +5,11 @@
   "slots": {
     "hero-title": {
       "type": "text",
-      "value": "Sunflower Oil Commoditzzzy"
+      "value": "Sunflower Oil Commodit"
     },
     "hero-description": {
       "type": "text",
-      "value": "dczczxcz"
+      "value": "Sunflower oil is a globally traded vegetable oil supplied for food processing, distribution, and industrial use. AFGT coordinates sourcing of crude and refined sunflower oil through structured supply alignment with verified export partners."
     },
     "section-2-title": {
       "type": "text",
@@ -17,35 +17,35 @@
     },
     "section-2-body-1": {
       "type": "text",
-      "value": ""
+      "value": "Sunflower oil is widely used across food manufacturing, retail distribution, and industrial food processing. Global demand is primarily supplied by major producing regions in Eastern Europe and the Black Sea export corridor."
     },
     "section-2-body-2": {
       "type": "text",
-      "value": ""
+      "value": "AFGT facilitates structured engagement between institutional buyers and qualified sunflower oil producers, coordinating supply across crude and refined oil specifications aligned with buyer logistics, packaging formats, and shipment structures."
     },
     "section-2-image": {
       "type": "image",
-      "value": "/assets/figma/media-default.svg"
+      "value": "/assets/figma/ChatGPT-Image-Mar-11--2026--11_26_34-PM-1773260805235.png"
     },
     "section-3-title": {
       "type": "text",
-      "value": "Key SpecificationsczXzxczxc"
+      "value": "Key Specification"
     },
     "section-3-card-1-title": {
       "type": "text",
-      "value": "FFA Rangexczzxczx"
+      "value": "FFA Rang"
     },
     "section-3-card-1-body": {
       "type": "text",
-      "value": "ascasca"
+      "value": "Crude sunflower oil typically presents higher free fatty acid (FFA) levels depending on processing stage, while refined sunflower oil is supplied with significantly reduced FFA levels aligned with food-grade standards."
     },
     "section-3-card-2-title": {
       "type": "text",
-      "value": "Origin Options iraqidsd"
+      "value": "Origin Options "
     },
     "section-3-card-2-body": {
       "type": "text",
-      "value": ""
+      "value": "Primary export origins include Ukraine, Russia, Kazakhstan, Turkey, and Eastern European processing regions depending on seasonal availability and buyer sourcing strategy."
     },
     "section-3-card-3-title": {
       "type": "text",
@@ -53,7 +53,7 @@
     },
     "section-3-card-3-body": {
       "type": "text",
-      "value": ""
+      "value": "Sunflower oil may be supplied in bulk tank shipments, flexitank containers, or bottled formats depending on buyer distribution channels and destination market requirements."
     },
     "section-3-card-4-title": {
       "type": "text",
@@ -61,7 +61,7 @@
     },
     "section-3-card-4-body": {
       "type": "text",
-      "value": ""
+      "value": "Shipment structures typically include FOB, CFR, or CIF delivery terms aligned with international trade practices and structured according to the buyer’s nominated discharge port."
     },
     "section-4-title": {
       "type": "text",
@@ -69,7 +69,7 @@
     },
     "section-4-body": {
       "type": "text",
-      "value": ""
+      "value": "AFGT supports institutional buyers, intermediaries, and procurement entities by coordinating sunflower oil sourcing through verified supplier networks and structured commodity trading workflows aligned with international documentation and logistics standards."
     },
     "cta-title": {
       "type": "text",
@@ -83,5 +83,10 @@
       "type": "text",
       "value": "Request Structured Engagement"
     }
+  },
+  "seo": {
+    "title": "Sunflower Oil Supply | Crude & Refined Vegetable Oil – AFGT",
+    "description": "AFGT coordinates crude and refined sunflower oil supply through verified export partners, supporting bulk, flexitank, and packaged shipment structures for global buyers.",
+    "image": "/assets/figma/ChatGPT-Image-Mar-11--2026--11_26_34-PM-1773260805235.png"
   }
 }

@@ -5,12 +5,39 @@
   "description": "Raw and refined sugar products sourced from certified mills across multiple origins.",
   "overview": "AFGT sources raw and refined sugar from certified mills across multiple producing regions. All sugar products meet international quality standards and are supplied with full traceability documentation.",
   "specifications": [
-    { "label": "Product Types", "value": "ICUMSA 45, Raw Cane Sugar, Refined Beet Sugar" },
-    { "label": "Packaging", "value": "Bulk vessels, 50kg bags, 1MT big bags" },
-    { "label": "Contract Terms", "value": "FOB, CFR, CIF" },
-    { "label": "Minimum Order", "value": "Vessel-sized shipments (12,500 MT+)" }
+    {
+      "label": "Product Types",
+      "value": "ICUMSA 45, Raw Cane Sugar, Refined Beet Sugar"
+    },
+    {
+      "label": "Packaging",
+      "value": "Bulk vessels, 50kg bags, 1MT big bags"
+    },
+    {
+      "label": "Contract Terms",
+      "value": "FOB, CFR, CIF"
+    },
+    {
+      "label": "Minimum Order",
+      "value": "Vessel-sized shipments (12,500 MT+)"
+    }
   ],
-  "origins": ["Brazil", "Thailand", "India", "European Union", "Australia"],
-  "certifications": ["Bonsucro", "ISO 9001", "FSSC 22000", "Kosher", "Halal"],
-  "cta": { "label": "Request Buyer Access", "href": "/en/contact" }
+  "origins": [
+    "Brazil",
+    "Thailand",
+    "India",
+    "European Union",
+    "Australia"
+  ],
+  "certifications": [
+    "Bonsucro",
+    "ISO 9001",
+    "FSSC 22000",
+    "Kosher",
+    "Halal"
+  ],
+  "cta": {
+    "label": "Request Buyer Access",
+    "href": "/en/contact"
+  }
 }

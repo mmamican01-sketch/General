@@ -1,0 +1,36 @@
+---
+/**
+ * MediaFrame.astro — GLOBAL RESPONSIVE PARITY
+ * Source: Figma_Make_Export (React) MEDIA_RATIO_CONTRACT.md
+ * Output: aspect + overflow + object-cover wrapper matching React exactly.
+ */
+interface Props {
+  src: string;
+  alt: string;
+  ratio?: "16/9" | "4/3" | "1/1";
+  class?: string;
+  className?: string;
+  imgClass?: string;
+  bgClass?: string;
+  marginBottom?: "mb-3" | "mb-4" | "none";
+  loading?: "lazy" | "eager";
+  decoding?: "async" | "sync" | "auto";
+}
+
+const { src, alt, ratio = "16/9", class: classProp = "", className = "", imgClass = "", bgClass = "bg-gray-300", marginBottom = "none", loading = "lazy", decoding = "async" } = Astro.props;
+
+const ratioMap: Record<string, string> = {
+  "16/9": "aspect-[16/9]",
+  "4/3": "aspect-[4/3]",
+  "1/1": "aspect-square",
+};
+
+const ratioClass = ratioMap[ratio] ?? "aspect-[16/9]";
+const mbClass = marginBottom !== "none" ? marginBottom : "";
+const wrapperClass = `w-full ${ratioClass} overflow-hidden ${bgClass} ${mbClass} ${classProp} ${className}`.trim();
+const imageClass = `w-full h-full object-cover ${imgClass}`.trim();
+---
+
+<div class={wrapperClass}>
+  <img src={src} alt={alt} class={imageClass} loading={loading} decoding={decoding} />
+</div>
