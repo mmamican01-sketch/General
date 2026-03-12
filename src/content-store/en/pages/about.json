@@ -1,0 +1,51 @@
+{
+  "routeKey": "about",
+  "route": "/en/about",
+  "generatedAt": "2026-02-19T00:00:00.000Z",
+  "slots": {
+    "hero-title": {
+      "type": "text",
+      "value": "About AFGT"
+    },
+    "hero-description": {
+      "type": "text",
+      "value": "Institutional intermediary profile and operating scope."
+    },
+    "section-1-title": {
+      "type": "text",
+      "value": "Overview"
+    },
+    "section-1-body": {
+      "type": "text",
+      "value": "Structured trade engagement model for institutional counterpart coordination."
+    },
+    "section-2-title": {
+      "type": "text",
+      "value": "Operating Footprint"
+    },
+    "section-2-body": {
+      "type": "text",
+      "value": "Coverage across defined sourcing and buyer corridors under documented workflows."
+    },
+    "section-3-title": {
+      "type": "text",
+      "value": "Positioning"
+    },
+    "section-3-body": {
+      "type": "text",
+      "value": "Neutral intermediary positioning with compliance-aware communication standards."
+    },
+    "cta-title": {
+      "type": "text",
+      "value": "Engage With AFGT"
+    },
+    "cta-link": {
+      "type": "link",
+      "value": "/en/contact"
+    },
+    "cta-text": {
+      "type": "text",
+      "value": "Request Buyer Access"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "routeKey": "sustainability",
+  "route": "/en/sustainability",
+  "generatedAt": "2026-02-19T00:00:00.000Z",
+  "slots": {
+    "hero-title": { "type": "text", "value": "Sustainability" },
+    "hero-description": { "type": "text", "value": "Responsible trading practices across our supply chain operations." },
+    "section-1-title": { "type": "text", "value": "Approach" },
+    "section-1-body-1": { "type": "text", "value": "AFGT integrates sustainability considerations into commodity sourcing, supply chain management, and trading operations. The company works with partners who maintain recognized environmental and social standards." },
+    "section-1-body-2": { "type": "text", "value": "Sustainability practices are assessed through supplier audits, certification verification, and operational monitoring across the supply chain." },
+    "section-1-body-3": { "type": "text", "value": "The company prioritizes long-term partnerships with producers and logistics providers who demonstrate commitment to sustainable practices and transparent operations." },
+    "section-1-body-4": { "type": "text", "value": "AFGT participates in industry initiatives aimed at improving sustainability standards across global commodity markets." }
+  }
+}

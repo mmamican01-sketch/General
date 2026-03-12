@@ -1,0 +1,16 @@
+{
+  "slug": "urea",
+  "title": "Urea",
+  "heroImage": "https://images.unsplash.com/photo-1725802867239-ab1379895088?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1cmVhJTIwZmVydGlsaXplciUyMGluZHVzdHJpYWx8ZW58MXx8fHwxNzcwNzQxNjEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+  "description": "Agricultural-grade urea fertilizer from established producers with quality certification.",
+  "overview": "AFGT sources agricultural-grade urea from established producers with consistent quality and reliable delivery schedules. All urea products meet international fertilizer standards.",
+  "specifications": [
+    { "label": "Product Type", "value": "Prilled Urea, Granular Urea (46% N)" },
+    { "label": "Packaging", "value": "50kg bags, 1MT big bags, bulk vessels" },
+    { "label": "Contract Terms", "value": "FOB, CFR, CIF" },
+    { "label": "Shipment Size", "value": "5,000 MT - 50,000 MT" }
+  ],
+  "origins": ["Middle East", "Russia", "China", "India", "North Africa"],
+  "certifications": ["ISO 9001", "REACH (European Union)", "Industry standard compliance"],
+  "cta": { "label": "Request Buyer Access", "href": "/en/contact" }
+}

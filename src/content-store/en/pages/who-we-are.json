@@ -1,0 +1,15 @@
+{
+  "routeKey": "who-we-are",
+  "route": "/en/who-we-are",
+  "generatedAt": "2026-02-19T00:00:00.000Z",
+  "slots": {
+    "hero-title": { "type": "text", "value": "Who We Are" },
+    "hero-description": { "type": "text", "value": "A diversified general trading company operating across multiple commodity sectors." },
+    "section-1-title": { "type": "text", "value": "Company overview" },
+    "section-1-body-1": { "type": "text", "value": "AL Farhan General Trading (AFGT) is a diversified trading company headquartered in Dubai, United Arab Emirates. AFGT operates across multiple commodity sectors with a focus on institutional partnerships." },
+    "section-1-body-2": { "type": "text", "value": "The company serves markets across the Middle East, Africa, Asia Pacific, and Europe through a network of strategic partnerships and operational facilities." },
+    "section-2-title": { "type": "text", "value": "Market presence" },
+    "section-2-body-1": { "type": "text", "value": "AFGT operates in 25 countries with a presence spanning four continents. The company manages commodity flows across sugar, wheat, oils, urea, and maritime transport sectors." },
+    "section-2-body-2": { "type": "text", "value": "Through direct trading relationships and long-term supply agreements, AFGT connects producers and consumers across global markets." }
+  }
+}

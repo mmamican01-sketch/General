@@ -1,0 +1,7 @@
+---
+const { wide = false } = Astro.props;
+---
+
+<div class={wide ? "max-w-[1400px] mx-auto px-8" : "max-w-[1140px] mx-auto px-8"}>
+  <slot />
+</div>

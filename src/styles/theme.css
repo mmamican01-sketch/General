@@ -1,0 +1,76 @@
+:root{
+  --bg-section: #FFF9EC;
+  --accent:#F59C00;
+  --text-heading:#2F2F2F;
+  --text-body:#4A4A4A;
+  --white:#FFFFFF;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-ui);
+    color: var(--text-body);
+    background: var(--white);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--text-heading);
+  }
+
+  p {
+    color: var(--text-body);
+  }
+}
+
+.kpi-number{
+  font-family: var(--font-display);
+  font-weight:500;
+}
+
+.btn-primary{
+  background:var(--white);
+  color:var(--accent);
+  border:1.5px solid var(--accent);
+  border-radius:999px;
+  font-family:var(--font-ui);
+  font-weight:500;
+  transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease;
+}
+.btn-primary:hover{
+  background:var(--accent);
+  color:var(--white);
+  border-color:var(--accent);
+}
+
+.link-accent{
+  color:var(--text-heading);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+  transition: opacity 200ms ease;
+}
+.link-accent:hover{ opacity:.85; }
+
+.vertical-accent{
+  width:4px;
+  background:var(--accent);
+}
+
+.pill-chip{
+  border:1px solid var(--accent);
+  background:var(--white);
+  color:var(--text-heading);
+  border-radius:999px;
+  font-family:var(--font-ui);
+  font-weight:500;
+}
+
+.section-white{ background: var(--white); }
+
+.hover\:bg-\[\#f9f9f9\]:hover {
+  background: var(--bg-section) !important;
+}

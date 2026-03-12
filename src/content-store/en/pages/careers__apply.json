@@ -1,0 +1,18 @@
+{
+  "routeKey": "careers__apply",
+  "route": "/en/careers/apply",
+  "generatedAt": "2026-02-19T00:00:00.000Z",
+  "slots": {
+    "hero-title": { "type": "text", "value": "Submit Career Inquiry" },
+    "hero-description": { "type": "text", "value": "Career inquiry channel for institutional role alignment." },
+    "section-1-title": { "type": "text", "value": "Candidate Details" },
+    "section-1-body": { "type": "text", "value": "Include background summary and relevant operating experience." },
+    "section-2-title": { "type": "text", "value": "Role Interest" },
+    "section-2-body": { "type": "text", "value": "Specify role interest and preferred functional scope." },
+    "section-3-title": { "type": "text", "value": "Submission Notes" },
+    "section-3-body": { "type": "text", "value": "Submissions are reviewed through a structured response and follow-up sequence." },
+    "cta-title": { "type": "text", "value": "Questions / Contact" },
+    "cta-link": { "type": "link", "value": "/en/contact" },
+    "cta-text": { "type": "text", "value": "Request Buyer Access" }
+  }
+}

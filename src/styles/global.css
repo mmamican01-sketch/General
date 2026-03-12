@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg-primary: #1b2230;
+  --color-bg-secondary: #2c2c2c;
+  --color-bg-muted: #f8f8f8;
+  --color-surface: #ffffff;
+  --color-text-primary: #1b2230;
+  --font-serif-display: "Cormorant Garamond", serif;
+  --font-sans-body: "Inter", sans-serif;
+  --line-height-tight: 1.2;
+  --line-height-body: 1.75;
+  --tracking-default: 0;
+}
+
+body {
+  font-family: var(--font-sans-body);
+  letter-spacing: var(--tracking-default);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif-display);
+}
+
+.clip-polygon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.font-nav {
+  font-family: "Cormorant Garamond", serif;
+}
