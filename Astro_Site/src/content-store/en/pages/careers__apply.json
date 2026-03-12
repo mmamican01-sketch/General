@@ -3,16 +3,54 @@
   "route": "/en/careers/apply",
   "generatedAt": "2026-02-19T00:00:00.000Z",
   "slots": {
-    "hero-title": { "type": "text", "value": "Submit Career Inquiry" },
-    "hero-description": { "type": "text", "value": "Career inquiry channel for institutional role alignment." },
-    "section-1-title": { "type": "text", "value": "Candidate Details" },
-    "section-1-body": { "type": "text", "value": "Include background summary and relevant operating experience." },
-    "section-2-title": { "type": "text", "value": "Role Interest" },
-    "section-2-body": { "type": "text", "value": "Specify role interest and preferred functional scope." },
-    "section-3-title": { "type": "text", "value": "Submission Notes" },
-    "section-3-body": { "type": "text", "value": "Submissions are reviewed through a structured response and follow-up sequence." },
-    "cta-title": { "type": "text", "value": "Questions / Contact" },
-    "cta-link": { "type": "link", "value": "/en/contact" },
-    "cta-text": { "type": "text", "value": "Request Buyer Access" }
+    "hero-title": {
+      "type": "text",
+      "value": "Submit Career Inquiry"
+    },
+    "hero-description": {
+      "type": "text",
+      "value": "Professional inquiry channel for individuals seeking to engage with AFGT across trading, logistics, operations, and institutional support functions."
+    },
+    "section-1-title": {
+      "type": "text",
+      "value": "Candidate Details"
+    },
+    "section-1-body": {
+      "type": "text",
+      "value": "Provide a brief professional background including relevant experience in commodity trading, logistics coordination, supply chain operations, finance, or international trade support.\n\nCandidates are encouraged to include key areas of expertise, geographic market exposure, and previous institutional or commercial experience relevant to global commodity markets."
+    },
+    "section-2-title": {
+      "type": "text",
+      "value": "Role Interest"
+    },
+    "section-2-body": {
+      "type": "text",
+      "value": "Indicate the functional area in which you are seeking engagement with AFGT. This may include trading operations, logistics coordination, supplier sourcing, risk management, market research, or institutional partnership support.\n\nApplicants should specify the scope of interest and preferred involvement within global commodity trading environments."
+    },
+    "section-3-title": {
+      "type": "text",
+      "value": "Submission Notes"
+    },
+    "section-3-body": {
+      "type": "text",
+      "value": "All submissions are reviewed through a structured internal screening process. Qualified candidates may be contacted for follow-up discussions regarding potential collaboration or future role alignment within AFGT operations."
+    },
+    "cta-title": {
+      "type": "text",
+      "value": "Questions / Contact"
+    },
+    "cta-link": {
+      "type": "link",
+      "value": "/en/contact"
+    },
+    "cta-text": {
+      "type": "text",
+      "value": "Contact AFGT"
+    }
+  },
+  "seo": {
+    "title": "Submit Career Inquiry | AFGT Global Commodity Trading",
+    "description": "Submit a professional career inquiry to AFGT and explore opportunities related to global commodity trading, logistics coordination, and international supply chain operations.",
+    "image": "/assets/figma/ChatGPT-Image-Mar-11--2026--12_39_08-AM-1773178761729.png"
   }
 }

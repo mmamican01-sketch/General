@@ -3,24 +3,86 @@
   "route": "/en/commodities",
   "generatedAt": "2026-02-19T00:00:00.000Z",
   "slots": {
-    "hero-title": { "type": "text", "value": "Commodity Categories" },
-    "hero-description": { "type": "text", "value": "" },
-    "card-1-image": { "type": "image", "value": "/assets/figma/card-default.svg" },
-    "card-1-title": { "type": "text", "value": "Sugar" },
-    "card-1-link": { "type": "link", "value": "/en/commodities/sugar" },
-    "card-2-image": { "type": "image", "value": "/assets/figma/card-default.svg" },
-    "card-2-title": { "type": "text", "value": "Wheat" },
-    "card-2-link": { "type": "link", "value": "/en/commodities/wheat" },
-    "card-3-image": { "type": "image", "value": "/assets/figma/card-default.svg" },
-    "card-3-title": { "type": "text", "value": "Barley" },
-    "card-3-link": { "type": "link", "value": "/en/commodities/barley" },
-    "card-4-image": { "type": "image", "value": "/assets/figma/card-default.svg" },
-    "card-4-title": { "type": "text", "value": "Sunflower Oil" },
-    "card-4-link": { "type": "link", "value": "/en/commodities/sunflower-oil" },
-    "section-3-title": { "type": "text", "value": "Structured Intermediary Engagement" },
-    "section-3-body": { "type": "text", "value": "" },
-    "cta-title": { "type": "text", "value": "Engage With AFGT" },
-    "cta-link": { "type": "link", "value": "/en/contact" },
-    "cta-text": { "type": "text", "value": "Request Commodity Access" }
+    "hero-title": {
+      "type": "text",
+      "value": "Commodity Categories"
+    },
+    "hero-description": {
+      "type": "text",
+      "value": "AFGT facilitates structured engagement across key agricultural commodity sectors.\nThrough disciplined coordination between buyers and supply markets, the company supports access to established trade corridors for bulk agricultural commodities."
+    },
+    "card-1-image": {
+      "type": "image",
+      "value": "https://images.unsplash.com/photo-1607980276836-232ac6344978?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+    },
+    "card-1-title": {
+      "type": "text",
+      "value": "Sugar"
+    },
+    "card-1-link": {
+      "type": "link",
+      "value": "/en/commodities/sugar"
+    },
+    "card-2-image": {
+      "type": "image",
+      "value": "https://images.unsplash.com/photo-1657626625832-2c0851cdaa9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+    },
+    "card-2-title": {
+      "type": "text",
+      "value": "Wheat"
+    },
+    "card-2-link": {
+      "type": "link",
+      "value": "/en/commodities/wheat"
+    },
+    "card-3-image": {
+      "type": "image",
+      "value": "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+    },
+    "card-3-title": {
+      "type": "text",
+      "value": "Barley"
+    },
+    "card-3-link": {
+      "type": "link",
+      "value": "/en/commodities/barley"
+    },
+    "card-4-image": {
+      "type": "image",
+      "value": "https://images.unsplash.com/photo-1759332637000-50311b115c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+    },
+    "card-4-title": {
+      "type": "text",
+      "value": "Sunflower Oil"
+    },
+    "card-4-link": {
+      "type": "link",
+      "value": "/en/commodities/sunflower-oil"
+    },
+    "section-3-title": {
+      "type": "text",
+      "value": "Structured Intermediary Engagement"
+    },
+    "section-3-body": {
+      "type": "text",
+      "value": "AFGT operates as an intermediary within global commodity markets, facilitating structured engagement between buyers, brokers, and supply-side counterparties.\n\nThe company focuses on disciplined communication, requirement alignment, and coordination across established trade environments supporting international agricultural commodity flows."
+    },
+    "cta-title": {
+      "type": "text",
+      "value": "Engage With AFGT"
+    },
+    "cta-link": {
+      "type": "link",
+      "value": "/en/contact"
+    },
+    "cta-text": {
+      "type": "text",
+      "value": "Request Commodity Access"
+    }
+  },
+  "seo": {
+    "title": "Agricultural Commodities | Sugar, Wheat, Barley & Sunflower Oil – AFGT",
+    "description": "Explore agricultural commodity categories facilitated by AFGT including sugar, wheat, barley, and sunflower oil, connecting buyers with structured access to global supply markets.",
+    "image": "/assets/figma/ChatGPT-Image-Mar-11--2026--01_18_39-AM-1773181129659.png"
   }
 }

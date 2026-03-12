@@ -3,12 +3,37 @@
   "route": "/en/",
   "generatedAt": "2026-02-19T00:00:00.000Z",
   "slots": {
-    "hero-title": { "type": "text", "value": "We are AFGT" },
-    "hero-link": { "type": "link", "value": "/en/who-we-are" },
-    "hero-link-label": { "type": "text", "value": "Who we are" },
-    "section-1-title": { "type": "text", "value": "Building global trade partnerships across diverse commodity sectors" },
-    "section-2-image": { "type": "image", "value": "https://images.unsplash.com/photo-1760246964044-1384f71665b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZyUyMG1vZGVybnxlbnwxfHx8fDE3NzA3MTE3MjV8MA&ixlib=rb-4.1.0&q=80&w=1080" },
-    "section-2-title": { "type": "text", "value": "Institutional excellence" },
-    "section-2-body": { "type": "text", "value": "AL Farhan General Trading (AFGT) operates with the highest standards of institutional integrity across global markets. Our commitment to transparency and reliability defines every partnership." }
+    "hero-video": {
+      "type": "video",
+      "value": "https://vimeo.com/1166485457?fl=ip&fe=ec"
+    },
+    "hero-title": {
+      "type": "text",
+      "value": ""
+    },
+    "hero-link": {
+      "type": "link",
+      "value": "/en/who-we-are"
+    },
+    "hero-link-label": {
+      "type": "text",
+      "value": "Who we are"
+    },
+    "section-1-title": {
+      "type": "text",
+      "value": "Building global trade partnerships across diverse commodity sectors"
+    },
+    "section-2-image": {
+      "type": "image",
+      "value": "https://images.unsplash.com/photo-1760246964044-1384f71665b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZyUyMG1vZGVybnxlbnwxfHx8fDE3NzA3MTE3MjV8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    },
+    "section-2-title": {
+      "type": "text",
+      "value": "Institutional excellence"
+    },
+    "section-2-body": {
+      "type": "text",
+      "value": "AL Farhan General Trading (AFGT) operates with the highest standards of institutional integrity across global markets. Our commitment to transparency and reliability defines every partnership."
+    }
   }
 }

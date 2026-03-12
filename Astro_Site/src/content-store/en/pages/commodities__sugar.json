@@ -9,7 +9,7 @@
     },
     "hero-description": {
       "type": "text",
-      "value": ""
+      "value": "Sugar is one of the most actively traded agricultural commodities in global markets. AFGT coordinates supply alignment for refined and raw Brazilian sugar across established export corridors and structured trading workflows."
     },
     "section-2-title": {
       "type": "text",
@@ -17,15 +17,15 @@
     },
     "section-2-body-1": {
       "type": "text",
-      "value": ""
+      "value": "Brazil is the world’s largest exporter of sugar, supplying refined and raw sugar grades to international food processors, distributors, and institutional buyers across global markets."
     },
     "section-2-body-2": {
       "type": "text",
-      "value": ""
+      "value": "AFGT facilitates structured engagement between buyers and qualified Brazilian supply partners, coordinating transactions aligned with product specifications, shipment structures, and international documentation standards."
     },
     "section-2-image": {
       "type": "image",
-      "value": "/assets/figma/media-default.svg"
+      "value": "/assets/figma/ChatGPT-Image-Mar-11--2026--01_42_55-AM-1773250393922.png"
     },
     "section-3-title": {
       "type": "text",
@@ -37,15 +37,15 @@
     },
     "section-3-card-1-body": {
       "type": "text",
-      "value": ""
+      "value": "Common traded specifications include ICUMSA 45 refined sugar, ICUMSA 600 white sugar, and raw sugar grades depending on buyer processing requirements and destination market standards."
     },
     "section-3-card-2-title": {
       "type": "text",
-      "value": "Origin Options    iraq"
+      "value": "Origin Options"
     },
     "section-3-card-2-body": {
       "type": "text",
-      "value": ""
+      "value": "Primary supply originates from Brazil, the largest global exporter of sugar, supported by established milling, refining, and export logistics infrastructure."
     },
     "section-3-card-3-title": {
       "type": "text",
@@ -53,7 +53,7 @@
     },
     "section-3-card-3-body": {
       "type": "text",
-      "value": ""
+      "value": "Sugar shipments are typically supplied in 50 kg bags for containerized export or bulk vessel shipments depending on buyer logistics and destination port handling capacity."
     },
     "section-3-card-4-title": {
       "type": "text",
@@ -61,7 +61,7 @@
     },
     "section-3-card-4-body": {
       "type": "text",
-      "value": ""
+      "value": "Shipment structures may include FOB, CFR, or CIF delivery terms aligned with international trade practices and structured according to the buyer’s nominated port and contractual framework."
     },
     "section-4-title": {
       "type": "text",
@@ -69,7 +69,7 @@
     },
     "section-4-body": {
       "type": "text",
-      "value": ""
+      "value": "AFGT coordinates structured supply engagement between institutional buyers, intermediaries, and verified sugar producers. Engagement workflows allow specification alignment, shipment structuring, and documentation review prior to transaction execution."
     },
     "cta-title": {
       "type": "text",
@@ -83,5 +83,10 @@
       "type": "text",
       "value": "Request Structured Engagement"
     }
+  },
+  "seo": {
+    "title": "Brazilian Sugar Supply | ICUMSA 45, 600 & Raw Sugar – AFGT",
+    "description": "AFGT coordinates Brazilian sugar supply including ICUMSA 45, ICUMSA 600, and raw sugar grades through structured commodity trading workflows and verified export partners.",
+    "image": "/assets/figma/ChatGPT-Image-Mar-11--2026--01_42_55-AM-1773250393922.png"
   }
 }

@@ -81,7 +81,7 @@ export default function PagesListPage() {
                 <li key={p.key}>
                   <div className="row" style={{ justifyContent: "space-between" }}>
                     <div>
-                      <strong>{p.key}</strong>
+                      <strong>{p.key === "index" ? "Homepage (Hero: We are AFGT)" : p.key}</strong>
                       <div className="muted" style={{ fontSize: 12 }}>
                         {p.path} • {p.slots.length} slots
                       </div>

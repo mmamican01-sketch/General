@@ -9,7 +9,7 @@
     },
     "hero-description": {
       "type": "text",
-      "value": ""
+      "value": "Barley is a globally traded agricultural commodity used across food supply chains, feed production, and industrial processing. AFGT coordinates sourcing and buyer alignment across established export corridors and verified supply partners."
     },
     "section-2-title": {
       "type": "text",
@@ -17,15 +17,15 @@
     },
     "section-2-body-1": {
       "type": "text",
-      "value": ""
+      "value": "Barley is one of the most widely traded grains in global agricultural markets. It is primarily used for animal feed production, food processing, and malt manufacturing across international supply chains."
     },
     "section-2-body-2": {
       "type": "text",
-      "value": ""
+      "value": "AFGT facilitates structured engagement between institutional buyers and qualified supply sources across key exporting regions, enabling coordinated transactions aligned with buyer specifications, shipment terms, and documentation requirements."
     },
     "section-2-image": {
       "type": "image",
-      "value": "/assets/figma/media-default.svg"
+      "value": "/assets/figma/ChatGPT-Image-Mar-11--2026--10_44_16-PM-1773258298134.png"
     },
     "section-3-title": {
       "type": "text",
@@ -37,7 +37,7 @@
     },
     "section-3-card-1-body": {
       "type": "text",
-      "value": ""
+      "value": "Typical moisture levels range between 12% and 14% depending on harvest conditions, storage standards, and export specifications defined in the supply contract."
     },
     "section-3-card-2-title": {
       "type": "text",
@@ -45,7 +45,7 @@
     },
     "section-3-card-2-body": {
       "type": "text",
-      "value": ""
+      "value": "Barley supply may originate from major exporting regions including Russia, Ukraine, Kazakhstan, the European Union, and Australia depending on seasonal availability and buyer sourcing strategy."
     },
     "section-3-card-3-title": {
       "type": "text",
@@ -53,7 +53,7 @@
     },
     "section-3-card-3-body": {
       "type": "text",
-      "value": ""
+      "value": "Barley is typically supplied in bulk vessel shipments, with optional bagged formats available depending on destination requirements and buyer logistics capabilities."
     },
     "section-3-card-4-title": {
       "type": "text",
@@ -61,7 +61,7 @@
     },
     "section-3-card-4-body": {
       "type": "text",
-      "value": ""
+      "value": "Shipment structures may include FOB, CFR, or CIF terms aligned with international trade standards and structured according to the buyer’s nominated delivery port and logistics framework."
     },
     "section-4-title": {
       "type": "text",
@@ -69,7 +69,7 @@
     },
     "section-4-body": {
       "type": "text",
-      "value": ""
+      "value": "AFGT supports institutional buyers, intermediaries, and procurement entities by coordinating structured commodity sourcing across verified supplier networks. Engagement is conducted through defined documentation workflows, allowing alignment on specifications, shipment terms, and transaction procedures prior to execution."
     },
     "cta-title": {
       "type": "text",
@@ -83,5 +83,10 @@
       "type": "text",
       "value": "Request Structured Engagement"
     }
+  },
+  "seo": {
+    "title": "Meta Title Meta Description OG Image Select image Upload image /assets/figma/... Save التغييرات تُنشر على الموقع فقط عند الضغط على Save. بعد الحفظ، انتظر ",
+    "description": "AFGT coordinates global barley supply across established export corridors, aligning institutional buyers with qualified suppliers under structured commodity trading workflows.",
+    "image": "/assets/figma/ChatGPT-Image-Mar-11--2026--10_44_16-PM-1773258298134.png"
   }
 }

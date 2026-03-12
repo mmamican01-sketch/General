@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { getAstroSiteUrl } from "@/lib/astro-url";
 
@@ -17,35 +17,67 @@ export function MediaPicker({
 }) {
   const [open, setOpen] = useState(false);
   const [media, setMedia] = useState<MediaItem[]>([]);
+  const [loadingMedia, setLoadingMedia] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const loadMedia = () => {
+    setLoadingMedia(true);
+    fetch("/api/media")
+      .then(async (res) => {
+        const data = await res.json();
+        const files: Array<{ path: string }> = data.files || [];
+        const items: MediaItem[] = files.map((f) => ({ path: f.path, type: "image" }));
+        setMedia(items);
+      })
+      .catch(() => setMedia([]))
+      .finally(() => setLoadingMedia(false));
+  };
 
   useEffect(() => {
-    if (open) {
-      Promise.all([fetch("/api/index"), fetch("/api/media")])
-        .then(async ([indexRes, mediaRes]) => {
-          const index = await indexRes.json();
-          const mediaApi = await mediaRes.json();
-          const fromIndex: MediaItem[] = (index.media || []).filter((m: MediaItem) => m.type?.startsWith("image/"));
-          const fromApi: MediaItem[] = (mediaApi.files || []).map((f: { path: string }) => ({ path: f.path, type: "image" }));
-          const seen = new Set(fromIndex.map((m) => m.path));
-          for (const m of fromApi) {
-            if (!seen.has(m.path)) {
-              seen.add(m.path);
-              fromIndex.push(m);
-            }
-          }
-          setMedia(fromIndex);
-        })
-        .catch(() => setMedia([]));
-    }
+    if (open) loadMedia();
   }, [open]);
 
-  const images = media.filter((m) => m.type?.startsWith("image/") || !m.type);
+  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file || !file.type.startsWith("image/")) return;
+    setUploading(true);
+    const fd = new FormData();
+    fd.append("file", file);
+    try {
+      const res = await fetch("/api/media", { method: "POST", body: fd });
+      const data = await res.json();
+      if (res.ok && data.file?.path) {
+        onChange(data.file.path);
+      }
+    } finally {
+      setUploading(false);
+      e.target.value = "";
+    }
+  }
+
+  const images = media;
 
   return (
     <div>
-      <div className="row" style={{ marginBottom: 8 }}>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        style={{ display: "none" }}
+        onChange={handleUpload}
+      />
+      <div className="row" style={{ marginBottom: 8, gap: 8 }}>
         <button type="button" className="button secondary" onClick={() => setOpen(true)}>
           {label}
+        </button>
+        <button
+          type="button"
+          className="button secondary"
+          disabled={uploading}
+          onClick={() => fileInputRef.current?.click()}
+        >
+          {uploading ? "Uploading…" : "Upload image"}
         </button>
         {value && (
           <button
@@ -100,6 +132,12 @@ export function MediaPicker({
             }}
           >
             <Dialog.Title style={{ margin: "0 0 16px", fontSize: 18 }}>Select image</Dialog.Title>
+            <p className="muted" style={{ margin: "0 0 16px", fontSize: 13 }}>جميع الصور من قسم Media</p>
+            {loadingMedia ? (
+              <p className="muted">Loading…</p>
+            ) : images.length === 0 ? (
+              <p className="muted">لا توجد صور. استخدم "Upload image" لرفع صورة.</p>
+            ) : (
             <div
               style={{
                 display: "grid",
@@ -135,6 +173,7 @@ export function MediaPicker({
                 </button>
               ))}
             </div>
+            )}
             <div style={{ marginTop: 16 }}>
               <Dialog.Close asChild>
                 <button type="button" className="button secondary">

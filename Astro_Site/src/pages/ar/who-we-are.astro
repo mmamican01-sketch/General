@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import MediaFrame from "../../components/MediaFrame.astro";
 ---
 
 <BaseLayout
@@ -12,10 +13,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 >
   <section class="py-24 bg-[var(--bg-section)]">
     <div class="mx-auto max-w-[1140px] px-8">
-      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;">
+      <h1 class="font-serif text-5xl text-[#2c2c2c]" style="font-weight:400; line-height:1.2;">
         من نحن
       </h1>
-      <p class="mt-8 max-w-3xl text-lg leading-8 text-white/80">
+      <p class="mt-8 max-w-3xl text-lg leading-8 text-[#5c5c5c]">
         تعمل AFGT كوسيط تجاري منظم يدعم فرق المشتريات المؤسسية من خلال مواءمة الأطراف المقابلة المعتمدة وأطر التنفيذ المنضبطة.
       </p>
     </div>
@@ -24,43 +25,41 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   <section class="py-24 section-white">
     <div class="mx-auto grid max-w-[1140px] grid-cols-1 items-center gap-16 px-8 md:grid-cols-2">
       <div>
-        <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;">
+        <h2 class="font-serif text-4xl text-[#2c2c2c]" style="font-weight:400; line-height:1.2;">
           دورنا
         </h2>
-        <p class="mt-6 text-slate-600 leading-8">
+        <p class="mt-6 text-[#5c5c5c] leading-8">
           يتحدد دورنا الوسيط عبر ربط المشترين المؤسسيين بقنوات الموردين المعتمدة ضمن مسارات تواصل وإجراءات واضحة.
         </p>
-        <p class="mt-6 text-slate-600 leading-8">
+        <p class="mt-6 text-[#5c5c5c] leading-8">
           نحن ندعم سلامة التوثيق، وانضباط الاتصال، ووضوح المعاملات ضمن بيئات تجارة سلع متعددة الاختصاصات.
         </p>
       </div>
-      <figure class="h-[420px] w-full overflow-hidden">
-        <img src="/favicon.svg" alt="دورنا كوسيط منظم" class="h-full w-full object-cover" loading="lazy" />
-      </figure>
+      <MediaFrame src="/favicon.svg" alt="دورنا كوسيط منظم" ratio="16/9" />
     </div>
   </section>
 
   <section class="py-24 bg-[var(--bg-section)]">
     <div class="mx-auto max-w-[1140px] px-8">
-      <h2 class="font-serif text-4xl text-[#1b2230]" style="font-weight:400; line-height:1.2;">
+      <h2 class="font-serif text-4xl text-[#2c2c2c]" style="font-weight:400; line-height:1.2;">
         نموذج التشغيل
       </h2>
       <div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-3">
         <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;">مواءمة الموردين</h3>
-          <p class="mt-4 text-slate-600 leading-8">
+          <h3 class="font-serif text-2xl text-[#2c2c2c]" style="font-weight:400;">مواءمة الموردين</h3>
+          <p class="mt-4 text-[#5c5c5c] leading-8">
             تنسيق موثّق مع الموردين بما يتوافق مع متطلبات الجهات المؤسسية ونقاط التحقق اللازمة.
           </p>
         </div>
         <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;">الواجهة المؤسسية</h3>
-          <p class="mt-4 text-slate-600 leading-8">
+          <h3 class="font-serif text-2xl text-[#2c2c2c]" style="font-weight:400;">الواجهة المؤسسية</h3>
+          <p class="mt-4 text-[#5c5c5c] leading-8">
             قنوات اتصال منضبطة بين فرق المشتريات والجهات المقابلة وفق نطاق عمل وسيطي واضح.
           </p>
         </div>
         <div>
-          <h3 class="font-serif text-2xl text-[#1b2230]" style="font-weight:400;">هيكلة المعاملات</h3>
-          <p class="mt-4 text-slate-600 leading-8">
+          <h3 class="font-serif text-2xl text-[#2c2c2c]" style="font-weight:400;">هيكلة المعاملات</h3>
+          <p class="mt-4 text-[#5c5c5c] leading-8">
             تقدم منظم للمعاملة عبر مراحل موثقة ومسؤوليات محددة تقلل اللبس التشغيلي.
           </p>
         </div>
@@ -70,10 +69,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <section class="py-24 bg-[var(--bg-section)]">
     <div class="mx-auto max-w-[1140px] px-8 text-center">
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;">
+      <h2 class="font-serif text-4xl text-[#2c2c2c]" style="font-weight:400; line-height:1.2;">
         التموضع العالمي
       </h2>
-      <p class="mx-auto mt-8 max-w-3xl text-lg leading-8 text-white/80">
+      <p class="mx-auto mt-8 max-w-3xl text-lg leading-8 text-[#5c5c5c]">
         يتموضع AFGT كوسيط مؤسسي محايد يركز على الوصول المعتمد، واتساق الإجراءات، والانخراط المنظم عبر ممرات السلع الدولية.
       </p>
     </div>
@@ -81,7 +80,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <section class="py-32 bg-[var(--bg-section)]">
     <div class="mx-auto max-w-[1140px] px-8 text-center">
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;">
+      <h2 class="font-serif text-4xl text-[#2c2c2c]" style="font-weight:400; line-height:1.2;">
         تواصل مع AFGT
       </h2>
       <a

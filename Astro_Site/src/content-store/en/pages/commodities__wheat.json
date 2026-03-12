@@ -9,7 +9,7 @@
     },
     "hero-description": {
       "type": "text",
-      "value": ""
+      "value": "Wheat is one of the most actively traded agricultural commodities in global markets. AFGT coordinates supply engagement for milling and feed wheat sourced from the Black Sea export corridor, including Russia, Ukraine, and Kazakhstan."
     },
     "section-2-title": {
       "type": "text",
@@ -17,15 +17,15 @@
     },
     "section-2-body-1": {
       "type": "text",
-      "value": ""
+      "value": "Wheat sourced from the Black Sea region represents a significant share of global grain exports. Russian, Ukrainian, and Kazakh wheat is widely supplied to international milling industries, food processors, and feed markets."
     },
     "section-2-body-2": {
       "type": "text",
-      "value": ""
+      "value": "AFGT facilitates structured engagement between institutional buyers and verified wheat suppliers across the Black Sea export corridor, aligning supply specifications, protein ranges, shipment structures, and destination logistics."
     },
     "section-2-image": {
       "type": "image",
-      "value": "/assets/figma/media-default.svg"
+      "value": "/assets/figma/ChatGPT-Image-Mar-11--2026--10_03_26-PM--1--1773255819692.png"
     },
     "section-3-title": {
       "type": "text",
@@ -37,7 +37,7 @@
     },
     "section-3-card-1-body": {
       "type": "text",
-      "value": ""
+      "value": "Typical traded specifications include wheat with protein levels ranging from 10.5% to 12.5%, depending on whether the cargo is intended for feed applications or milling-grade flour production."
     },
     "section-3-card-2-title": {
       "type": "text",
@@ -45,7 +45,7 @@
     },
     "section-3-card-2-body": {
       "type": "text",
-      "value": ""
+      "value": "Moisture levels typically range up to 14% depending on harvest conditions, storage management, and export contract specifications."
     },
     "section-3-card-3-title": {
       "type": "text",
@@ -53,7 +53,7 @@
     },
     "section-3-card-3-body": {
       "type": "text",
-      "value": ""
+      "value": "Primary export origins include Russia, Ukraine, and Kazakhstan, forming one of the most significant wheat supply corridors in international grain trade."
     },
     "section-3-card-4-title": {
       "type": "text",
@@ -61,7 +61,7 @@
     },
     "section-3-card-4-body": {
       "type": "text",
-      "value": ""
+      "value": "Shipment structures typically include FOB, CFR, or CIF delivery terms aligned with international commodity trading practices and structured according to the buyer’s nominated discharge port."
     },
     "section-4-title": {
       "type": "text",
@@ -69,7 +69,7 @@
     },
     "section-4-body": {
       "type": "text",
-      "value": ""
+      "value": "AFGT coordinates structured wheat supply engagement between institutional buyers and verified suppliers across the Black Sea export corridor, aligning buyer specifications with export-ready grain supply and documented transaction workflows."
     },
     "cta-title": {
       "type": "text",
@@ -83,5 +83,10 @@
       "type": "text",
       "value": "Request Structured Engagement"
     }
+  },
+  "seo": {
+    "title": "Meta Title Meta Description OG Image Select image Upload image /assets/figma/... Save",
+    "description": "AFGT coordinates wheat supply from the Black Sea export corridor including Russian, Ukrainian, and Kazakh wheat with protein ranges from 10.5% to 12.5% for feed and milling markets.",
+    "image": "/assets/figma/ChatGPT-Image-Mar-11--2026--10_03_26-PM--1--1773255819692.png"
   }
 }

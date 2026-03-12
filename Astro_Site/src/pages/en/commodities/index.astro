@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Container from "../../../components/Container.astro";
+import MediaFrame from "../../../components/MediaFrame.astro";
 import { loadPageContent, getSlot } from "../../../lib/contentStore";
 
 const content = await loadPageContent("commodities");
@@ -18,9 +19,9 @@ const content = await loadPageContent("commodities");
     <Container>
       <div class="text-center">
 
-      <h1 class="font-serif text-5xl text-white" style="font-weight:400; line-height:1.2;" data-slot="hero-title">{getSlot(content, "hero-title", "Commodity Categories")}</h1>
+      <h1 class="font-serif text-5xl text-[#2c2c2c]" style="font-weight:400; line-height:1.2;" data-slot="hero-title">{getSlot(content, "hero-title", "Commodity Categories")}</h1>
 
-      <p class="mt-8 text-lg text-white/80 leading-8 max-w-2xl mx-auto" data-slot="hero-description">{getSlot(content, "hero-description", "")}</p>
+      <p class="mt-8 text-lg text-[#5c5c5c] leading-8 max-w-2xl mx-auto" data-slot="hero-description">{getSlot(content, "hero-description", "")}</p>
 
       </div>
     </Container>
@@ -32,37 +33,29 @@ const content = await loadPageContent("commodities");
       <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
 
         <a href={getSlot(content, "card-1-link", "/en/commodities/sugar")} class="group block" data-slot="card-1-link">
-          <figure class="h-[320px] overflow-hidden">
-            <img src={getSlot(content, "card-1-image", "/assets/figma/card-default.svg")} class="h-full w-full object-cover" alt="Sugar commodity" loading="lazy" data-slot="card-1-image" />
-          </figure>
-          <h2 class="mt-6 text-2xl text-white group-hover:text-gray-300 transition-colors" data-slot="card-1-title">
+          <MediaFrame src={getSlot(content, "card-1-image", "/assets/figma/card-default.svg")} alt="Sugar commodity" class="mb-0" />
+          <h2 class="mt-6 text-2xl text-[#2c2c2c] group-hover:text-[#5c5c5c] transition-colors" data-slot="card-1-title">
             {getSlot(content, "card-1-title", "Sugar")}
           </h2>
         </a>
 
         <a href={getSlot(content, "card-2-link", "/en/commodities/wheat")} class="group block" data-slot="card-2-link">
-          <figure class="h-[320px] overflow-hidden">
-            <img src={getSlot(content, "card-2-image", "/assets/figma/card-default.svg")} class="h-full w-full object-cover" alt="Wheat commodity" loading="lazy" data-slot="card-2-image" />
-          </figure>
-          <h2 class="mt-6 text-2xl text-white group-hover:text-gray-300 transition-colors" data-slot="card-2-title">
+          <MediaFrame src={getSlot(content, "card-2-image", "/assets/figma/card-default.svg")} alt="Wheat commodity" class="mb-0" />
+          <h2 class="mt-6 text-2xl text-[#2c2c2c] group-hover:text-[#5c5c5c] transition-colors" data-slot="card-2-title">
             {getSlot(content, "card-2-title", "Wheat")}
           </h2>
         </a>
 
         <a href={getSlot(content, "card-3-link", "/en/commodities/barley")} class="group block" data-slot="card-3-link">
-          <figure class="h-[320px] overflow-hidden">
-            <img src={getSlot(content, "card-3-image", "/assets/figma/card-default.svg")} class="h-full w-full object-cover" alt="Barley commodity" loading="lazy" data-slot="card-3-image" />
-          </figure>
-          <h2 class="mt-6 text-2xl text-white group-hover:text-gray-300 transition-colors" data-slot="card-3-title">
+          <MediaFrame src={getSlot(content, "card-3-image", "/assets/figma/card-default.svg")} alt="Barley commodity" class="mb-0" />
+          <h2 class="mt-6 text-2xl text-[#2c2c2c] group-hover:text-[#5c5c5c] transition-colors" data-slot="card-3-title">
             {getSlot(content, "card-3-title", "Barley")}
           </h2>
         </a>
 
         <a href={getSlot(content, "card-4-link", "/en/commodities/sunflower-oil")} class="group block" data-slot="card-4-link">
-          <figure class="h-[320px] overflow-hidden">
-            <img src={getSlot(content, "card-4-image", "/assets/figma/card-default.svg")} class="h-full w-full object-cover" alt="Sunflower Oil commodity" loading="lazy" data-slot="card-4-image" />
-          </figure>
-          <h2 class="mt-6 text-2xl text-white group-hover:text-gray-300 transition-colors" data-slot="card-4-title">
+          <MediaFrame src={getSlot(content, "card-4-image", "/assets/figma/card-default.svg")} alt="Sunflower Oil commodity" class="mb-0" />
+          <h2 class="mt-6 text-2xl text-[#2c2c2c] group-hover:text-[#5c5c5c] transition-colors" data-slot="card-4-title">
             {getSlot(content, "card-4-title", "Sunflower Oil")}
           </h2>
         </a>
@@ -76,9 +69,9 @@ const content = await loadPageContent("commodities");
     <Container>
       <div class="text-center">
 
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">{getSlot(content, "section-3-title", "Structured Intermediary Engagement")}</h2>
+      <h2 class="font-serif text-4xl text-[#2c2c2c]" style="font-weight:400; line-height:1.2;" data-slot="section-3-title">{getSlot(content, "section-3-title", "Structured Intermediary Engagement")}</h2>
 
-      <p class="mt-8 text-lg text-white/80 leading-8" data-slot="section-3-body">{getSlot(content, "section-3-body", "")}</p>
+      <p class="mt-8 text-lg text-[#5c5c5c] leading-8" data-slot="section-3-body">{getSlot(content, "section-3-body", "")}</p>
 
       </div>
     </Container>
@@ -88,7 +81,7 @@ const content = await loadPageContent("commodities");
     <Container>
       <div class="text-center">
 
-      <h2 class="font-serif text-4xl text-white" style="font-weight:400; line-height:1.2;" data-slot="cta-title">{getSlot(content, "cta-title", "Engage With AFGT")}</h2>
+      <h2 class="font-serif text-4xl text-[#2c2c2c]" style="font-weight:400; line-height:1.2;" data-slot="cta-title">{getSlot(content, "cta-title", "Engage With AFGT")}</h2>
 
       <a
         href={getSlot(content, "cta-link", "/en/contact")}

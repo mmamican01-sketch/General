@@ -18,15 +18,15 @@ function isActive(path: string) {
 <header class="w-full bg-white">
   <!-- Utility Bar - Tier A -->
   <div class="w-full bg-[#f5f5f5]">
-    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3">
+    <div class="max-w-[1400px] mx-auto px-8 py-2 sm:py-3">
       <div class="flex justify-end items-center gap-4 sm:gap-6 lg:gap-8 overflow-x-auto">
-        <a href="#" class="flex items-center gap-1 text-sm text-[#2c2c2c] hover:text-[#000] transition-colors">
+        <a href={buildHref("careers/apply")} class="flex items-center gap-1 text-sm text-[#2c2c2c] hover:text-[#000] transition-colors">
           Apply for a role
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
         </a>
-        <a href="#" class="text-sm text-[#2c2c2c] hover:text-[#000] transition-colors">
+        <a href={buildHref("newsroom")} class="text-sm text-[#2c2c2c] hover:text-[#000] transition-colors">
           Newsroom
         </a>
         <a href={buildHref("contact")} class="text-sm text-[#2c2c2c] hover:text-[#000] transition-colors">
@@ -50,7 +50,7 @@ function isActive(path: string) {
 
   <!-- Primary Header - Tier B -->
   <div class="w-full bg-white border-b border-gray-200">
-    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <div class="max-w-[1400px] mx-auto px-8 py-4 sm:py-6">
       <div class="flex items-center justify-between">
         <a href={base} class="flex items-center gap-2 sm:gap-3 shrink-0">
           <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 via-blue-500 to-teal-400 clip-polygon"></div>
@@ -63,6 +63,9 @@ function isActive(path: string) {
           </a>
           <a href={buildHref("products")} class="text-[#2c2c2c] hover:text-[#000] transition-colors" style="font-family: Cormorant Garamond, serif" aria-current={isActive("products") ? "page" : undefined}>
             Products & Services
+          </a>
+          <a href={buildHref("commodities")} class="text-[#2c2c2c] hover:text-[#000] transition-colors" style="font-family: Cormorant Garamond, serif" aria-current={isActive("commodities") ? "page" : undefined}>
+            Commodities
           </a>
           <a href={buildHref("sustainability")} class="text-[#2c2c2c] hover:text-[#000] transition-colors" style="font-family: Cormorant Garamond, serif" aria-current={isActive("sustainability") ? "page" : undefined}>
             Sustainability
@@ -100,6 +103,7 @@ function isActive(path: string) {
       <div class="p-4 flex flex-col gap-4">
         <a href={buildHref("who-we-are")} class="text-lg text-[#2c2c2c] hover:text-[#000] py-2" style="font-family: Cormorant Garamond, serif" data-mobile-nav-link>Who we are</a>
         <a href={buildHref("products")} class="text-lg text-[#2c2c2c] hover:text-[#000] py-2" style="font-family: Cormorant Garamond, serif" data-mobile-nav-link>Products & Services</a>
+        <a href={buildHref("commodities")} class="text-lg text-[#2c2c2c] hover:text-[#000] py-2" style="font-family: Cormorant Garamond, serif" data-mobile-nav-link>Commodities</a>
         <a href={buildHref("sustainability")} class="text-lg text-[#2c2c2c] hover:text-[#000] py-2" style="font-family: Cormorant Garamond, serif" data-mobile-nav-link>Sustainability</a>
         <a href={buildHref("careers")} class="text-lg text-[#2c2c2c] hover:text-[#000] py-2" style="font-family: Cormorant Garamond, serif" data-mobile-nav-link>Careers</a>
       </div>

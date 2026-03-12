@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import * as Tabs from "@radix-ui/react-tabs";
@@ -9,7 +9,6 @@ import { LivePreview } from "@/components/LivePreview";
 import { SchemaFormField } from "@/components/SchemaFormField";
 import { MediaPicker } from "@/components/MediaPicker";
 import { getAstroSiteUrl } from "@/lib/astro-url";
-const AUTOSAVE_DEBOUNCE_MS = 600;
 
 type CollectionDoc = Record<string, unknown>;
 
@@ -23,7 +22,6 @@ export default function CollectionItemEditor() {
   const [status, setStatus] = useState<"saved" | "unsaved" | "saving">("saved");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const autosaveRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const previewUrl = `/en/${collection}/${slug}`;
 
@@ -80,21 +78,6 @@ export default function CollectionItemEditor() {
     setStatus("unsaved");
     setError(null);
   }, []);
-
-  const scheduleAutosave = useCallback(() => {
-    if (autosaveRef.current) clearTimeout(autosaveRef.current);
-    autosaveRef.current = setTimeout(() => {
-      if (doc && collection && slug && status === "unsaved") save();
-      autosaveRef.current = null;
-    }, AUTOSAVE_DEBOUNCE_MS);
-  }, [doc, collection, slug, status, save]);
-
-  useEffect(() => {
-    if (status === "unsaved" && doc) scheduleAutosave();
-    return () => {
-      if (autosaveRef.current) clearTimeout(autosaveRef.current);
-    };
-  }, [status, doc, scheduleAutosave]);
 
   const allFieldKeys = Object.keys({ ...schema, ...doc }).filter((k) => k !== "slug");
 
