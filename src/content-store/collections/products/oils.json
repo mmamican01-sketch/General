@@ -1,25 +1,25 @@
 {
   "slug": "oils",
-  "title": "Oils",
-  "heroImage": "https://images.unsplash.com/photo-1759332637000-50311b115c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZWdldGFibGUlMjBvaWwlMjBwcm9kdWN0aW9ufGVufDF8fHx8MTc3MDc0MTYxMnww&ixlib=rb-4.1.0&q=80&w=1080",
-  "description": "Vegetable oils including sunflower, soybean, palm, and canola oil for industrial and consumer markets.",
-  "overview": "AFGT supplies vegetable oils for industrial processing and consumer markets. All oil products are sourced from certified refineries with documented supply chain traceability.",
+  "title": "Vegetable Oils",
+  "heroImage": "/assets/figma/ChatGPT-Image-Mar-12--2026--01_41_52-AM-1773363323357.png",
+  "description": "Global supply of vegetable oils including sunflower, soybean, palm, and canola oil for food processing, industrial applications, and international commodity markets.",
+  "overview": "AFGT coordinates the supply of vegetable oils for international buyers across food manufacturing, industrial processing, and distribution markets. The company works with certified refineries and established exporters across major global oilseed producing regions.\n\nThrough structured commodity trading workflows, AFGT supports buyers with sourcing alignment, shipment planning, and documentation coordination for vegetable oil supply across global trade corridors.",
   "specifications": [
     {
       "label": "Product Types",
-      "value": "Sunflower, Soybean, Palm, Canola, Corn Oil"
+      "value": "Sunflower oil, soybean oil, palm oil, canola oil, and corn oil supplied in crude and refined grades depending on buyer specifications."
     },
     {
       "label": "Packaging",
-      "value": "Flexitanks, ISO tanks, bulk vessels, bottled"
+      "value": "Bulk vessels, flexitank containers, ISO tanks, and bottled formats depending on destination market requirements."
     },
     {
       "label": "Contract Terms",
-      "value": "FOB, CFR, CIF"
+      "value": "FOB, CFR, and CIF shipment structures aligned with international commodity trading standards."
     },
     {
       "label": "Quality Standards",
-      "value": "Codex Alimentarius compliant"
+      "value": "Food-grade vegetable oils compliant with Codex Alimentarius standards and international refinery quality controls."
     }
   ],
   "origins": [
@@ -31,14 +31,19 @@
     "Brazil"
   ],
   "certifications": [
-    "RSPO (Palm Oil)",
-    "ISO 9001",
-    "HACCP",
-    "Kosher",
-    "Halal"
+    "Food-grade vegetable oils compliant with Codex Alimentarius standards and international refinery quality controls.",
+    "ISO 9001 Quality Management",
+    "HACCP Food Safety Standards",
+    "Halal Certification",
+    "Kosher Certification"
   ],
   "cta": {
-    "label": "Request Buyer Access",
+    "label": "Request Supply Engagement",
     "href": "/en/contact"
+  },
+  "seo": {
+    "title": "Vegetable Oil Supply | Sunflower, Soybean & Palm Oil – AFGT",
+    "description": "AFGT coordinates global vegetable oil supply including sunflower oil, soybean oil, palm oil, and canola oil through verified refineries and international commodity trading networks.",
+    "image": "/assets/figma/ChatGPT-Image-Mar-12--2026--01_41_52-AM-1773363291748.png"
   }
 }

@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { NextResponse } from "next/server";
-import { ensureStoreDirs, MEDIA_ROOT } from "@/lib/workspace";
+import { ensureStoreDirs, MEDIA_ROOT, SYSTEM_ROOT } from "@/lib/workspace";
 import { requireAuthApi } from "@/lib/auth";
 
 function safeFileName(name: string) {
@@ -46,11 +46,30 @@ export async function POST(req: Request) {
     const target = path.join(MEDIA_ROOT, name);
     await fs.writeFile(target, bytes);
 
+    const publicPath = `/assets/figma/${name}`;
+    try {
+      const invPath = path.join(SYSTEM_ROOT, "MEDIA_INVENTORY.json");
+      const invRaw = await fs.readFile(invPath, "utf8").catch(() => '{"assets":[]}');
+      const inv = JSON.parse(invRaw) as { assets?: Array<{ path: string; publicUrl?: string; type?: string }> };
+      const assets = inv.assets || [];
+      if (!assets.some((a) => (a.publicUrl ?? a.path).includes(name))) {
+        assets.push({
+          path: `public/assets/figma/${name}`,
+          publicUrl: publicPath,
+          type: "image",
+        });
+        inv.assets = assets;
+        await fs.writeFile(invPath, JSON.stringify(inv, null, 2), "utf8");
+      }
+    } catch {
+      /* ignore inventory update errors */
+    }
+
     return NextResponse.json({
       ok: true,
       file: {
         name,
-        path: `/assets/figma/${name}`,
+        path: publicPath,
       },
     });
   } catch (error) {

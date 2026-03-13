@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import * as Tabs from "@radix-ui/react-tabs";
@@ -8,7 +8,6 @@ import { DashboardShell } from "@/components/DashboardShell";
 import { LivePreview } from "@/components/LivePreview";
 import { MediaPicker } from "@/components/MediaPicker";
 import { getAstroSiteUrl } from "@/lib/astro-url";
-const AUTOSAVE_DEBOUNCE_MS = 600;
 
 type Slot = { type: string; value: string; note?: string };
 type SeoData = { title?: string; description?: string; image?: string };
@@ -22,6 +21,82 @@ type PageDoc = {
 
 type SlotDef = { key: string; type: string };
 
+type HeroTitleItem = { text: string; start: number; end: number };
+
+function HeroTitlesField({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  let items: HeroTitleItem[] = [];
+  try {
+    items = JSON.parse(value || "[]");
+    if (!Array.isArray(items)) items = [];
+  } catch {
+    items = [];
+  }
+  const update = (next: HeroTitleItem[]) => onChange(JSON.stringify(next));
+
+  return (
+    <div className="card" style={{ marginBottom: 16 }}>
+      <h4 style={{ margin: "0 0 12px", fontSize: 14 }}>Hero Titles (توقيت ظهور النص على الفيديو)</h4>
+      <p style={{ fontSize: 11, color: "var(--muted)", marginBottom: 12 }}>
+        أضف نصوص متعددة مع وقت البداية والنهاية (بالثواني) لكل نص
+      </p>
+      {items.map((item, i) => (
+        <div key={i} style={{ padding: 12, marginBottom: 8, border: "1px solid var(--line)", borderRadius: 8 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 80px 80px auto", gap: 8, alignItems: "center" }}>
+            <input
+              className="input"
+              placeholder="النص"
+              value={item.text}
+              onChange={(e) => {
+                const next = [...items];
+                next[i] = { ...next[i], text: e.target.value };
+                update(next);
+              }}
+            />
+            <input
+              className="input"
+              type="number"
+              min={0}
+              placeholder="من (ث)"
+              value={item.start}
+              onChange={(e) => {
+                const next = [...items];
+                next[i] = { ...next[i], start: Number(e.target.value) || 0 };
+                update(next);
+              }}
+            />
+            <input
+              className="input"
+              type="number"
+              min={0}
+              placeholder="إلى (ث)"
+              value={item.end}
+              onChange={(e) => {
+                const next = [...items];
+                next[i] = { ...next[i], end: Number(e.target.value) || 0 };
+                update(next);
+              }}
+            />
+            <button
+              type="button"
+              className="button secondary"
+              onClick={() => update(items.filter((_, j) => j !== i))}
+            >
+              حذف
+            </button>
+          </div>
+        </div>
+      ))}
+      <button
+        type="button"
+        className="button secondary"
+        onClick={() => update([...items, { text: "", start: 0, end: 5 }])}
+      >
+        + إضافة Hero Title
+      </button>
+    </div>
+  );
+}
+
 function SlotField({
   slotKey,
   slotType,
@@ -34,11 +109,31 @@ function SlotField({
   onChange: (v: string) => void;
 }) {
   const label = slotKey.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  if (slotType === "hero-titles") {
+    return <HeroTitlesField value={value} onChange={onChange} />;
+  }
   if (slotType === "image") {
     return (
       <div className="card" style={{ marginBottom: 16 }}>
         <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>{label}</label>
         <MediaPicker value={value} onChange={onChange} />
+      </div>
+    );
+  }
+  if (slotType === "video") {
+    return (
+      <div className="card" style={{ marginBottom: 16 }}>
+        <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>{label}</label>
+        <input
+          className="input"
+          type="url"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder="YouTube, Vimeo, or direct .mp4 URL"
+        />
+        <p style={{ fontSize: 11, color: "var(--muted)", marginTop: 6 }}>
+          YouTube (youtube.com/watch?v=... or youtu.be/...), Vimeo, or direct video URL (.mp4, .webm)
+        </p>
       </div>
     );
   }
@@ -77,7 +172,6 @@ export default function PageEditor() {
   const [slotsMeta, setSlotsMeta] = useState<SlotDef[]>([]);
   const [status, setStatus] = useState<"saved" | "unsaved" | "saving">("saved");
   const [loading, setLoading] = useState(true);
-  const autosaveRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const previewPath = key === "index" ? "/en/" : `/en/${key.replace(/__/g, "/")}`;
   const previewUrl = `${getAstroSiteUrl()}${previewPath}`;
@@ -133,21 +227,6 @@ export default function PageEditor() {
     });
     setStatus("unsaved");
   }, [slotsMeta]);
-
-  const scheduleAutosave = useCallback(() => {
-    if (autosaveRef.current) clearTimeout(autosaveRef.current);
-    autosaveRef.current = setTimeout(() => {
-      if (doc && key && status === "unsaved") save();
-      autosaveRef.current = null;
-    }, AUTOSAVE_DEBOUNCE_MS);
-  }, [doc, key, status, save]);
-
-  useEffect(() => {
-    if (status === "unsaved" && doc) scheduleAutosave();
-    return () => {
-      if (autosaveRef.current) clearTimeout(autosaveRef.current);
-    };
-  }, [status, doc, scheduleAutosave]);
 
   const allSlotKeys = Array.from(
     new Set([...Object.keys(doc?.slots || {}), ...slotsMeta.map((s) => s.key)])
@@ -260,6 +339,9 @@ export default function PageEditor() {
                 <button className="button" onClick={save} style={{ marginTop: 16, width: "100%" }}>
                   Save
                 </button>
+                <p style={{ fontSize: 11, color: "var(--muted)", marginTop: 8 }}>
+                  التغييرات تُنشر على الموقع فقط عند الضغط على Save. بعد الحفظ، انتظر ~15 ثانية لإعادة البناء.
+                </p>
               </>
             ) : (
               <div className="card">Failed to load page.</div>

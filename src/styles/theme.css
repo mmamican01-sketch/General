@@ -4,6 +4,7 @@
   --text-heading:#2F2F2F;
   --text-body:#4A4A4A;
   --white:#FFFFFF;
+  --btn-text: #000;
 }
 
 @layer base {
@@ -33,7 +34,7 @@
 
 .btn-primary{
   background:var(--white);
-  color:var(--accent);
+  color:var(--btn-text);
   border:1.5px solid var(--accent);
   border-radius:999px;
   font-family:var(--font-ui);
@@ -70,6 +71,19 @@
 }
 
 .section-white{ background: var(--white); }
+
+/* Hero CTA: thinner pill, 16px font, 8px/29px padding - very light */
+.hero-cta {
+  height: 40px;
+  padding: 8px 29px;
+  font-size: 16px;
+  font-weight: 300;
+  border-width: 1px;
+  opacity: 0.9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .hover\:bg-\[\#f9f9f9\]:hover {
   background: var(--bg-section) !important;

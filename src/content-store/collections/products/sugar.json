@@ -1,17 +1,17 @@
 {
   "slug": "sugar",
   "title": "Sugar",
-  "heroImage": "https://images.unsplash.com/photo-1607980276836-232ac6344978?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdWdhciUyMHByb2R1Y3Rpb24lMjBpbmR1c3RyaWFsfGVufDF8fHx8MTc3MDc0MTYxMXww&ixlib=rb-4.1.0&q=80&w=1080",
-  "description": "Raw and refined sugar products sourced from certified mills across multiple origins.",
-  "overview": "AFGT sources raw and refined sugar from certified mills across multiple producing regions. All sugar products meet international quality standards and are supplied with full traceability documentation.",
+  "heroImage": "/assets/figma/ChatGPT-Image-Mar-11--2026--01_42_55-AM-1773250393922.png",
+  "description": "Global supply of raw and refined sugar sourced from certified mills and delivered through structured bulk commodity logistics.",
+  "overview": "AFGT supplies raw and refined sugar sourced from certified sugar mills across major producing regions. The company coordinates bulk procurement, logistics, and delivery for institutional buyers including food manufacturers, trading houses, and industrial processors.\n\nSugar shipments are handled through established export corridors with documented quality specifications, shipment traceability, and internationally recognized certifications.",
   "specifications": [
     {
       "label": "Product Types",
-      "value": "ICUMSA 45, Raw Cane Sugar, Refined Beet Sugar"
+      "value": "ICUMSA 45 Refined White Sugar Raw Cane Sugar ICUMSA 600–1200 Raw Sugar Refined Beet Sugar"
     },
     {
       "label": "Packaging",
-      "value": "Bulk vessels, 50kg bags, 1MT big bags"
+      "value": "Bulk vessel shipments 50kg export bags 1MT big bags Containerized shipments"
     },
     {
       "label": "Contract Terms",
@@ -19,25 +19,28 @@
     },
     {
       "label": "Minimum Order",
-      "value": "Vessel-sized shipments (12,500 MT+)"
+      "value": "Vessel-sized shipments (12,500 MT – 50,000 MT)"
     }
   ],
   "origins": [
     "Brazil",
-    "Thailand",
-    "India",
-    "European Union",
-    "Australia"
+    "Thailand"
   ],
   "certifications": [
     "Bonsucro",
     "ISO 9001",
     "FSSC 22000",
     "Kosher",
-    "Halal"
+    "Halal",
+    "SGS Inspection"
   ],
   "cta": {
     "label": "Request Buyer Access",
     "href": "/en/contact"
+  },
+  "seo": {
+    "title": "Bulk Sugar Supply | ICUMSA 45, Raw Cane Sugar | AFGT Global Trading",
+    "description": "AFGT supplies bulk sugar including ICUMSA 45 refined sugar, raw cane sugar, and ICUMSA 600–1200 from leading producing regions such as Brazil, Thailand, and India. Vessel-scale shipments with FOB, CFR, and CIF contract structures.",
+    "image": "/assets/figma/ChatGPT-Image-Mar-11--2026--01_42_55-AM-1773250393922.png"
   }
 }

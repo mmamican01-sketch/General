@@ -1,16 +1,46 @@
 {
   "slug": "urea",
   "title": "Urea",
-  "heroImage": "https://images.unsplash.com/photo-1725802867239-ab1379895088?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1cmVhJTIwZmVydGlsaXplciUyMGluZHVzdHJpYWx8ZW58MXx8fHwxNzcwNzQxNjEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-  "description": "Agricultural-grade urea fertilizer from established producers with quality certification.",
-  "overview": "AFGT sources agricultural-grade urea from established producers with consistent quality and reliable delivery schedules. All urea products meet international fertilizer standards.",
+  "heroImage": "/assets/figma/ChatGPT-Image-Mar-13--2026--08_28_24-PM-1773422929257.png",
+  "description": "Bulk supply of agricultural-grade urea fertilizer sourced from established producers and delivered through international commodity logistics networks.",
+  "overview": "AFGT supplies agricultural-grade urea fertilizer sourced from established producers across major fertilizer-exporting regions. The company coordinates bulk procurement, logistics, and delivery for agricultural distributors, fertilizer traders, and institutional buyers.\n\nAll urea products are supplied with full specification documentation, quality certification, and shipment traceability to ensure compliance with international fertilizer standards.",
   "specifications": [
-    { "label": "Product Type", "value": "Prilled Urea, Granular Urea (46% N)" },
-    { "label": "Packaging", "value": "50kg bags, 1MT big bags, bulk vessels" },
-    { "label": "Contract Terms", "value": "FOB, CFR, CIF" },
-    { "label": "Shipment Size", "value": "5,000 MT - 50,000 MT" }
+    {
+      "label": "Product Type",
+      "value": "Prilled Urea (46% Nitrogen) Granular Urea (46% Nitrogen) Technical Grade Urea"
+    },
+    {
+      "label": "Packaging",
+      "value": "50kg export bags 1MT big bags Bulk vessel shipments Containerized shipments"
+    },
+    {
+      "label": "Contract Terms",
+      "value": "FOB, CFR, CIF"
+    },
+    {
+      "label": "Shipment Size",
+      "value": "5,000 MT - 50,000 MT"
+    }
   ],
-  "origins": ["Middle East", "Russia", "China", "India", "North Africa"],
-  "certifications": ["ISO 9001", "REACH (European Union)", "Industry standard compliance"],
-  "cta": { "label": "Request Buyer Access", "href": "/en/contact" }
+  "origins": [
+    "Middle East",
+    "Russia",
+    "China",
+    "India",
+    "North Africa"
+  ],
+  "certifications": [
+    "ISO 9001",
+    "REACH (European Union)",
+    "Industry standard compliance"
+  ],
+  "cta": {
+    "label": "Request Buyer Access",
+    "href": "/en/contact"
+  },
+  "seo": {
+    "title": "Bulk Urea Fertilizer Supplier | Prilled & Granular Urea 46% Nitrogen | AFGT",
+    "description": "AFGT supplies agricultural-grade urea fertilizer including prilled and granular urea (46% nitrogen) sourced from major producers across the Middle East, Russia, and Asia. Bulk shipments available under FOB, CFR, and CIF contract terms.",
+    "image": "/assets/figma/ChatGPT-Image-Mar-13--2026--08_28_24-PM-1773422914210.png"
+  }
 }

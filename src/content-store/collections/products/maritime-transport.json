@@ -1,16 +1,42 @@
 {
   "slug": "maritime-transport",
   "title": "Maritime Transport",
-  "heroImage": "https://images.unsplash.com/photo-1764041323714-de1d64fb8073?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJpdGltZSUyMGNhcmdvJTIwc2hpcCUyMG9jZWFufGVufDF8fHx8MTc3MDc0MTYxMnww&ixlib=rb-4.1.0&q=80&w=1080",
-  "description": "Bulk cargo shipping services and vessel chartering for agricultural and industrial commodities.",
-  "overview": "AFGT coordinates bulk cargo shipping for agricultural and industrial commodities. The company works with established vessel operators and maintains relationships across major shipping routes.",
+  "heroImage": "/assets/figma/ChatGPT-Image-Mar-13--2026--03_45_46-AM-1773362780957.png",
+  "description": "Bulk maritime transport coordination supporting international commodity trade including grains, sugar, vegetable oils, and fertilizers through established shipping networks.",
+  "overview": "AFGT coordinates bulk maritime transport for agricultural and industrial commodities across major international shipping routes. Through established relationships with vessel operators, freight brokers, and logistics partners, the company supports shipment planning aligned with commodity specifications, cargo volumes, and destination ports.\n\nServices include coordination of vessel chartering, freight negotiation, and shipment scheduling for bulk cargo movements across global trade corridors.",
   "specifications": [
-    { "label": "Vessel Types", "value": "Panamax, Supramax, Handysize bulk carriers" },
-    { "label": "Cargo Types", "value": "Grains, sugar, fertilizers, minerals" },
-    { "label": "Services", "value": "Voyage charter, time charter, freight management" },
-    { "label": "Routes", "value": "Global coverage including Americas, Europe, Asia, Africa" }
+    {
+      "label": "Vessel Types",
+      "value": "Panamax, Supramax, Handysize bulk carriers"
+    },
+    {
+      "label": "Cargo Types",
+      "value": "Wheat, barley, sugar, vegetable oils, fertilizers, and bulk agricultural commodities"
+    },
+    {
+      "label": "Services",
+      "value": "Voyage charter coordination, time charter arrangements, freight negotiation, and cargo shipment management"
+    },
+    {
+      "label": "Routes",
+      "value": "Black Sea, Middle East, Mediterranean, Asia, and African trade corridors"
+    }
   ],
-  "origins": ["Global shipping network"],
-  "certifications": ["ISO 9001", "Vessel vetting and compliance", "Insurance coverage"],
-  "cta": { "label": "Request Buyer Access", "href": "/en/contact" }
+  "origins": [
+    "Global maritime shipping network with coordination across major commodity export corridors"
+  ],
+  "certifications": [
+    "ISO 9001 aligned operational standards",
+    "International vessel vetting and maritime compliance procedures",
+    "Cargo insurance and freight documentation coordination"
+  ],
+  "cta": {
+    "label": "Request Shipping Coordination",
+    "href": "/en/contact"
+  },
+  "seo": {
+    "title": "Bulk Maritime Transport & Vessel Chartering | AFGT Logistics",
+    "description": "AFGT coordinates maritime transport and vessel chartering for bulk commodities including grains, sugar, vegetable oils, and fertilizers across major global shipping routes.",
+    "image": "/assets/figma/ChatGPT-Image-Mar-13--2026--03_45_46-AM-1773362756363.png"
+  }
 }

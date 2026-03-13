@@ -78,6 +78,23 @@ export function getSlot(content: ContentDoc | null | undefined, key: string, fal
   return fallback;
 }
 
+export type HeroTitleItem = { text: string; start: number; end: number };
+
+export function getHeroTitles(content: ContentDoc | null | undefined): HeroTitleItem[] {
+  const raw = content?.slots?.["hero-titles"]?.value;
+  if (typeof raw !== "string") return [];
+  try {
+    const arr = JSON.parse(raw);
+    if (!Array.isArray(arr)) return [];
+    return arr.filter(
+      (x): x is HeroTitleItem =>
+        x && typeof x.text === "string" && typeof x.start === "number" && typeof x.end === "number"
+    );
+  } catch {
+    return [];
+  }
+}
+
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import fs from "node:fs";

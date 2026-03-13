@@ -5,11 +5,11 @@
   "slots": {
     "hero-video": {
       "type": "video",
-      "value": "https://vimeo.com/1166485457?fl=ip&fe=ec"
+      "value": "https://vimeo.com/1171940568?fl=ip&fe=ec"
     },
-    "hero-title": {
-      "type": "text",
-      "value": ""
+    "hero-titles": {
+      "type": "hero-titles",
+      "value": "[{\"text\":\"We Are AL Farhan Global Trading\",\"start\":0,\"end\":5},{\"text\":\"A Global Commodity Trading Company\",\"start\":6,\"end\":10},{\"text\":\"Connecting Global Supply With Global Demand\",\"start\":12,\"end\":17},{\"text\":\"Powering Global Agricultural Trade\",\"start\":18,\"end\":24},{\"text\":\"Working With Producers, Buyers And Logistics Partners\",\"start\":24,\"end\":31},{\"text\":\"Connecting Markets. Building Trust.\",\"start\":32,\"end\":36}]"
     },
     "hero-link": {
       "type": "link",
@@ -21,7 +21,7 @@
     },
     "section-1-title": {
       "type": "text",
-      "value": "Building global trade partnerships across diverse commodity sectors"
+      "value": "Building Global Commodity Trade Networks"
     },
     "section-2-image": {
       "type": "image",
@@ -29,11 +29,59 @@
     },
     "section-2-title": {
       "type": "text",
-      "value": "Institutional excellence"
+      "value": "Institutional Excellence"
     },
     "section-2-body": {
       "type": "text",
-      "value": "AL Farhan General Trading (AFGT) operates with the highest standards of institutional integrity across global markets. Our commitment to transparency and reliability defines every partnership."
+      "value": "AL Farhan General Trading (AFGT) operates with a strong institutional framework designed to support large-scale commodity transactions across international markets.\n\nThe company works with established supply networks, global shipping routes, and recognized inspection and certification entities to ensure that every shipment meets international quality and compliance standards.\n\nOur operational approach prioritizes transparency, structured engagement, and long-term commercial partnerships that support sustainable trade relationships across diverse commodity sectors."
+    },
+    "stat-1-number": {
+      "type": "text",
+      "value": "150+"
+    },
+    "stat-1-label": {
+      "type": "text",
+      "value": "Global partners"
+    },
+    "stat-2-number": {
+      "type": "text",
+      "value": "25"
+    },
+    "stat-2-label": {
+      "type": "text",
+      "value": "Countries served"
+    },
+    "stat-3-number": {
+      "type": "text",
+      "value": "12"
+    },
+    "stat-3-label": {
+      "type": "text",
+      "value": "Commodity sectors"
+    },
+    "stat-4-number": {
+      "type": "text",
+      "value": "15+"
+    },
+    "stat-4-label": {
+      "type": "text",
+      "value": "Years of expertise"
+    },
+    "section-3-title": {
+      "type": "text",
+      "value": "Sustainable Trading Practices"
+    },
+    "section-3-body": {
+      "type": "text",
+      "value": "AFGT promotes responsible trading practices across its global supply chains. Our operational approach prioritizes transparency, long-term partnerships, and sustainable resource management throughout the sourcing, logistics, and delivery of commodities.\n\nBy working with certified producers, inspection agencies, and logistics partners, the company supports stable and responsible commodity flows across international markets."
+    },
+    "section-3-image": {
+      "type": "image",
+      "value": "https://images.unsplash.com/photo-1654436192650-7f5aa98954a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZ3JpY3VsdHVyYWwlMjBmaWVsZCUyMGhhcnZlc3R8ZW58MXx8fHwxNzcwNjk5Mjg2fDA&ixlib=rb-4.1.0&q=80&w=1080"
+    },
+    "section-4-title": {
+      "type": "text",
+      "value": "Connecting Global Markets. Building Long-Term Trust."
     }
   }
 }

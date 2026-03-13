@@ -62,13 +62,26 @@
   "/en": {
     "file": "src/pages/en/index.astro",
     "slots": [
-      { "key": "hero-title", "type": "text", "selectorHint": "[data-slot='hero-title']" },
+      { "key": "hero-video", "type": "video", "selectorHint": "[data-slot='hero-video']" },
+      { "key": "hero-titles", "type": "hero-titles", "selectorHint": "[data-slot='hero-titles']" },
       { "key": "hero-link", "type": "link", "selectorHint": "[data-slot='hero-link']" },
       { "key": "hero-link-label", "type": "text", "selectorHint": "[data-slot='hero-link-label']" },
       { "key": "section-1-title", "type": "text", "selectorHint": "[data-slot='section-1-title']" },
       { "key": "section-2-image", "type": "image", "selectorHint": "[data-slot='section-2-image']" },
       { "key": "section-2-title", "type": "text", "selectorHint": "[data-slot='section-2-title']" },
-      { "key": "section-2-body", "type": "text", "selectorHint": "[data-slot='section-2-body']" }
+      { "key": "section-2-body", "type": "text", "selectorHint": "[data-slot='section-2-body']" },
+      { "key": "stat-1-number", "type": "text", "selectorHint": "[data-slot='stat-1-number']" },
+      { "key": "stat-1-label", "type": "text", "selectorHint": "[data-slot='stat-1-label']" },
+      { "key": "stat-2-number", "type": "text", "selectorHint": "[data-slot='stat-2-number']" },
+      { "key": "stat-2-label", "type": "text", "selectorHint": "[data-slot='stat-2-label']" },
+      { "key": "stat-3-number", "type": "text", "selectorHint": "[data-slot='stat-3-number']" },
+      { "key": "stat-3-label", "type": "text", "selectorHint": "[data-slot='stat-3-label']" },
+      { "key": "stat-4-number", "type": "text", "selectorHint": "[data-slot='stat-4-number']" },
+      { "key": "stat-4-label", "type": "text", "selectorHint": "[data-slot='stat-4-label']" },
+      { "key": "section-3-title", "type": "text", "selectorHint": "[data-slot='section-3-title']" },
+      { "key": "section-3-body", "type": "text", "selectorHint": "[data-slot='section-3-body']" },
+      { "key": "section-3-image", "type": "image", "selectorHint": "[data-slot='section-3-image']" },
+      { "key": "section-4-title", "type": "text", "selectorHint": "[data-slot='section-4-title']" }
     ]
   },
   "/en/about": {

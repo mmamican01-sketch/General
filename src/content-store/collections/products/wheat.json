@@ -1,16 +1,45 @@
 {
   "slug": "wheat",
   "title": "Wheat",
-  "heroImage": "https://images.unsplash.com/photo-1657626625832-2c0851cdaa9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aGVhdCUyMGdyYWluJTIwZmFybWluZ3xlbnwxfHx8fDE3NzA3NDE2MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-  "description": "Food-grade wheat and feed wheat from major producing regions with full traceability.",
-  "overview": "AFGT trades food-grade milling wheat and animal feed wheat from major producing regions. All wheat shipments are accompanied by phytosanitary certificates and quality analysis reports.",
+  "heroImage": "/assets/figma/ChatGPT-Image-Mar-11--2026--10_03_26-PM--1--1773255819692.png",
+  "description": "Bulk supply of milling wheat and feed wheat sourced from major Black Sea grain producing regions.",
+  "overview": "AFGT trades milling-grade wheat and feed wheat sourced from major grain-producing regions across the Black Sea corridor. The company coordinates procurement, logistics, and vessel-scale deliveries for international buyers, flour mills, and agricultural distributors.\n\nAll wheat shipments are supplied with full documentation including phytosanitary certificates, SGS inspection reports, and quality analysis covering protein content, moisture levels, and grain specifications.",
   "specifications": [
-    { "label": "Product Types", "value": "Hard Red Winter, Soft White, Spring Wheat, Feed Wheat" },
-    { "label": "Protein Content", "value": "10.5% - 14.5% depending on grade" },
-    { "label": "Contract Terms", "value": "FOB, CFR, CIF" },
-    { "label": "Shipment Size", "value": "25,000 MT - 60,000 MT per vessel" }
+    {
+      "label": "Product Types",
+      "value": "Hard Red Winter, Soft White, Spring Wheat, Feed Wheat"
+    },
+    {
+      "label": "Protein Content",
+      "value": "10.5% - 14.5% depending on grade"
+    },
+    {
+      "label": "Contract Terms",
+      "value": "FOB, CFR, CIF"
+    },
+    {
+      "label": "Shipment Size",
+      "value": "25,000 MT - 60,000 MT per vessel"
+    }
   ],
-  "origins": ["USA", "Canada", "European Union", "Russia", "Australia", "Argentina"],
-  "certifications": ["ISO 9001", "HACCP", "Non-GMO verification where applicable"],
-  "cta": { "label": "Request Buyer Access", "href": "/en/contact" }
+  "origins": [
+    "Ukraine",
+    "Russia",
+    "Kazakhstan"
+  ],
+  "certifications": [
+    "ISO 9001",
+    "Phytosanitary Certificate",
+    "SGS Quality Inspection",
+    "Grain Quality Analysis Certificate"
+  ],
+  "cta": {
+    "label": "Request Buyer Access",
+    "href": "/en/contact"
+  },
+  "seo": {
+    "title": "Bulk Wheat Supplier | Milling & Feed Wheat | Black Sea Origins | AFGT",
+    "description": "AFGT supplies milling wheat and feed wheat sourced from Russia, Ukraine, and Kazakhstan. Vessel-scale wheat shipments with SGS inspection, phytosanitary certification, and flexible FOB, CFR, and CIF contract terms.",
+    "image": "/assets/figma/ChatGPT-Image-Mar-11--2026--10_03_26-PM--1--1773255819692.png"
+  }
 }

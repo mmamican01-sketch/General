@@ -9,6 +9,7 @@ import {
 import { readJsonFile, writeJsonFile } from "@/lib/content-store";
 import { requireAuthApi } from "@/lib/auth";
 import { broadcastContentUpdated } from "@/lib/live";
+import { triggerRebuild } from "@/lib/trigger-rebuild";
 
 const slotSchema = z.object({
   type: z.string(),
@@ -101,6 +102,7 @@ export async function PUT(req: NextRequest) {
       const filePath = toPageFilePathForLocale(page, locale);
       await writeJsonFile(filePath, parsed);
       broadcastContentUpdated({ type: "page", key: page, locale });
+      triggerRebuild();
       return NextResponse.json({ ok: true });
     }
 
@@ -112,6 +114,7 @@ export async function PUT(req: NextRequest) {
       const filePath = toCollectionFilePath(collection, slug);
       await writeJsonFile(filePath, parsed);
       broadcastContentUpdated({ type: "collection", collection, slug, locale });
+      triggerRebuild();
       return NextResponse.json({ ok: true });
     }
 
