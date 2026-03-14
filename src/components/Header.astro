@@ -21,29 +21,30 @@ function isActive(path: string) {
 ---
 
 <header class="w-full bg-white">
-  <!-- Top Utility Bar - 36px -->
-  <div class="w-full h-9 bg-[#e5e5e5] relative z-10">
-    <div class="max-w-[1400px] mx-auto h-full px-8 lg:px-10">
-      <div class="flex justify-end items-center h-full gap-4 sm:gap-6 lg:gap-8 overflow-x-auto" style="font-size: 13px; line-height: 36px; font-weight: 500;">
-        <a href={buildHref("careers/apply")} class="flex items-center gap-1 text-[#2c2c2c] hover:text-[#000] transition-colors">
-          Apply for a role
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <!-- Top Utility Bar (Global Sites Bar) - mobile-optimized -->
+  <div class="w-full h-9 sm:h-9 bg-[#e5e5e5] relative z-10">
+    <div class="max-w-[1400px] mx-auto h-full px-3 sm:px-8 lg:px-10">
+      <div class="flex justify-end items-center h-full gap-2 sm:gap-6 lg:gap-8 overflow-x-auto overflow-y-hidden scrollbar-hide -mx-3 px-3 sm:mx-0 sm:px-0" style="font-size: 12px; font-weight: 500; -webkit-overflow-scrolling: touch;">
+        <a href={buildHref("careers/apply")} class="flex items-center gap-1 shrink-0 min-h-[36px] sm:min-h-0 py-2 sm:py-0 text-[#2c2c2c] hover:text-[#000] transition-colors whitespace-nowrap" style="font-size: 12px; line-height: 1.25;">
+          <span class="hidden sm:inline">Apply for a role</span>
+          <span class="sm:hidden">Apply</span>
+          <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
         </a>
-        <a href={buildHref("newsroom")} class="text-[#2c2c2c] hover:text-[#000] transition-colors">
+        <a href={buildHref("newsroom")} class="shrink-0 min-h-[36px] sm:min-h-0 py-2 sm:py-0 flex items-center text-[#2c2c2c] hover:text-[#000] transition-colors whitespace-nowrap">
           Newsroom
         </a>
-        <a href={buildHref("contact")} class="text-[#2c2c2c] hover:text-[#000] transition-colors">
+        <a href={buildHref("contact")} class="shrink-0 min-h-[36px] sm:min-h-0 py-2 sm:py-0 flex items-center text-[#2c2c2c] hover:text-[#000] transition-colors whitespace-nowrap">
           Contact Us
         </a>
-        <button class="flex items-center gap-1 text-[#2c2c2c] hover:text-[#000] transition-colors">
+        <button class="hidden sm:flex items-center gap-1 shrink-0 text-[#2c2c2c] hover:text-[#000] transition-colors whitespace-nowrap" style="font-size: 12px;">
           Global sites
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-        <button class="bg-[#2c2c2c] p-2 hover:bg-[#000] transition-colors" aria-label="Search">
+        <button class="shrink-0 min-h-[36px] min-w-[36px] sm:min-h-0 sm:min-w-0 sm:p-2 flex items-center justify-center bg-[#2c2c2c] hover:bg-[#000] transition-colors" aria-label="Search">
           <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="11" cy="11" r="8" stroke-width="2"></circle>
             <path d="m21 21-4.3-4.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -53,13 +54,13 @@ function isActive(path: string) {
     </div>
   </div>
 
-  <!-- Main Global Header - 90px -->
-  <div class="w-full h-[90px] bg-white border-b border-gray-200 overflow-hidden">
-    <div class="max-w-[1400px] mx-auto h-full px-8 lg:px-10">
-      <div class="flex items-center justify-between h-full gap-14">
-        <a href={base} class="flex items-center shrink-0 -ml-16 lg:-ml-24">
+  <!-- Main Global Header - 90px (frozen: mobile 70px, tablet 80px, desktop 90px) -->
+  <div class="w-full h-[70px] sm:h-[80px] md:h-[90px] bg-white border-b border-gray-200 overflow-hidden flex items-center">
+    <div class="max-w-[1400px] mx-auto h-full px-4 sm:px-8 lg:px-10 w-full">
+      <div class="flex items-center justify-between h-full gap-4 sm:gap-8">
+        <a href={base} class="flex items-center shrink-0 -ml-[40px] md:-ml-[41px] lg:-ml-[60px] h-full">
           {headerLogo ? (
-            <img src={headerLogo} alt="Logo" class="block w-[280px] h-[92px] sm:w-[420px] sm:h-[138px] md:w-[560px] md:h-[184px] object-contain" />
+            <img src={headerLogo} alt="Logo" class="block max-h-[156px] w-auto sm:max-h-[76px] md:max-h-none sm:w-[420px] sm:h-[138px] md:w-[560px] md:h-[184px] object-contain object-left" />
           ) : (
             <div class="flex items-center gap-2 sm:gap-3">
               <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 via-blue-500 to-teal-400 clip-polygon"></div>
@@ -104,7 +105,7 @@ function isActive(path: string) {
 
     <!-- Mobile nav overlay -->
     <div id="mobile-nav" class="md:hidden fixed inset-0 z-50 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-200" data-mobile-nav-overlay aria-hidden="true"></div>
-    <nav id="mobile-nav-drawer" class="md:hidden fixed top-0 right-0 z-50 h-full w-[min(320px,85vw)] bg-white shadow-xl transform translate-x-full transition-transform duration-200 flex flex-col" aria-label="Mobile navigation" aria-hidden="true">
+    <nav id="mobile-nav-drawer" class={`md:hidden fixed top-0 z-50 h-full w-[min(320px,85vw)] bg-white shadow-xl transform transition-transform duration-200 flex flex-col ${locale === "ar" ? "left-0 -translate-x-full" : "right-0 translate-x-full"}`} aria-label="Mobile navigation" aria-hidden="true">
       <div class="p-4 flex justify-between items-center border-b border-gray-200">
         <span class="text-lg font-medium text-[#2c2c2c]">Menu</span>
         <button type="button" class="p-2 -mr-2 text-[#2c2c2c]" aria-label="Close menu" data-mobile-menu-close>
@@ -130,11 +131,12 @@ function isActive(path: string) {
     const drawer = document.getElementById("mobile-nav-drawer");
     const links = document.querySelectorAll("[data-mobile-nav-link]");
 
+    const isRtl = document.documentElement.dir === "rtl";
     function open() {
       if (!overlay || !drawer) return;
       overlay.classList.remove("opacity-0", "pointer-events-none");
       overlay.classList.add("opacity-100");
-      drawer.classList.remove("translate-x-full");
+      drawer.classList.remove(isRtl ? "-translate-x-full" : "translate-x-full");
       drawer.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
     }
@@ -142,7 +144,7 @@ function isActive(path: string) {
       if (!overlay || !drawer) return;
       overlay.classList.add("opacity-0", "pointer-events-none");
       overlay.classList.remove("opacity-100");
-      drawer.classList.add("translate-x-full");
+      drawer.classList.add(isRtl ? "-translate-x-full" : "translate-x-full");
       drawer.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
     }

@@ -88,3 +88,32 @@
 .hover\:bg-\[\#f9f9f9\]:hover {
   background: var(--bg-section) !important;
 }
+
+/* Hero video iframe — cover 75vh on mobile, 16:9 on desktop */
+.hero-video-cover iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 133.33vh;
+  min-height: 75vh;
+  width: 133.33vh;
+  height: 75vh;
+}
+@media (min-width: 640px) {
+  .hero-video-cover iframe {
+    min-width: 177.78vh;
+    min-height: 56.25vw;
+    width: 100vw;
+    height: 56.25vw;
+  }
+}
+
+/* Hide scrollbar for utility bar on mobile (keep scroll) */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

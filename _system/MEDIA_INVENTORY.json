@@ -1702,6 +1702,77 @@
         },
         "hero": null
       }
+    },
+    {
+      "path": "public/assets/figma/mmmmmmmmmmm-removebg-preview-1773525888475.png",
+      "publicUrl": "/assets/figma/mmmmmmmmmmm-removebg-preview-1773525888475.png",
+      "type": "image",
+      "width": 612,
+      "height": 408,
+      "mimeType": "image/png",
+      "fileSize": 46720,
+      "optimizedUrl": "/assets/figma/optimized/mmmmmmmmmmm-removebg-preview-1773525888475-400.webp",
+      "webpUrl": "/assets/figma/optimized/mmmmmmmmmmm-removebg-preview-1773525888475-400.webp",
+      "variants": {
+        "thumbnail": {
+          "width": 400,
+          "url": "/assets/figma/optimized/mmmmmmmmmmm-removebg-preview-1773525888475-400.webp",
+          "format": "webp"
+        },
+        "card": null,
+        "standard": null,
+        "hero": null
+      }
+    },
+    {
+      "path": "public/assets/figma/mmmmmmmmmmm-1773525914453.png",
+      "publicUrl": "/assets/figma/mmmmmmmmmmm-1773525914453.png",
+      "type": "image",
+      "width": 1536,
+      "height": 1024,
+      "mimeType": "image/png",
+      "fileSize": 80788,
+      "optimizedUrl": "/assets/figma/optimized/mmmmmmmmmmm-1773525914453-400.webp",
+      "webpUrl": "/assets/figma/optimized/mmmmmmmmmmm-1773525914453-400.webp",
+      "variants": {
+        "thumbnail": {
+          "width": 400,
+          "url": "/assets/figma/optimized/mmmmmmmmmmm-1773525914453-400.webp",
+          "format": "webp"
+        },
+        "card": {
+          "width": 800,
+          "url": "/assets/figma/optimized/mmmmmmmmmmm-1773525914453-800.webp",
+          "format": "webp"
+        },
+        "standard": {
+          "width": 1200,
+          "url": "/assets/figma/optimized/mmmmmmmmmmm-1773525914453-1200.webp",
+          "format": "webp"
+        },
+        "hero": null
+      }
+    },
+    {
+      "path": "public/assets/figma/mmmmmmmmmmm-removebg-preview-1773525936282.png",
+      "publicUrl": "/assets/figma/mmmmmmmmmmm-removebg-preview-1773525936282.png",
+      "type": "image",
+      "width": 612,
+      "height": 408,
+      "mimeType": "image/png",
+      "fileSize": 46720,
+      "optimizedUrl": "/assets/figma/optimized/mmmmmmmmmmm-removebg-preview-1773525936282-400.webp",
+      "webpUrl": "/assets/figma/optimized/mmmmmmmmmmm-removebg-preview-1773525936282-400.webp",
+      "variants": {
+        "thumbnail": {
+          "width": 400,
+          "url": "/assets/figma/optimized/mmmmmmmmmmm-removebg-preview-1773525936282-400.webp",
+          "format": "webp"
+        },
+        "card": null,
+        "standard": null,
+        "hero": null
+      }
     }
   ]
 }
