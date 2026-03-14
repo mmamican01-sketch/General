@@ -67,6 +67,10 @@
       "type": "text",
       "value": "Years of expertise"
     },
+    "stats-banner-image": {
+      "type": "image",
+      "value": "/assets/figma/ChatGPT-Image-Mar-14--2026--09_41_36-PM-1773518573808.png"
+    },
     "section-3-title": {
       "type": "text",
       "value": "Sustainable Trading Practices"

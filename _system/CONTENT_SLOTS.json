@@ -78,6 +78,7 @@
       { "key": "stat-3-label", "type": "text", "selectorHint": "[data-slot='stat-3-label']" },
       { "key": "stat-4-number", "type": "text", "selectorHint": "[data-slot='stat-4-number']" },
       { "key": "stat-4-label", "type": "text", "selectorHint": "[data-slot='stat-4-label']" },
+      { "key": "stats-banner-image", "type": "image", "selectorHint": "[data-slot='stats-banner-image']" },
       { "key": "section-3-title", "type": "text", "selectorHint": "[data-slot='section-3-title']" },
       { "key": "section-3-body", "type": "text", "selectorHint": "[data-slot='section-3-body']" },
       { "key": "section-3-image", "type": "image", "selectorHint": "[data-slot='section-3-image']" },

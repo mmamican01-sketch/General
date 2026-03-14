@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { DashboardShell } from "@/components/DashboardShell";
+import { MediaPicker } from "@/components/MediaPicker";
+import { getAstroSiteUrl } from "@/lib/astro-url";
 
 type Slot = { type: string; value: string; note?: string };
 type GlobalDoc = { routeKey: string; route: string; slots: Record<string, Slot> };
@@ -105,7 +107,7 @@ export default function GlobalEditor() {
                       }}
                       onClick={() => setSelected(k)}
                     >
-                      {k}
+                      {k === "header-logo" ? "الشعار / Logo (560×184px)" : k === "footer-logo" ? "شعار الفوتر / Footer Logo (560×184px)" : k.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
                     </button>
                   </li>
                 ))}
@@ -115,14 +117,35 @@ export default function GlobalEditor() {
               <h3 style={{ marginTop: 0 }}>Value</h3>
               {selected ? (
                 <>
-                  <textarea
-                    className="textarea"
-                    value={value}
-                    onChange={(e) => {
-                      setValue(e.target.value);
-                      setStatus("unsaved");
-                    }}
-                  />
+                  {doc.slots[selected]?.type === "image" ? (
+                    <div style={{ marginBottom: 12 }}>
+                      {(selected === "header-logo" || selected === "footer-logo") ? (
+                        <p className="muted" style={{ marginBottom: 8, fontSize: 12 }}>ارفع الشعار (المقاس المثالي: 560×184px، نسبة 3:1)</p>
+                      ) : null}
+                      <MediaPicker
+                        value={value}
+                        onChange={(v) => {
+                          setValue(v);
+                          setStatus("unsaved");
+                        }}
+                        label={selected === "footer-logo" ? "اختر شعار الفوتر" : "اختر الشعار"}
+                      />
+                      {value ? (
+                        <div style={{ marginTop: 8 }}>
+                          <img src={value.startsWith("http") ? value : `${getAstroSiteUrl()}${value.startsWith("/") ? "" : "/"}${value}`} alt="Preview" style={{ maxWidth: 200, maxHeight: 80, objectFit: "contain" }} />
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : (
+                    <textarea
+                      className="textarea"
+                      value={value}
+                      onChange={(e) => {
+                        setValue(e.target.value);
+                        setStatus("unsaved");
+                      }}
+                    />
+                  )}
                   <div className="row" style={{ marginTop: 12 }}>
                     <button className="button" onClick={save}>
                       Save

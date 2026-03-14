@@ -81,6 +81,76 @@
       "referencedByFiles": [
         "src/components/Welcome.astro"
       ]
+    },
+    {
+      "path": "public/assets/figma/ChatGPT-Image-Mar-13--2026--11_40_25-PM-1773434797927.png",
+      "publicUrl": "/assets/figma/ChatGPT-Image-Mar-13--2026--11_40_25-PM-1773434797927.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/ChatGPT-Image-Mar-13--2026--11_40_55-PM-1773434809400.png",
+      "publicUrl": "/assets/figma/ChatGPT-Image-Mar-13--2026--11_40_55-PM-1773434809400.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/ChatGPT_Image_Mar_13__2026__11_40_25_PM-removebg-preview-1773435008912.png",
+      "publicUrl": "/assets/figma/ChatGPT_Image_Mar_13__2026__11_40_25_PM-removebg-preview-1773435008912.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/ChatGPT_Image_Mar_13__2026__11_40_55_PM-removebg-preview-1773435029977.png",
+      "publicUrl": "/assets/figma/ChatGPT_Image_Mar_13__2026__11_40_55_PM-removebg-preview-1773435029977.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/ChatGPT-Image-Mar-13--2026--11_57_03-PM-1773435726588.png",
+      "publicUrl": "/assets/figma/ChatGPT-Image-Mar-13--2026--11_57_03-PM-1773435726588.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/ChatGPT_Image_Mar_13__2026__11_57_03_PM-removebg-preview-1773435788520.png",
+      "publicUrl": "/assets/figma/ChatGPT_Image_Mar_13__2026__11_57_03_PM-removebg-preview-1773435788520.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/mmmmmmmmmmm-1773445524964.png",
+      "publicUrl": "/assets/figma/mmmmmmmmmmm-1773445524964.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/mmmmmmmmmmm-1773445674294.png",
+      "publicUrl": "/assets/figma/mmmmmmmmmmm-1773445674294.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/mmmmmmmmmmm-1773445920234.png",
+      "publicUrl": "/assets/figma/mmmmmmmmmmm-1773445920234.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/mmmmmmmmmmm-1773446990487.png",
+      "publicUrl": "/assets/figma/mmmmmmmmmmm-1773446990487.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/mmmmmmmmmmm-1773448573028.png",
+      "publicUrl": "/assets/figma/mmmmmmmmmmm-1773448573028.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/ChatGPT-Image-Mar-14--2026--09_16_04-PM-1773512370207.png",
+      "publicUrl": "/assets/figma/ChatGPT-Image-Mar-14--2026--09_16_04-PM-1773512370207.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/ChatGPT_Image_Mar_14__2026__09_20_18_PM-removebg-preview-1773512501720.png",
+      "publicUrl": "/assets/figma/ChatGPT_Image_Mar_14__2026__09_20_18_PM-removebg-preview-1773512501720.png",
+      "type": "image"
+    },
+    {
+      "path": "public/assets/figma/ChatGPT-Image-Mar-14--2026--09_41_36-PM-1773518573808.png",
+      "publicUrl": "/assets/figma/ChatGPT-Image-Mar-14--2026--09_41_36-PM-1773518573808.png",
+      "type": "image"
     }
   ]
 }

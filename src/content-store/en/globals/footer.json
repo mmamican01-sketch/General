@@ -2,5 +2,11 @@
   "routeKey": "footer",
   "route": "footer",
   "generatedAt": "2026-02-18T21:39:10.004Z",
-  "slots": {}
+  "slots": {
+    "footer-logo": {
+      "type": "image",
+      "value": "/assets/figma/ChatGPT_Image_Mar_14__2026__09_20_18_PM-removebg-preview-1773512501720.png",
+      "note": "Logo 560x184px, 3.04:1. Leave empty to use header logo."
+    }
+  }
 }

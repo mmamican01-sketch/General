@@ -1,6 +1,12 @@
 {
   "routeKey": "header",
   "route": "header",
-  "generatedAt": "2026-02-18T21:39:10.003Z",
-  "slots": {}
+  "generatedAt": "2026-02-19T00:00:00.000Z",
+  "slots": {
+    "header-logo": {
+      "type": "image",
+      "value": "/assets/figma/mmmmmmmmmmm-1773446990487.png",
+      "note": "Logo 560x184px, 3.04:1"
+    }
+  }
 }
