@@ -1,0 +1,30 @@
+---
+/**
+ * OptimizedImg.astro — img with srcset/sizes for local assets.
+ * Use for full-bleed, background, or inline images.
+ */
+import { getOptimizedImage, type ImageVariant } from "../lib/imageOptimizer";
+
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  loading?: "lazy" | "eager";
+  decoding?: "async" | "sync" | "auto";
+  variant?: ImageVariant;
+}
+
+const { src, alt, class: classProp = "", loading = "lazy", decoding = "async", variant = "hero" } = Astro.props;
+const optimized = getOptimizedImage(src, variant);
+const useOptimized = optimized.srcSet.length > 0;
+---
+
+<img
+  src={useOptimized ? optimized.src : src}
+  alt={alt}
+  class={classProp}
+  loading={loading}
+  decoding={decoding}
+  srcset={useOptimized ? optimized.srcSet : undefined}
+  sizes={useOptimized ? optimized.sizes : undefined}
+/>

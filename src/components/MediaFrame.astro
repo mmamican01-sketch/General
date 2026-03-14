@@ -1,9 +1,10 @@
 ---
 /**
  * MediaFrame.astro — GLOBAL RESPONSIVE PARITY
- * Source: Figma_Make_Export (React) MEDIA_RATIO_CONTRACT.md
- * Output: aspect + overflow + object-cover wrapper matching React exactly.
+ * Supports optimized srcset/sizes for local assets.
  */
+import { getOptimizedImage, type ImageVariant } from "../lib/imageOptimizer";
+
 interface Props {
   src: string;
   alt: string;
@@ -15,9 +16,10 @@ interface Props {
   marginBottom?: "mb-3" | "mb-4" | "none";
   loading?: "lazy" | "eager";
   decoding?: "async" | "sync" | "auto";
+  variant?: ImageVariant;
 }
 
-const { src, alt, ratio = "16/9", class: classProp = "", className = "", imgClass = "", bgClass = "bg-gray-300", marginBottom = "none", loading = "lazy", decoding = "async" } = Astro.props;
+const { src, alt, ratio = "16/9", class: classProp = "", className = "", imgClass = "", bgClass = "bg-gray-300", marginBottom = "none", loading = "lazy", decoding = "async", variant = "standard" } = Astro.props;
 
 const ratioMap: Record<string, string> = {
   "16/9": "aspect-[16/9]",
@@ -29,8 +31,19 @@ const ratioClass = ratioMap[ratio] ?? "aspect-[16/9]";
 const mbClass = marginBottom !== "none" ? marginBottom : "";
 const wrapperClass = `w-full ${ratioClass} overflow-hidden ${bgClass} ${mbClass} ${classProp} ${className}`.trim();
 const imageClass = `w-full h-full object-cover ${imgClass}`.trim();
+
+const optimized = getOptimizedImage(src, variant);
+const useOptimized = optimized.srcSet.length > 0;
 ---
 
 <div class={wrapperClass}>
-  <img src={src} alt={alt} class={imageClass} loading={loading} decoding={decoding} />
+  <img
+    src={useOptimized ? optimized.src : src}
+    alt={alt}
+    class={imageClass}
+    loading={loading}
+    decoding={decoding}
+    srcset={useOptimized ? optimized.srcSet : undefined}
+    sizes={useOptimized ? optimized.sizes : undefined}
+  />
 </div>

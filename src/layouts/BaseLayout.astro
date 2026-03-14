@@ -46,6 +46,10 @@ const arHref = normalizeUrl(Astro.site, arPath);
     <meta name="twitter:description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://player.vimeo.com" />
+    <link rel="preconnect" href="https://vimeocdn.com" />
+    <link rel="preconnect" href="https://www.youtube.com" />
+    <link rel="preconnect" href="https://i.ytimg.com" />
     <link rel="alternate" hreflang="en" href={enHref} />
     <link rel="alternate" hreflang="ar" href={arHref} />
     <link rel="alternate" hreflang="x-default" href={normalizeUrl(Astro.site, "/en")} />

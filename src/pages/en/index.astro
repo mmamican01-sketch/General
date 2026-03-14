@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import MediaFrame from "../../components/MediaFrame.astro";
+import OptimizedImg from "../../components/OptimizedImg.astro";
 import { loadPageContent, getSlot, getHeroTitles, loadAllProducts } from "../../lib/contentStore";
 
 const productDocs = loadAllProducts();
@@ -21,10 +22,11 @@ function getYoutubeEmbedUrl(url: string): string {
 }
 function getVimeoEmbedUrl(url: string): string {
   const id = url.split("vimeo.com/")[1]?.split("?")[0] || "";
-  return id ? `https://player.vimeo.com/video/${id}?autoplay=1&loop=1&muted=1&background=1` : "";
+  return id ? `https://player.vimeo.com/video/${id}?autoplay=1&loop=1&muted=1&background=1&quality=360p` : "";
 }
 const heroVideoEmbed = heroVideo.includes("youtube") || heroVideo.includes("youtu.be") ? getYoutubeEmbedUrl(heroVideo) : heroVideo.includes("vimeo.com") ? getVimeoEmbedUrl(heroVideo) : "";
 const heroVideoDirect = heroVideo && /\.(mp4|webm|ogg)(\?|$)/i.test(heroVideo) ? heroVideo : "";
+const heroPoster = getSlot(content, "hero-poster", "");
 const heroTitles = getHeroTitles(content);
 const heroHref = getSlot(content, "hero-link", "/en/who-we-are");
 const heroLinkLabel = getSlot(content, "hero-link-label", "Who we are");
@@ -76,29 +78,42 @@ const section4Title = getSlot(content, "section-4-title", "Connecting markets. B
   currentPath=""
 >
   <div class="w-full">
-    <section class="relative w-full h-[75vh] bg-[var(--bg-section)] flex items-center justify-center overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
+    <section class={`relative w-full h-[75vh] flex items-center justify-center overflow-hidden bg-[var(--white)]`}>
       {heroVideoEmbed && (
-        <div class="absolute inset-0 z-0 [&_iframe]:absolute [&_iframe]:top-1/2 [&_iframe]:left-1/2 [&_iframe]:min-w-[177.78vh] [&_iframe]:min-h-[56.25vw] [&_iframe]:w-[100vw] [&_iframe]:h-[56.25vw] [&_iframe]:-translate-x-1/2 [&_iframe]:-translate-y-1/2">
-          <iframe
-            src={heroVideoEmbed}
-            class="pointer-events-none"
-            allow="autoplay; encrypted-media"
-            allowfullscreen
-            title="Hero background video"
-          />
-        </div>
+        <>
+          {heroPoster && (
+            <>
+              <div id="hero-poster-overlay" class="absolute inset-0 z-[1] bg-cover bg-center transition-opacity duration-700" style={`background-image: url(${heroPoster})`} aria-hidden="true"></div>
+              <div id="hero-film-overlay" class="absolute inset-0 z-[3] bg-white pointer-events-none opacity-0 transition-opacity duration-500" aria-hidden="true"></div>
+            </>
+          )}
+          <div class="absolute inset-0 z-[2] [&_iframe]:absolute [&_iframe]:top-1/2 [&_iframe]:left-1/2 [&_iframe]:min-w-[177.78vh] [&_iframe]:min-h-[56.25vw] [&_iframe]:w-[100vw] [&_iframe]:h-[56.25vw] [&_iframe]:-translate-x-1/2 [&_iframe]:-translate-y-1/2">
+            <iframe
+              id="hero-video-iframe"
+              src={heroVideoEmbed}
+              class="pointer-events-none"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+              title="Hero background video"
+              fetchpriority="high"
+            />
+          </div>
+        </>
       )}
       {heroVideoDirect && (
+        <>
         <video
           src={heroVideoDirect}
           autoplay
           muted
           loop
           playsinline
+          preload="auto"
+          fetchpriority="high"
           class="absolute inset-0 z-0 w-full h-full object-cover"
           aria-hidden="true"
         />
+        </>
       )}
       <div class="relative z-10 flex flex-col justify-between items-center w-full h-full min-h-[75vh] px-8 py-10">
         <div
@@ -109,7 +124,7 @@ const section4Title = getSlot(content, "section-4-title", "Connecting markets. B
         >
           <h1
             id="hero-title-display"
-            class="text-4xl sm:text-5xl lg:text-7xl text-white text-center transition-opacity duration-300"
+            class={`text-4xl sm:text-5xl lg:text-7xl text-center transition-opacity duration-300 ${(heroVideoEmbed || heroVideoDirect || heroPoster) ? 'text-white' : 'text-[var(--text-heading)]'}`}
             style="font-family: Cormorant Garamond, serif; font-weight: 400; line-height: 1.2;"
           >
             {heroTitles.length ? heroTitles[0].text : ""}
@@ -137,7 +152,7 @@ const section4Title = getSlot(content, "section-4-title", "Connecting markets. B
       <div class="max-w-[1140px] mx-auto px-8">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
           <div class="md:col-span-6 order-2 md:order-1">
-            <MediaFrame src={institutionalImage} alt="Corporate" />
+            <MediaFrame src={institutionalImage} alt="Corporate" variant="standard" />
           </div>
           <div class="md:col-span-5 order-1 md:order-2">
             <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-4 sm:mb-6 text-[#2c2c2c]" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
@@ -160,7 +175,7 @@ const section4Title = getSlot(content, "section-4-title", "Connecting markets. B
         <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
           {products.map((product) => (
             <a href={`/en/products/${product.slug}`} class="group">
-              <MediaFrame src={product.image} alt={product.name} bgClass="bg-gray-200" marginBottom="mb-3" imgClass="group-hover:opacity-90 transition-opacity" />
+              <MediaFrame src={product.image} alt={product.name} bgClass="bg-gray-200" marginBottom="mb-3" imgClass="group-hover:opacity-90 transition-opacity" variant="card" />
               <p class="text-sm text-[#2c2c2c] group-hover:underline" style="font-family: Inter, sans-serif">
                 {product.name}
               </p>
@@ -184,7 +199,7 @@ const section4Title = getSlot(content, "section-4-title", "Connecting markets. B
       {statsBannerImage ? (
         <>
           <div class="absolute inset-0 z-0">
-            <img src={statsBannerImage} alt="" class="w-full h-full object-cover" />
+            <OptimizedImg src={statsBannerImage} alt="" class="w-full h-full object-cover" variant="hero" loading="eager" />
           </div>
           <div class="absolute inset-0 z-[1] bg-black/40" aria-hidden="true"></div>
         </>
@@ -251,7 +266,7 @@ const section4Title = getSlot(content, "section-4-title", "Connecting markets. B
             </p>
           </div>
           <div class="md:col-span-6 md:col-start-7 order-1 md:order-2">
-            <MediaFrame src={section3Image} alt="Sustainable practices" />
+            <MediaFrame src={section3Image} alt="Sustainable practices" variant="standard" />
           </div>
         </div>
       </div>
@@ -266,6 +281,32 @@ const section4Title = getSlot(content, "section-4-title", "Connecting markets. B
     </section>
   </div>
 
+  {heroPoster && heroVideoEmbed && (
+    <script>
+      (function () {
+        const iframe = document.getElementById("hero-video-iframe");
+        const overlay = document.getElementById("hero-poster-overlay");
+        const film = document.getElementById("hero-film-overlay");
+        if (!iframe || !overlay || !film) return;
+        function hidePoster() {
+          overlay.style.opacity = "0";
+          overlay.style.pointerEvents = "none";
+          setTimeout(function () { overlay.style.visibility = "hidden"; }, 700);
+        }
+        function hideFilm() {
+          film.style.opacity = "0";
+          setTimeout(function () { film.style.visibility = "hidden"; }, 500);
+        }
+        iframe.addEventListener("load", function () {
+          film.style.opacity = "0.68";
+          setTimeout(function () {
+            hideFilm();
+            setTimeout(hidePoster, 1500);
+          }, 1000);
+        });
+      })();
+    </script>
+  )}
   {heroTitles.length > 0 && (heroVideoEmbed || heroVideoDirect) && (
     <script define:vars={{ heroTitlesJson: JSON.stringify(heroTitles), videoType: heroVideo.includes("vimeo") ? "vimeo" : heroVideo.includes("youtube") || heroVideo.includes("youtu.be") ? "youtube" : heroVideoDirect ? "direct" : "none" }}>
       (function () {

@@ -7,6 +7,10 @@
       "type": "video",
       "value": "https://vimeo.com/1171940568?fl=ip&fe=ec"
     },
+    "hero-poster": {
+      "type": "image",
+      "value": "/assets/figma/ChatGPT-Image-Mar-14--2026--11_32_00-PM-1773520332938.png"
+    },
     "hero-titles": {
       "type": "hero-titles",
       "value": "[{\"text\":\"We Are AL Farhan Global Trading\",\"start\":0,\"end\":5},{\"text\":\"A Global Commodity Trading Company\",\"start\":6,\"end\":10},{\"text\":\"Connecting Global Supply With Global Demand\",\"start\":12,\"end\":17},{\"text\":\"Powering Global Agricultural Trade\",\"start\":18,\"end\":24},{\"text\":\"Working With Producers, Buyers And Logistics Partners\",\"start\":24,\"end\":31},{\"text\":\"Connecting Markets. Building Trust.\",\"start\":32,\"end\":36}]"
@@ -69,7 +73,7 @@
     },
     "stats-banner-image": {
       "type": "image",
-      "value": "/assets/figma/ChatGPT-Image-Mar-14--2026--09_41_36-PM-1773518573808.png"
+      "value": "/assets/figma/ChatGPT-Image-Mar-14--2026--09_41_36-PM-1773522146205.png"
     },
     "section-3-title": {
       "type": "text",

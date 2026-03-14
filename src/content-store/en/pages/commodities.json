@@ -13,7 +13,7 @@
     },
     "card-1-image": {
       "type": "image",
-      "value": "https://images.unsplash.com/photo-1607980276836-232ac6344978?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+      "value": "/assets/figma/ChatGPT-Image-Mar-11--2026--01_42_55-AM-1773250393922.png"
     },
     "card-1-title": {
       "type": "text",
@@ -25,7 +25,7 @@
     },
     "card-2-image": {
       "type": "image",
-      "value": "https://images.unsplash.com/photo-1657626625832-2c0851cdaa9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+      "value": "/assets/figma/ChatGPT-Image-Mar-11--2026--10_03_26-PM--1--1773255819692.png"
     },
     "card-2-title": {
       "type": "text",
@@ -37,7 +37,7 @@
     },
     "card-3-image": {
       "type": "image",
-      "value": "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+      "value": "/assets/figma/ChatGPT-Image-Mar-11--2026--10_44_16-PM-1773258298134.png"
     },
     "card-3-title": {
       "type": "text",
@@ -49,7 +49,7 @@
     },
     "card-4-image": {
       "type": "image",
-      "value": "https://images.unsplash.com/photo-1759332637000-50311b115c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+      "value": "/assets/figma/ChatGPT-Image-Mar-11--2026--11_26_34-PM-1773260805235.png"
     },
     "card-4-title": {
       "type": "text",

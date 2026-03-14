@@ -63,6 +63,7 @@
     "file": "src/pages/en/index.astro",
     "slots": [
       { "key": "hero-video", "type": "video", "selectorHint": "[data-slot='hero-video']" },
+      { "key": "hero-poster", "type": "image", "selectorHint": "[data-slot='hero-poster']" },
       { "key": "hero-titles", "type": "hero-titles", "selectorHint": "[data-slot='hero-titles']" },
       { "key": "hero-link", "type": "link", "selectorHint": "[data-slot='hero-link']" },
       { "key": "hero-link-label", "type": "text", "selectorHint": "[data-slot='hero-link-label']" },
