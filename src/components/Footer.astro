@@ -18,12 +18,87 @@ function buildHref(path: string) {
 ---
 
 <footer class="w-full bg-[#1B2230] mt-8 sm:mt-10 lg:mt-12">
-  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6">
-      <div class="md:col-span-3 max-h-[44px] overflow-hidden sm:max-h-none sm:overflow-visible">
+  <style>
+    @media (max-width: 767px) {
+      .footer-follow-mobile { transform: translateX(-55%) translateY(-10%) scale(1.1); }
+      .footer-sections-mobile h4 { font-size: calc(0.875rem * 1.05); }
+    }
+  </style>
+  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-4 sm:py-6 lg:py-8">
+    <!-- Mobile: Logo + Follow Us row, divider, then Company/Resources/Legal -->
+    <div class="flex flex-col md:hidden gap-4">
+      <div class="flex flex-row justify-between items-center -ml-[10%] md:ml-0">
+        <a href={withBase(localeBase)} class="inline-block shrink-0">
+          {footerLogo ? (
+            <img src={footerLogo ? withBase(footerLogo) : ''} alt="AFGT" class="block max-h-[156px] w-auto object-contain" />
+          ) : (
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-gradient-to-br from-blue-600 via-blue-500 to-teal-400 clip-polygon"></div>
+              <span class="text-xl tracking-tight text-white" style="font-family: Inter, sans-serif">AFGT</span>
+            </div>
+          )}
+        </a>
+        <div class="footer-follow-mobile flex flex-col items-start gap-1">
+          <h4 class="text-sm text-white" style="font-family: Inter, sans-serif">Follow Us</h4>
+          <div class="flex gap-3">
+            <a href="#" class="text-white/80 hover:text-white transition-colors" aria-label="LinkedIn">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"></path>
+                <rect x="2" y="9" width="4" height="12" stroke-width="2"></rect>
+                <circle cx="4" cy="4" r="2" stroke-width="2"></circle>
+              </svg>
+            </a>
+            <a href="#" class="text-white/80 hover:text-white transition-colors" aria-label="Twitter">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 7.5v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+              </svg>
+            </a>
+            <a href="#" class="text-white/80 hover:text-white transition-colors" aria-label="Facebook">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/20 pt-4 -mt-12"></div>
+      <div class="footer-sections-mobile flex flex-col gap-4">
+        <div class="flex flex-row gap-8">
+          <div>
+            <h4 class="text-sm mb-1 text-white" style="font-family: Inter, sans-serif">Company</h4>
+            <ul class="space-y-1">
+              <li><a href={buildHref("who-we-are")} class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Who we are</a></li>
+              <li><a href={buildHref("products")} class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Products & Services</a></li>
+              <li><a href={buildHref("sustainability")} class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Sustainability</a></li>
+              <li><a href={buildHref("careers")} class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Careers</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-sm mb-1 text-white" style="font-family: Inter, sans-serif">Resources</h4>
+            <ul class="space-y-1">
+              <li><a href="#" class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Newsroom</a></li>
+              <li><a href={buildHref("contact")} class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Contact Us</a></li>
+              <li><a href="#" class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Global sites</a></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-sm mb-1 text-white" style="font-family: Inter, sans-serif">Legal</h4>
+          <ul class="space-y-1">
+            <li><a href="#" class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Privacy Policy</a></li>
+            <li><a href="#" class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Terms of Service</a></li>
+            <li><a href="#" class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop: original grid layout -->
+    <div class="hidden md:grid grid-cols-12 gap-4 sm:gap-6">
+      <div class="md:col-span-3">
         <a href={withBase(localeBase)} class="inline-block">
           {footerLogo ? (
-            <img src={footerLogo ? withBase(footerLogo) : ''} alt="AFGT" class="block max-h-[44px] w-auto sm:w-[520px] sm:h-[171px] md:w-[680px] md:h-[224px] object-contain" />
+            <img src={footerLogo ? withBase(footerLogo) : ''} alt="AFGT" class="block max-h-[156px] w-auto sm:max-h-[76px] sm:w-[420px] sm:h-[138px] md:max-h-none md:w-[560px] md:h-[184px] object-contain" />
           ) : (
             <div class="flex items-center gap-3">
               <div class="w-8 h-8 bg-gradient-to-br from-blue-600 via-blue-500 to-teal-400 clip-polygon"></div>

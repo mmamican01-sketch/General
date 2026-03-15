@@ -174,7 +174,7 @@ const section4Title = getSlot(content, "section-4-title", "Connecting markets. B
         </h2>
 
         <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
-          {products.map((product) => (
+          {products.slice(0, 4).map((product) => (
             <a href={withBase(`/en/products/${product.slug}`)} class="group">
               <MediaFrame src={product.image} alt={product.name} bgClass="bg-gray-200" marginBottom="mb-3" imgClass="group-hover:opacity-90 transition-opacity" variant="card" />
               <p class="text-sm text-[#2c2c2c] group-hover:underline" style="font-family: Inter, sans-serif">
