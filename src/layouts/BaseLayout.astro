@@ -3,6 +3,7 @@ import "../styles/index.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { normalizeUrl } from "../lib/seo";
+import { withBase } from "../lib/url";
 
 const {
   title = "AL Farhan General Trading Co",
@@ -44,8 +45,8 @@ const arHref = normalizeUrl(Astro.site, arPath);
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
+    <link rel="icon" href={withBase("/favicon.ico")} />
     <link rel="preconnect" href="https://player.vimeo.com" />
     <link rel="preconnect" href="https://vimeocdn.com" />
     <link rel="preconnect" href="https://www.youtube.com" />

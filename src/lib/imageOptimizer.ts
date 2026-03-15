@@ -56,6 +56,13 @@ function getBaseName(path: string): string {
   return match[1];
 }
 
+function withBasePath(path: string): string {
+  if (!path || path.startsWith("http://") || path.startsWith("https://")) return path;
+  const base = (import.meta.env.BASE_URL ?? "/").replace(/\/$/, "");
+  if (!base) return path;
+  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
 export type OptimizedImageResult = {
   src: string;
   srcSet: string;
@@ -75,7 +82,7 @@ export function getOptimizedImage(
 ): OptimizedImageResult {
   if (!src || !isLocalAsset(src)) {
     return {
-      src,
+      src: withBasePath(src),
       srcSet: "",
       sizes: "100vw",
     };
@@ -83,7 +90,7 @@ export function getOptimizedImage(
 
   const base = getBaseName(src);
   if (!base) {
-    return { src, srcSet: "", sizes: "100vw" };
+    return { src: withBasePath(src), srcSet: "", sizes: "100vw" };
   }
 
   const targetWidth = VARIANT_WIDTHS[variant];
@@ -92,7 +99,7 @@ export function getOptimizedImage(
 
   const srcSetParts: string[] = [];
   for (const w of safeWidths) {
-    srcSetParts.push(`/assets/figma/optimized/${base}-${w}.webp ${w}w`);
+    srcSetParts.push(`${withBasePath(`/assets/figma/optimized/${base}-${w}.webp`)} ${w}w`);
   }
 
   let sizes: string;
@@ -111,7 +118,7 @@ export function getOptimizedImage(
   }
 
   return {
-    src,
+    src: withBasePath(src),
     srcSet: srcSetParts.join(", "),
     sizes,
   };

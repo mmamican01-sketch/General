@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import MediaFrame from "../../components/MediaFrame.astro";
 import OptimizedImg from "../../components/OptimizedImg.astro";
 import { loadPageContent, getSlot, getHeroTitles, loadAllProducts } from "../../lib/contentStore";
+import { withBase } from "../../lib/url";
 
 const productDocs = loadAllProducts();
 const products = productDocs.map((p) => ({
@@ -131,7 +132,7 @@ const section4Title = getSlot(content, "section-4-title", "Connecting markets. B
           </h1>
         </div>
         <a
-          href={heroHref}
+          href={withBase(heroHref)}
           class="inline-block btn-primary hero-cta shrink-0"
           style="font-family: Inter, sans-serif"
         >
@@ -174,7 +175,7 @@ const section4Title = getSlot(content, "section-4-title", "Connecting markets. B
 
         <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
           {products.map((product) => (
-            <a href={`/en/products/${product.slug}`} class="group">
+            <a href={withBase(`/en/products/${product.slug}`)} class="group">
               <MediaFrame src={product.image} alt={product.name} bgClass="bg-gray-200" marginBottom="mb-3" imgClass="group-hover:opacity-90 transition-opacity" variant="card" />
               <p class="text-sm text-[#2c2c2c] group-hover:underline" style="font-family: Inter, sans-serif">
                 {product.name}
@@ -185,7 +186,7 @@ const section4Title = getSlot(content, "section-4-title", "Connecting markets. B
 
         <div class="text-center mt-12">
           <a
-            href="/en/products"
+            href={withBase("/en/products")}
             class="inline-block btn-primary px-8 py-3"
             style="font-family: Inter, sans-serif"
           >

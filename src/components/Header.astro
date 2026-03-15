@@ -1,16 +1,17 @@
 ---
 import { loadGlobalContent, getSlot } from "../lib/contentStore";
+import { withBase } from "../lib/url";
 
 const { locale = "en", currentPath = "" } = Astro.props;
 
-const base = locale === "ar" ? "/ar" : "/en";
+const localeBase = locale === "ar" ? "/ar" : "/en";
 
 const headerContent = await loadGlobalContent("header");
 const headerLogo = getSlot(headerContent, "header-logo", "");
 
 function buildHref(path: string) {
-  const p = path ? `${base}/${path}` : base;
-  return p.replace(/\/+$/, "") || base;
+  const p = path ? `${localeBase}/${path}` : localeBase;
+  return withBase((p.replace(/\/+$/, "") || localeBase));
 }
 
 function isActive(path: string) {
@@ -58,9 +59,9 @@ function isActive(path: string) {
   <div class="w-full h-[70px] sm:h-[80px] md:h-[90px] bg-white border-b border-gray-200 overflow-hidden flex items-center">
     <div class="max-w-[1400px] mx-auto h-full px-4 sm:px-8 lg:px-10 w-full">
       <div class="flex items-center justify-between h-full gap-4 sm:gap-8">
-        <a href={base} class="flex items-center shrink-0 -ml-[40px] md:-ml-[41px] lg:-ml-[60px] h-full">
+        <a href={withBase(localeBase)} class="flex items-center shrink-0 -ml-[40px] md:-ml-[41px] lg:-ml-[60px] h-full">
           {headerLogo ? (
-            <img src={headerLogo} alt="Logo" class="block max-h-[156px] w-auto sm:max-h-[76px] md:max-h-none sm:w-[420px] sm:h-[138px] md:w-[560px] md:h-[184px] object-contain object-left" />
+            <img src={headerLogo ? withBase(headerLogo) : ''} alt="Logo" class="block max-h-[156px] w-auto sm:max-h-[76px] md:max-h-none sm:w-[420px] sm:h-[138px] md:w-[560px] md:h-[184px] object-contain object-left" />
           ) : (
             <div class="flex items-center gap-2 sm:gap-3">
               <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 via-blue-500 to-teal-400 clip-polygon"></div>

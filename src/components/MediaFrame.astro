@@ -38,7 +38,7 @@ const useOptimized = optimized.srcSet.length > 0;
 
 <div class={wrapperClass}>
   <img
-    src={useOptimized ? optimized.src : src}
+    src={optimized.src}
     alt={alt}
     class={imageClass}
     loading={loading}

@@ -1,8 +1,9 @@
 ---
 import { loadGlobalContent, getSlot } from "../lib/contentStore";
+import { withBase } from "../lib/url";
 
 const { locale = "en" } = Astro.props;
-const base = locale === "ar" ? "/ar" : "/en";
+const localeBase = locale === "ar" ? "/ar" : "/en";
 
 const headerContent = await loadGlobalContent("header");
 const footerContent = await loadGlobalContent("footer");
@@ -11,8 +12,8 @@ const footerLogoRaw = getSlot(footerContent, "footer-logo", "");
 const footerLogo = footerLogoRaw || headerLogo;
 
 function buildHref(path: string) {
-  const p = path ? `${base}/${path}` : base;
-  return p.replace(/\/+$/, "") || base;
+  const p = path ? `${localeBase}/${path}` : localeBase;
+  return withBase((p.replace(/\/+$/, "") || localeBase));
 }
 ---
 
@@ -20,9 +21,9 @@ function buildHref(path: string) {
   <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6">
       <div class="md:col-span-3 max-h-[44px] overflow-hidden sm:max-h-none sm:overflow-visible">
-        <a href={base} class="inline-block">
+        <a href={withBase(localeBase)} class="inline-block">
           {footerLogo ? (
-            <img src={footerLogo} alt="AFGT" class="block max-h-[44px] w-auto sm:w-[520px] sm:h-[171px] md:w-[680px] md:h-[224px] object-contain" />
+            <img src={footerLogo ? withBase(footerLogo) : ''} alt="AFGT" class="block max-h-[44px] w-auto sm:w-[520px] sm:h-[171px] md:w-[680px] md:h-[224px] object-contain" />
           ) : (
             <div class="flex items-center gap-3">
               <div class="w-8 h-8 bg-gradient-to-br from-blue-600 via-blue-500 to-teal-400 clip-polygon"></div>
