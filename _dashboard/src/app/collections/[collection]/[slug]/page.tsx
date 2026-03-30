@@ -22,6 +22,8 @@ export default function CollectionItemEditor() {
   const [status, setStatus] = useState<"saved" | "unsaved" | "saving">("saved");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showPreview, setShowPreview] = useState(true);
+  const [savedAt, setSavedAt] = useState<string>("");
 
   const previewUrl = `/en/${collection}/${slug}`;
 
@@ -62,6 +64,7 @@ export default function CollectionItemEditor() {
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
         setStatus("saved");
+        setSavedAt(new Date().toLocaleTimeString());
       } else {
         setStatus("unsaved");
         const errMsg = Array.isArray(data.error) ? data.error.join("; ") : (data.error || data.message || `Save failed (${res.status})`);
@@ -80,6 +83,20 @@ export default function CollectionItemEditor() {
   }, []);
 
   const allFieldKeys = Object.keys({ ...schema, ...doc }).filter((k) => k !== "slug");
+  const isProductsCollection = collection.toLowerCase() === "products";
+  const productContentFieldOrder = [
+    "title",
+    "description",
+    "overview",
+    "specifications",
+    "origins",
+    "certifications",
+    "cta",
+  ];
+  const seoFieldKeys = ["seo", "seoTitle", "seoDescription", "ogImage"];
+  const genericContentFieldKeys = allFieldKeys.filter(
+    (fieldKey) => !seoFieldKeys.includes(fieldKey)
+  );
 
   if (!collection || !slug) return null;
 
@@ -89,8 +106,8 @@ export default function CollectionItemEditor() {
       status={status}
       previewUrl={previewUrl}
     >
-      <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
-        <div style={{ flex: "0 0 420px", overflow: "auto", borderRight: "1px solid var(--line)" }}>
+      <div className="editor-layout">
+        <div className="editor-form">
           <div className="container" style={{ padding: 24 }}>
             <div style={{ marginBottom: 16 }}>
               <Link className="button secondary" href={`/collections/${collection}`}>
@@ -99,7 +116,7 @@ export default function CollectionItemEditor() {
             </div>
 
             {error && (
-              <div style={{ padding: 12, marginBottom: 16, background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 8, fontSize: 13, color: "#b91c1c" }}>
+              <div style={{ padding: 12, marginBottom: 16, background: "#fef2f2", border: "1px solid var(--color-error)", borderRadius: "var(--radius)", fontSize: 13, color: "var(--color-error)" }}>
                 {error}
               </div>
             )}
@@ -108,121 +125,123 @@ export default function CollectionItemEditor() {
               <div className="card">Loading…</div>
             ) : doc ? (
               <Tabs.Root defaultValue="content">
-                <Tabs.List style={{ display: "flex", gap: 4, marginBottom: 16 }}>
-                  <Tabs.Trigger value="content" style={{ padding: "8px 16px", border: "1px solid var(--line)", background: "transparent", borderRadius: 6, cursor: "pointer" }}>
+                <Tabs.List className="editor-tabs">
+                  <Tabs.Trigger value="content" className="editor-tab">
                     Content
                   </Tabs.Trigger>
-                  <Tabs.Trigger value="seo" style={{ padding: "8px 16px", border: "1px solid var(--line)", background: "transparent", borderRadius: 6, cursor: "pointer" }}>
+                  <Tabs.Trigger value="seo" className="editor-tab">
                     SEO
                   </Tabs.Trigger>
-                  <Tabs.Trigger value="media" style={{ padding: "8px 16px", border: "1px solid var(--line)", background: "transparent", borderRadius: 6, cursor: "pointer" }}>
+                  <Tabs.Trigger value="media" className="editor-tab">
                     Media
                   </Tabs.Trigger>
                 </Tabs.List>
 
                 <Tabs.Content value="content">
-                  <div style={{ fontSize: 11, color: "var(--muted)", textTransform: "uppercase", marginBottom: 8, marginTop: 4 }}>Basic Info</div>
-                  {["title", "description"].map((fieldKey) =>
-                    allFieldKeys.includes(fieldKey) ? (
-                      <SchemaFormField
-                        key={fieldKey}
-                        fieldKey={fieldKey}
-                        fieldType={schema[fieldKey] ?? "string"}
-                        value={doc[fieldKey]}
-                        onChange={(v) => update(fieldKey, v)}
-                      />
-                    ) : null
+                  {isProductsCollection ? (
+                    <>
+                      <div style={{ fontSize: 11, color: "var(--muted)", textTransform: "uppercase", marginBottom: 8, marginTop: 4 }}>Product Content</div>
+                      {productContentFieldOrder
+                        .filter((fieldKey) => allFieldKeys.includes(fieldKey))
+                        .map((fieldKey) =>
+                          fieldKey === "cta" ? (
+                            <div className="card" style={{ marginBottom: 16 }} key="cta">
+                              <h4 style={{ margin: "0 0 8px" }}>CTA</h4>
+                              <label className="field-label" htmlFor="cta-label">Label</label>
+                              <input
+                                id="cta-label"
+                                className="input"
+                                value={(doc.cta as { label?: string })?.label ?? ""}
+                                onChange={(e) =>
+                                  update("cta", {
+                                    ...((doc.cta as object) || {}),
+                                    label: e.target.value,
+                                  })
+                                }
+                                style={{ marginBottom: 8 }}
+                              />
+                              <label className="field-label" htmlFor="cta-link">Link</label>
+                              <input
+                                id="cta-link"
+                                className="input"
+                                value={(doc.cta as { href?: string })?.href ?? ""}
+                                onChange={(e) =>
+                                  update("cta", {
+                                    ...((doc.cta as object) || {}),
+                                    href: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          ) : (
+                            <SchemaFormField
+                              key={fieldKey}
+                              fieldKey={fieldKey}
+                              fieldType={schema[fieldKey] ?? "string"}
+                              value={doc[fieldKey]}
+                              onChange={(v) => update(fieldKey, v)}
+                            />
+                          )
+                        )}
+                    </>
+                  ) : (
+                    <>
+                      <div style={{ fontSize: 11, color: "var(--muted)", textTransform: "uppercase", marginBottom: 8, marginTop: 4 }}>Collection Content</div>
+                      {genericContentFieldKeys.map((fieldKey) => (
+                        <SchemaFormField
+                          key={fieldKey}
+                          fieldKey={fieldKey}
+                          fieldType={schema[fieldKey] ?? "string"}
+                          value={doc[fieldKey]}
+                          onChange={(v) => update(fieldKey, v)}
+                        />
+                      ))}
+                    </>
                   )}
-                  <div style={{ fontSize: 11, color: "var(--muted)", textTransform: "uppercase", marginBottom: 8, marginTop: 20 }}>Overview</div>
-                  {["overview"].map((fieldKey) =>
-                    allFieldKeys.includes(fieldKey) ? (
-                      <SchemaFormField
-                        key={fieldKey}
-                        fieldKey={fieldKey}
-                        fieldType={schema[fieldKey] ?? "string"}
-                        value={doc[fieldKey]}
-                        onChange={(v) => update(fieldKey, v)}
-                      />
-                    ) : null
-                  )}
-                  <div style={{ fontSize: 11, color: "var(--muted)", textTransform: "uppercase", marginBottom: 8, marginTop: 20 }}>Specifications</div>
-                  {["specifications"].map((fieldKey) =>
-                    allFieldKeys.includes(fieldKey) ? (
-                      <SchemaFormField
-                        key={fieldKey}
-                        fieldKey={fieldKey}
-                        fieldType={schema[fieldKey] ?? "string"}
-                        value={doc[fieldKey]}
-                        onChange={(v) => update(fieldKey, v)}
-                      />
-                    ) : null
-                  )}
-                  <div style={{ fontSize: 11, color: "var(--muted)", textTransform: "uppercase", marginBottom: 8, marginTop: 20 }}>Origins & Certifications</div>
-                  {["origins", "certifications"].map((fieldKey) =>
-                    allFieldKeys.includes(fieldKey) ? (
-                      <SchemaFormField
-                        key={fieldKey}
-                        fieldKey={fieldKey}
-                        fieldType={schema[fieldKey] ?? "string"}
-                        value={doc[fieldKey]}
-                        onChange={(v) => update(fieldKey, v)}
-                      />
-                    ) : null
-                  )}
-                  <div style={{ fontSize: 11, color: "var(--muted)", textTransform: "uppercase", marginBottom: 8, marginTop: 20 }}>Call to Action</div>
-                  <div className="card" style={{ marginBottom: 16 }}>
-                    <h4 style={{ margin: "0 0 8px" }}>CTA</h4>
-                    <label style={{ display: "block", marginBottom: 4, fontSize: 12 }}>Label</label>
-                    <input
-                      className="input"
-                      value={(doc.cta as { label?: string })?.label ?? ""}
-                      onChange={(e) =>
-                        update("cta", {
-                          ...((doc.cta as object) || {}),
-                          label: e.target.value,
-                        })
-                      }
-                      style={{ marginBottom: 8 }}
-                    />
-                    <label style={{ display: "block", marginBottom: 4, fontSize: 12 }}>Link</label>
-                    <input
-                      className="input"
-                      value={(doc.cta as { href?: string })?.href ?? ""}
-                      onChange={(e) =>
-                        update("cta", {
-                          ...((doc.cta as object) || {}),
-                          href: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
                 </Tabs.Content>
 
                 <Tabs.Content value="seo">
-                  <div className="card" style={{ marginBottom: 16 }}>
-                    <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>Meta Title</label>
-                    <input
-                      className="input"
-                      value={(doc.seo as { title?: string })?.title ?? ""}
-                      onChange={(e) => update("seo", { ...((doc.seo as object) || {}), title: e.target.value })}
-                    />
-                  </div>
-                  <div className="card" style={{ marginBottom: 16 }}>
-                    <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>Meta Description</label>
-                    <textarea
-                      className="textarea"
-                      rows={3}
-                      value={(doc.seo as { description?: string })?.description ?? ""}
-                      onChange={(e) => update("seo", { ...((doc.seo as object) || {}), description: e.target.value })}
-                    />
-                  </div>
-                  <div className="card" style={{ marginBottom: 16 }}>
-                    <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>OG Image</label>
-                    <MediaPicker
-                      value={(doc.seo as { image?: string })?.image ?? ""}
-                      onChange={(v) => update("seo", { ...((doc.seo as object) || {}), image: v })}
-                    />
-                  </div>
+                  {allFieldKeys.includes("seo") ? (
+                    <>
+                      <div className="card" style={{ marginBottom: 16 }}>
+                        <label className="field-label" htmlFor="coll-seo-title">Meta Title</label>
+                        <input
+                          id="coll-seo-title"
+                          className="input"
+                          value={(doc.seo as { title?: string })?.title ?? ""}
+                          onChange={(e) => update("seo", { ...((doc.seo as object) || {}), title: e.target.value })}
+                        />
+                      </div>
+                      <div className="card" style={{ marginBottom: 16 }}>
+                        <label className="field-label" htmlFor="coll-seo-desc">Meta Description</label>
+                        <textarea
+                          id="coll-seo-desc"
+                          className="textarea"
+                          rows={3}
+                          value={(doc.seo as { description?: string })?.description ?? ""}
+                          onChange={(e) => update("seo", { ...((doc.seo as object) || {}), description: e.target.value })}
+                        />
+                      </div>
+                      <div className="card" style={{ marginBottom: 16 }}>
+                        <label className="field-label">OG Image</label>
+                        <MediaPicker
+                          value={(doc.seo as { image?: string })?.image ?? ""}
+                          onChange={(v) => update("seo", { ...((doc.seo as object) || {}), image: v })}
+                        />
+                      </div>
+                    </>
+                  ) : null}
+                  {["seoTitle", "seoDescription", "ogImage"]
+                    .filter((fieldKey) => allFieldKeys.includes(fieldKey))
+                    .map((fieldKey) => (
+                      <SchemaFormField
+                        key={fieldKey}
+                        fieldKey={fieldKey}
+                        fieldType={schema[fieldKey] ?? (fieldKey === "ogImage" ? "string(url)" : "string")}
+                        value={doc[fieldKey]}
+                        onChange={(v) => update(fieldKey, v)}
+                      />
+                    ))}
                 </Tabs.Content>
 
                 <Tabs.Content value="media">
@@ -237,7 +256,7 @@ export default function CollectionItemEditor() {
                         onChange={(v) => update(fieldKey, v)}
                       />
                     ))}
-                  {!allFieldKeys.some((k) => k.toLowerCase() === "heroimage") && (
+                  {isProductsCollection && !allFieldKeys.some((k) => k.toLowerCase() === "heroimage") && (
                     <SchemaFormField
                       fieldKey="heroImage"
                       fieldType="string(url)"
@@ -252,19 +271,43 @@ export default function CollectionItemEditor() {
             )}
 
             {doc && (
-              <button type="button" className="button" onClick={save} style={{ marginTop: 16, width: "100%" }}>
-                Save
-              </button>
+              <>
+                <div className="editor-save">
+                  <button
+                    type="button"
+                    className={`button${status === "saving" ? " button-saving" : ""}`}
+                    onClick={save}
+                    disabled={status === "saving" || status === "saved"}
+                    style={{ width: "100%" }}
+                  >
+                    {status === "saving" ? "Saving…" : "Save"}
+                  </button>
+                  <p className="editor-note">
+                    التغييرات تُنشر على الموقع فقط عند الضغط على Save. بعد الحفظ، انتظر ~15 ثانية لإعادة البناء.
+                  </p>
+                  {savedAt && <p className="save-meta">Last saved at {savedAt}</p>}
+                </div>
+                <button
+                  type="button"
+                  className="button secondary preview-toggle"
+                  onClick={() => setShowPreview((v) => !v)}
+                >
+                  {showPreview ? "Hide Preview" : "Show Preview"}
+                </button>
+              </>
             )}
           </div>
         </div>
 
-        <div style={{ flex: 1, minWidth: 0, padding: 16 }}>
-          <LivePreview
-            url={`${getAstroSiteUrl()}${previewUrl}`}
-            currentCollection={collection}
-            currentSlug={slug}
-          />
+        <div className="editor-preview" style={{ display: showPreview ? undefined : "none" }}>
+          <div className="preview-frame">
+            <div className="preview-header">Live Preview</div>
+            <LivePreview
+              url={`${getAstroSiteUrl()}${previewUrl}`}
+              currentCollection={collection}
+              currentSlug={slug}
+            />
+          </div>
         </div>
       </div>
     </DashboardShell>

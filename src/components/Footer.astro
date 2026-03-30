@@ -76,7 +76,8 @@ function buildHref(path: string) {
           <div>
             <h4 class="text-sm mb-1 text-white" style="font-family: Inter, sans-serif">Resources</h4>
             <ul class="space-y-1">
-              <li><a href="#" class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Newsroom</a></li>
+              <li><a href={buildHref("newsroom")} class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Newsroom</a></li>
+              <li><a href={buildHref("insights")} class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Insights</a></li>
               <li><a href={buildHref("contact")} class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Contact Us</a></li>
               <li><a href="#" class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">Global sites</a></li>
             </ul>
@@ -138,8 +139,13 @@ function buildHref(path: string) {
         <h4 class="text-sm mb-1 sm:mb-2 text-white" style="font-family: Inter, sans-serif">Resources</h4>
         <ul class="space-y-1 sm:space-y-2">
           <li>
-            <a href="#" class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">
+            <a href={buildHref("newsroom")} class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">
               Newsroom
+            </a>
+          </li>
+          <li>
+            <a href={buildHref("insights")} class="text-sm text-white/80 hover:text-white transition-colors" style="font-family: Inter, sans-serif">
+              Insights
             </a>
           </li>
           <li>

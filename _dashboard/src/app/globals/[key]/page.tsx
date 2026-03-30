@@ -20,6 +20,7 @@ export default function GlobalEditor() {
   const [value, setValue] = useState("");
   const [status, setStatus] = useState<"saved" | "unsaved" | "saving">("saved");
   const [error, setError] = useState("");
+  const [savedAt, setSavedAt] = useState<string>("");
 
   useEffect(() => {
     setKey(params?.key || "");
@@ -71,6 +72,7 @@ export default function GlobalEditor() {
     }
     setDoc(next);
     setStatus("saved");
+    setSavedAt(new Date().toLocaleTimeString());
     setError("");
   }, [doc, key, selected, value]);
 
@@ -89,10 +91,10 @@ export default function GlobalEditor() {
           </Link>
         </div>
 
-        {error ? <p className="muted" style={{ color: "#b91c1c", marginBottom: 16 }}>{error}</p> : null}
+        {error ? <p className="muted" style={{ color: "var(--color-error)", marginBottom: 16 }}>{error}</p> : null}
 
         {doc ? (
-          <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 24 }}>
+          <div className="globals-grid">
             <div className="card">
               <h3 style={{ marginTop: 0 }}>Slots</h3>
               <ul className="list">
@@ -105,7 +107,17 @@ export default function GlobalEditor() {
                         textAlign: "left",
                         borderColor: selected === k ? "var(--brand)" : "var(--line)",
                       }}
-                      onClick={() => setSelected(k)}
+                      onClick={() => {
+                        if (selected !== k) {
+                          const isDirty = value !== (doc?.slots[selected]?.value ?? "");
+                          if (isDirty && !window.confirm("You have unsaved changes to this slot. Switch anyway?")) {
+                            return;
+                          }
+                          setStatus("saved");
+                          setSavedAt("");
+                        }
+                        setSelected(k);
+                      }}
                     >
                       {k === "header-logo" ? "الشعار / Logo (560×184px)" : k === "footer-logo" ? "شعار الفوتر / Footer Logo (560×184px)" : k.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
                     </button>
@@ -146,10 +158,15 @@ export default function GlobalEditor() {
                       }}
                     />
                   )}
-                  <div className="row" style={{ marginTop: 12 }}>
-                    <button className="button" onClick={save}>
-                      Save
+                  <div className="editor-save">
+                    <button
+                      className={`button${status === "saving" ? " button-saving" : ""}`}
+                      onClick={save}
+                      disabled={status === "saving" || status === "saved"}
+                    >
+                      {status === "saving" ? "Saving…" : "Save"}
                     </button>
+                    {savedAt && <p className="save-meta">Last saved at {savedAt}</p>}
                   </div>
                 </>
               ) : (

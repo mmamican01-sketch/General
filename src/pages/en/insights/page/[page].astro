@@ -1,0 +1,112 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import InsightCard from "../../../../components/InsightCard.astro";
+import { loadAllInsights } from "../../../../lib/contentStore";
+import { withBase } from "../../../../lib/url";
+
+export const INSIGHTS_PER_PAGE = 6;
+
+export function getStaticPaths() {
+  const all = loadAllInsights();
+  const totalPages = Math.max(1, Math.ceil(all.length / INSIGHTS_PER_PAGE));
+  // Page 1 is served by insights.astro; generate page 2 onwards
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => ({
+    params: { page: String(i + 2) },
+  }));
+}
+
+const { page } = Astro.params;
+const pageNum = parseInt(page, 10);
+const allInsights = loadAllInsights();
+const totalPages = Math.max(1, Math.ceil(allInsights.length / INSIGHTS_PER_PAGE));
+const insights = allInsights.slice(
+  (pageNum - 1) * INSIGHTS_PER_PAGE,
+  pageNum * INSIGHTS_PER_PAGE
+);
+
+const pageTitle = `Market Insights — Page ${pageNum} | ALFArhan`;
+const pageDescription =
+  "Institutional market insights from AFGT covering commodity trends, trade structures, and global market signals.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} locale="en" currentPath="insights">
+  <div class="w-full">
+    <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <div class="flex items-center gap-3 mb-4">
+          <a
+            href={withBase("/en/insights")}
+            class="text-sm text-[#5c5c5c] hover:text-[#2c2c2c] transition-colors"
+            style="font-family: Inter, sans-serif"
+          >
+            ← All Insights
+          </a>
+        </div>
+        <h1
+          class="text-3xl sm:text-4xl lg:text-6xl mb-4 sm:mb-6 text-[#2c2c2c]"
+          style="font-family: Cormorant Garamond, serif; font-weight: 400;"
+        >
+          Market Insights
+        </h1>
+        <p class="text-lg text-[#5c5c5c] max-w-3xl" style="font-family: Inter, sans-serif">
+          Strategic commentary and institutional perspectives across global commodity markets.
+        </p>
+      </div>
+    </section>
+
+    <section
+      class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24"
+    >
+      <div class="max-w-[1140px] mx-auto px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {insights.map((item) => (
+            <InsightCard
+              title={item.title}
+              slug={item.slug}
+              shortDescription={item.shortDescription}
+              coverImage={item.coverImage}
+              publishDate={item.publishDate}
+              category={item.category}
+            />
+          ))}
+        </div>
+
+        <!-- Pagination nav -->
+        <nav
+          aria-label="Pagination"
+          class="flex justify-center items-center gap-8 mt-12 pt-8 border-t border-[#e7e7e7]"
+          style="font-family: Inter, sans-serif"
+        >
+          {pageNum > 2 ? (
+            <a
+              href={withBase(`/en/insights/page/${pageNum - 1}`)}
+              class="text-sm text-[#2c2c2c] hover:underline transition-colors"
+            >
+              ← Previous
+            </a>
+          ) : pageNum === 2 ? (
+            <a
+              href={withBase("/en/insights")}
+              class="text-sm text-[#2c2c2c] hover:underline transition-colors"
+            >
+              ← Previous
+            </a>
+          ) : null}
+
+          <span class="text-sm text-[#5c5c5c]">
+            Page {pageNum} of {totalPages}
+          </span>
+
+          {pageNum < totalPages && (
+            <a
+              href={withBase(`/en/insights/page/${pageNum + 1}`)}
+              class="text-sm text-[#2c2c2c] hover:underline transition-colors"
+            >
+              Next →
+            </a>
+          )}
+        </nav>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

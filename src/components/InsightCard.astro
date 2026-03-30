@@ -1,0 +1,50 @@
+---
+import MediaFrame from "./MediaFrame.astro";
+import { withBase } from "../lib/url";
+
+interface Props {
+  title?: string;
+  slug: string;
+  shortDescription?: string;
+  coverImage?: string;
+  publishDate?: string;
+  category?: string;
+}
+
+const { title, slug, shortDescription, coverImage, publishDate, category } = Astro.props;
+
+function formatDate(dateValue?: string): string {
+  if (!dateValue) return "Date pending";
+  const parsed = new Date(dateValue);
+  if (Number.isNaN(parsed.getTime())) return "Date pending";
+  return parsed.toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+<a
+  href={withBase(`/en/insights/${slug}`)}
+  class="group block section-white p-5 sm:p-6 hover:shadow-sm transition-shadow"
+>
+  <MediaFrame
+    src={coverImage || "/assets/figma/media-default.svg"}
+    alt={title || "Insight cover image"}
+    variant="card"
+    marginBottom="mb-4"
+    imgClass="group-hover:opacity-90 transition-opacity"
+  />
+  <div class="flex items-center gap-3 text-xs text-[#5c5c5c] mb-3" style="font-family: Inter, sans-serif">
+    <span>{formatDate(publishDate)}</span>
+    <span aria-hidden="true">•</span>
+    <span>{category || "Trade Insights"}</span>
+  </div>
+  <h2 class="text-2xl mb-3 text-[#2c2c2c] group-hover:underline" style="font-family: Cormorant Garamond, serif; font-weight: 400;">
+    {title || "Untitled Insight"}
+  </h2>
+  <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+    {shortDescription || "No summary is available for this insight yet."}
+  </p>
+</a>

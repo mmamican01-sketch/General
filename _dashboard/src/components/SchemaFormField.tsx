@@ -12,6 +12,8 @@ type SchemaFormFieldProps = {
 
 function parseFieldType(typeStr: string): { base: string; hint?: string } {
   const lower = (typeStr || "string").toLowerCase();
+  if (lower.includes("boolean")) return { base: "boolean" };
+  if (lower.includes("date")) return { base: "date" };
   if (lower.includes("array<")) {
     if (lower.includes("label") && lower.includes("value")) return { base: "specs", hint: "label,value" };
     return { base: "array-string", hint: "string" };
@@ -24,14 +26,50 @@ function parseFieldType(typeStr: string): { base: string; hint?: string } {
 export function SchemaFormField({ fieldKey, fieldType, value, onChange, disabled }: SchemaFormFieldProps) {
   const { base } = parseFieldType(fieldType);
   const label = fieldKey.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
+  const inputId = `field-${fieldKey}`;
 
   if (base === "image") {
     return (
       <div className="card" style={{ marginBottom: 16 }}>
-        <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>{label}</label>
+        <label className="field-label" htmlFor={inputId}>{label}</label>
         <MediaPicker
           value={typeof value === "string" ? value : ""}
           onChange={(v) => onChange(v)}
+        />
+      </div>
+    );
+  }
+
+  if (base === "boolean") {
+    return (
+      <div className="card" style={{ marginBottom: 16 }}>
+        <label className="field-label" htmlFor={inputId} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <input
+            id={inputId}
+            type="checkbox"
+            checked={Boolean(value)}
+            onChange={(e) => onChange(e.target.checked)}
+            disabled={disabled}
+          />
+          {label}
+        </label>
+      </div>
+    );
+  }
+
+  if (base === "date") {
+    const stringValue = typeof value === "string" ? value : "";
+    const normalized = stringValue.includes("T") ? stringValue.split("T")[0] : stringValue;
+    return (
+      <div className="card" style={{ marginBottom: 16 }}>
+        <label className="field-label" htmlFor={inputId}>{label}</label>
+        <input
+          id={inputId}
+          type="date"
+          className="input"
+          value={normalized}
+          onChange={(e) => onChange(e.target.value)}
+          disabled={disabled}
         />
       </div>
     );
@@ -48,6 +86,7 @@ export function SchemaFormField({ fieldKey, fieldType, value, onChange, disabled
             <input
               className="input"
               placeholder="Label"
+              aria-label={`${label} item ${i + 1} label`}
               value={s?.label ?? ""}
               onChange={(e) => {
                 const next = [...specs];
@@ -60,6 +99,7 @@ export function SchemaFormField({ fieldKey, fieldType, value, onChange, disabled
             <input
               className="input"
               placeholder="Value"
+              aria-label={`${label} item ${i + 1} value`}
               value={s?.value ?? ""}
               onChange={(e) => {
                 const next = [...specs];
@@ -104,6 +144,7 @@ export function SchemaFormField({ fieldKey, fieldType, value, onChange, disabled
           <div key={i} className="row" style={{ marginBottom: 8 }}>
             <input
               className="input"
+              aria-label={`${label} item ${i + 1}`}
               value={s}
               onChange={(e) => {
                 const next = [...strings];
@@ -138,8 +179,9 @@ export function SchemaFormField({ fieldKey, fieldType, value, onChange, disabled
   if (base === "textarea") {
     return (
       <div className="card" style={{ marginBottom: 16 }}>
-        <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>{label}</label>
+        <label className="field-label" htmlFor={inputId}>{label}</label>
         <textarea
+          id={inputId}
           className="textarea"
           rows={4}
           value={typeof value === "string" ? value : ""}
@@ -152,8 +194,9 @@ export function SchemaFormField({ fieldKey, fieldType, value, onChange, disabled
 
   return (
     <div className="card" style={{ marginBottom: 16 }}>
-      <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>{label}</label>
+      <label className="field-label" htmlFor={inputId}>{label}</label>
       <input
+        id={inputId}
         className="input"
         value={typeof value === "string" ? value : ""}
         onChange={(e) => onChange(e.target.value)}

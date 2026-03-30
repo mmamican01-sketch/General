@@ -1,0 +1,487 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import MediaFrame from "../../../components/MediaFrame.astro";
+import { loadAllInsights } from "../../../lib/contentStore";
+import { withBase } from "../../../lib/url";
+import { toAbsoluteAssetUrl } from "../../../lib/seo";
+
+export function getStaticPaths() {
+  const insights = loadAllInsights();
+  return insights.map((item) => ({
+    params: { slug: item.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const allInsights = loadAllInsights();
+const article = allInsights.find((item) => item.slug === slug);
+
+/* ─── Formatting helpers ───────────────────────────────────────────────── */
+
+function formatDate(dateValue?: string): string {
+  if (!dateValue) return "Date pending";
+  const parsed = new Date(dateValue);
+  if (Number.isNaN(parsed.getTime())) return "Date pending";
+  return parsed.toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+/* ─── Table of Contents extraction ─────────────────────────────────────── */
+
+type TocItem = { level: 2 | 3; text: string; id: string };
+
+function slugifyHeading(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
+}
+
+function extractToc(markdownText?: string): TocItem[] {
+  if (!markdownText) return [];
+  const toc: TocItem[] = [];
+  for (const rawLine of markdownText.split(/\r?\n/)) {
+    const line = rawLine.trim();
+    if (line.startsWith("### ")) {
+      const text = line.slice(4);
+      toc.push({ level: 3, text, id: slugifyHeading(text) });
+    } else if (line.startsWith("## ")) {
+      const text = line.slice(3);
+      toc.push({ level: 2, text, id: slugifyHeading(text) });
+    } else if (line.startsWith("# ")) {
+      const text = line.slice(2);
+      toc.push({ level: 2, text, id: slugifyHeading(text) });
+    }
+  }
+  return toc;
+}
+
+/* ─── Markdown → HTML (with heading IDs) ───────────────────────────────── */
+
+function markdownToHtml(markdownText?: string): string {
+  if (!markdownText) return "<p>No article content is available.</p>";
+
+  const lines = markdownText.split(/\r?\n/);
+  const output: string[] = [];
+  let inList = false;
+
+  const closeList = () => {
+    if (inList) {
+      output.push("</ul>");
+      inList = false;
+    }
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) {
+      closeList();
+      continue;
+    }
+
+    if (line.startsWith("### ")) {
+      closeList();
+      const text = line.slice(4);
+      const id = slugifyHeading(text);
+      output.push(`<h3 id="${escapeHtml(id)}">${escapeHtml(text)}</h3>`);
+      continue;
+    }
+    if (line.startsWith("## ")) {
+      closeList();
+      const text = line.slice(3);
+      const id = slugifyHeading(text);
+      output.push(`<h2 id="${escapeHtml(id)}">${escapeHtml(text)}</h2>`);
+      continue;
+    }
+    if (line.startsWith("# ")) {
+      closeList();
+      const text = line.slice(2);
+      const id = slugifyHeading(text);
+      output.push(`<h2 id="${escapeHtml(id)}">${escapeHtml(text)}</h2>`);
+      continue;
+    }
+    if (line.startsWith("- ") || line.startsWith("* ")) {
+      if (!inList) {
+        output.push("<ul>");
+        inList = true;
+      }
+      output.push(`<li>${escapeHtml(line.slice(2))}</li>`);
+      continue;
+    }
+
+    closeList();
+    output.push(`<p>${escapeHtml(line)}</p>`);
+  }
+
+  closeList();
+  return output.join("\n");
+}
+
+/* ─── Build page data ───────────────────────────────────────────────────── */
+
+const toc = extractToc(article?.body);
+const hasToc = toc.length >= 2;
+
+const relatedInsights = article
+  ? allInsights
+      .filter((item) => item.slug !== article.slug)
+      .sort((a, b) => {
+        const scoreA = a.category === article.category ? 1 : 0;
+        const scoreB = b.category === article.category ? 1 : 0;
+        if (scoreA !== scoreB) return scoreB - scoreA;
+        const tsA = Date.parse(a.publishDate || "");
+        const tsB = Date.parse(b.publishDate || "");
+        return (Number.isNaN(tsB) ? 0 : tsB) - (Number.isNaN(tsA) ? 0 : tsA);
+      })
+      .slice(0, 3)
+  : [];
+
+const seoTitle = article?.seoTitle || article?.title || "Market Insight | ALFArhan";
+const seoDescription =
+  article?.seoDescription || article?.shortDescription || "Institutional market commentary from AFGT.";
+const seoImage = article?.ogImage || article?.coverImage || "";
+
+const articleJsonLd = article
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: article.title || "Market Insight",
+      description: seoDescription,
+      image: seoImage ? toAbsoluteAssetUrl(Astro.site, withBase(seoImage)) : undefined,
+      datePublished: article.publishDate || undefined,
+      author: {
+        "@type": "Organization",
+        name: article.author || "AFGT Market Desk",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "AL Farhan General Trading Co",
+      },
+    }
+  : null;
+---
+
+{
+  !article ? (
+    <BaseLayout
+      title="Insight not found | Market Insights — ALFArhan"
+      description="The requested insight is not available."
+      locale="en"
+      currentPath={`insights/${slug ?? ""}`}
+    >
+      <div class="w-full">
+        <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24">
+          <div class="max-w-[1140px] mx-auto px-8">
+            <h1
+              class="text-3xl sm:text-4xl lg:text-6xl mb-4 sm:mb-6 text-[#2c2c2c]"
+              style="font-family: Cormorant Garamond, serif; font-weight: 400;"
+            >
+              Insight not found
+            </h1>
+            <a
+              href={withBase("/en/insights")}
+              class="text-sm text-[#2c2c2c] link-accent hover:text-[#000] transition-colors"
+              style="font-family: Inter, sans-serif"
+            >
+              Back to Market Insights
+            </a>
+          </div>
+        </section>
+      </div>
+    </BaseLayout>
+  ) : (
+    <BaseLayout
+      title={seoTitle}
+      description={seoDescription}
+      ogImage={seoImage}
+      ogType="article"
+      locale="en"
+      currentPath={`insights/${article.slug}`}
+    >
+      {/* JSON-LD + Reading progress styles injected into <head> */}
+      {articleJsonLd && (
+        <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
+      )}
+      <style slot="head">
+        #reading-progress {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 0%;
+          height: 3px;
+          background: #2c2c2c;
+          z-index: 200;
+          transition: width 0.08s linear;
+          pointer-events: none;
+        }
+      </style>
+
+      <div class="w-full">
+        {/* Reading progress bar */}
+        <div id="reading-progress" role="progressbar" aria-hidden="true"></div>
+
+        {/* Article header */}
+        <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24">
+          <div class="max-w-[1140px] mx-auto px-8">
+            <a
+              href={withBase("/en/insights")}
+              class="text-sm text-[#5c5c5c] hover:text-[#2c2c2c] transition-colors mb-6 inline-block"
+              style="font-family: Inter, sans-serif"
+            >
+              ← Back to Market Insights
+            </a>
+
+            <div
+              class="flex flex-wrap items-center gap-3 text-xs text-[#5c5c5c] mb-5"
+              style="font-family: Inter, sans-serif"
+            >
+              <span>{formatDate(article.publishDate)}</span>
+              <span aria-hidden="true">•</span>
+              <span>{article.author || "AFGT Market Desk"}</span>
+              {article.readingTime ? (
+                <>
+                  <span aria-hidden="true">•</span>
+                  <span>{article.readingTime}</span>
+                </>
+              ) : null}
+            </div>
+
+            <h1
+              class="text-3xl sm:text-4xl lg:text-6xl mb-6 text-[#2c2c2c]"
+              style="font-family: Cormorant Garamond, serif; font-weight: 400;"
+            >
+              {article.title || "Untitled Insight"}
+            </h1>
+
+            <div class="flex flex-wrap items-center gap-2 text-xs" style="font-family: Inter, sans-serif">
+              <a
+                href={withBase(`/en/insights/category/${article.category?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") ?? ""}`)}
+                class="inline-flex bg-[#e7e7e7] text-[#2c2c2c] px-3 py-1 rounded-full hover:bg-[#d4d4d4] transition-colors"
+              >
+                {article.category || "Trade Insights"}
+              </a>
+              {(article.tags || []).map((tag) => (
+                <a
+                  href={withBase(`/en/insights/tag/${tag.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`)}
+                  class="inline-flex bg-[#f3f3f3] text-[#5c5c5c] px-3 py-1 rounded-full hover:bg-[#e7e7e7] transition-colors"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Cover image */}
+        <section class="w-full bg-[var(--bg-section)] pt-10 pb-10 sm:pt-14 sm:pb-14 lg:pt-20 lg:pb-20">
+          <div class="max-w-[1140px] mx-auto px-8">
+            <MediaFrame
+              src={article.coverImage || "/assets/figma/media-default.svg"}
+              alt={article.title || "Insight cover image"}
+              variant="hero"
+              loading="eager"
+            />
+          </div>
+        </section>
+
+        {/* Article body + ToC sidebar */}
+        <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-20 lg:pb-20">
+          <div class="max-w-[1140px] mx-auto px-8">
+            {hasToc ? (
+              <div class="lg:flex lg:gap-14 lg:items-start">
+                {/* Body */}
+                <div class="flex-1 min-w-0">
+                  <div
+                    class="insights-body text-[#2c2c2c] leading-relaxed"
+                    style="font-family: Inter, sans-serif"
+                  >
+                    <Fragment set:html={markdownToHtml(article.body)} />
+                  </div>
+                </div>
+
+                {/* ToC sidebar — desktop only */}
+                <aside class="hidden lg:block w-52 shrink-0" aria-label="Article contents">
+                  <div class="sticky top-28">
+                    <p
+                      class="text-xs uppercase tracking-widest text-[#5c5c5c] mb-3 pb-2 border-b border-[#e7e7e7]"
+                      style="font-family: Inter, sans-serif"
+                    >
+                      Contents
+                    </p>
+                    <nav class="flex flex-col gap-2">
+                      {toc.map((item) => (
+                        <a
+                          href={`#${item.id}`}
+                          class={`toc-link block text-sm text-[#5c5c5c] hover:text-[#2c2c2c] transition-colors leading-snug${item.level === 3 ? " pl-3" : ""}`}
+                          style="font-family: Inter, sans-serif"
+                        >
+                          {item.text}
+                        </a>
+                      ))}
+                    </nav>
+                  </div>
+                </aside>
+              </div>
+            ) : (
+              <div class="max-w-[900px] mx-auto">
+                <div
+                  class="insights-body text-[#2c2c2c] leading-relaxed"
+                  style="font-family: Inter, sans-serif"
+                >
+                  <Fragment set:html={markdownToHtml(article.body)} />
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* CTA */}
+        {article.ctaLabel && article.ctaLink ? (
+          <section class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16">
+            <div class="max-w-[900px] mx-auto px-8 text-center">
+              <a
+                href={withBase(article.ctaLink)}
+                class="inline-block btn-primary px-8 py-3"
+                style="font-family: Inter, sans-serif"
+              >
+                {article.ctaLabel}
+              </a>
+            </div>
+          </section>
+        ) : (
+          <section class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16">
+            <div class="max-w-[900px] mx-auto px-8 text-center">
+              <a
+                href={withBase("/en/contact")}
+                class="text-sm text-[#5c5c5c] hover:text-[#2c2c2c] transition-colors"
+                style="font-family: Inter, sans-serif"
+              >
+                For institutional inquiries, contact AFGT
+              </a>
+            </div>
+          </section>
+        )}
+
+        {/* Related insights */}
+        {relatedInsights.length > 0 ? (
+          <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-20 lg:pb-20">
+            <div class="max-w-[1140px] mx-auto px-8">
+              <h2
+                class="text-2xl sm:text-3xl lg:text-4xl mb-8 text-[#2c2c2c]"
+                style="font-family: Cormorant Garamond, serif; font-weight: 400;"
+              >
+                Related Insights
+              </h2>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {relatedInsights.map((item) => (
+                  <a
+                    href={withBase(`/en/insights/${item.slug}`)}
+                    class="group block bg-[var(--bg-section)] p-5"
+                  >
+                    <h3
+                      class="text-xl mb-3 text-[#2c2c2c] group-hover:underline"
+                      style="font-family: Cormorant Garamond, serif; font-weight: 400;"
+                    >
+                      {item.title || "Untitled Insight"}
+                    </h3>
+                    <p class="text-sm text-[#5c5c5c] mb-3" style="font-family: Inter, sans-serif">
+                      {formatDate(item.publishDate)}
+                    </p>
+                    <p class="text-sm text-[#5c5c5c] leading-relaxed" style="font-family: Inter, sans-serif">
+                      {item.shortDescription || "Read the full market insight."}
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+      </div>
+
+      {/* Reading progress script */}
+      <script>
+        (function () {
+          const bar = document.getElementById("reading-progress");
+          if (!bar) return;
+          const main = document.querySelector("main") as HTMLElement | null;
+          function update() {
+            const scrollTop = window.scrollY;
+            const docHeight = (main ? main.scrollHeight : document.documentElement.scrollHeight) - window.innerHeight;
+            const pct = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+            (bar as HTMLElement).style.width = pct + "%";
+          }
+          window.addEventListener("scroll", update, { passive: true });
+          update();
+        })();
+      </script>
+
+      {/* ToC active-state tracker */}
+      {hasToc && (
+        <script>
+          (function () {
+            const links = document.querySelectorAll<HTMLAnchorElement>(".toc-link");
+            if (!links.length) return;
+            const headings = document.querySelectorAll<HTMLElement>(".insights-body h2, .insights-body h3");
+            const observer = new IntersectionObserver(
+              (entries) => {
+                for (const entry of entries) {
+                  if (entry.isIntersecting) {
+                    links.forEach((l) => {
+                      l.style.color = "";
+                      l.style.fontWeight = "";
+                    });
+                    const active = document.querySelector<HTMLAnchorElement>(
+                      `.toc-link[href="#${entry.target.id}"]`
+                    );
+                    if (active) {
+                      active.style.color = "#2c2c2c";
+                      active.style.fontWeight = "500";
+                    }
+                  }
+                }
+              },
+              { rootMargin: "-15% 0px -70% 0px" }
+            );
+            headings.forEach((h) => observer.observe(h));
+          })();
+        </script>
+      )}
+    </BaseLayout>
+  )
+}
+
+<style>
+  .insights-body :global(h2) {
+    font-family: Cormorant Garamond, serif;
+    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    font-weight: 400;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .insights-body :global(h3) {
+    font-family: Cormorant Garamond, serif;
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+    font-weight: 400;
+    margin-top: 1.25rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .insights-body :global(p),
+  .insights-body :global(ul),
+  .insights-body :global(ol) {
+    margin-bottom: 1rem;
+  }
+</style>

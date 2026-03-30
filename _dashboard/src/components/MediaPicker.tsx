@@ -118,6 +118,7 @@ export function MediaPicker({
             }}
           />
           <Dialog.Content
+            className="media-picker-dialog"
             style={{
               position: "fixed",
               top: "50%",
@@ -126,7 +127,6 @@ export function MediaPicker({
               background: "var(--card)",
               borderRadius: 12,
               padding: 24,
-              maxWidth: 560,
               maxHeight: "80vh",
               overflow: "auto",
               zIndex: 9999,
@@ -142,6 +142,7 @@ export function MediaPicker({
               <p className="muted">لا توجد صور. استخدم "Upload image" لرفع صورة.</p>
             ) : (
             <div
+              className="media-picker-grid"
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(4, 1fr)",

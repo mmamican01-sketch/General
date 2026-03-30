@@ -26,13 +26,22 @@ export default function CollectionsPage() {
   return (
     <DashboardShell breadcrumbs={["Collections"]}>
       <div className="container">
-        <h1 className="title">Collections</h1>
-        <p className="muted" style={{ marginBottom: 24 }}>
-          Dynamic content from <code>src/content-store/collections/</code>
-        </p>
+        <div className="page-header">
+          <div>
+            <h1 className="title" style={{ margin: 0 }}>Collections</h1>
+            <p className="muted" style={{ margin: "4px 0 0", fontSize: 13 }}>
+              Dynamic content from <code>src/content-store/collections/</code>
+            </p>
+          </div>
+        </div>
 
         {loading ? (
           <div className="card">Loading…</div>
+        ) : collections.length === 0 ? (
+          <div className="card empty-state">
+            <h3>No collections found</h3>
+            <p>Add a collection folder to <code>src/content-store/collections/</code> to get started.</p>
+          </div>
         ) : (
           <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))" }}>
             {collections.map((c) => (

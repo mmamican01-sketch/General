@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import InsightCard from "../../../../components/InsightCard.astro";
+import {
+  getAllTags,
+  loadInsightsByTag,
+} from "../../../../lib/contentStore";
+import { withBase } from "../../../../lib/url";
+
+export function getStaticPaths() {
+  const tags = getAllTags();
+  return tags.map(({ slug }) => ({ params: { tag: slug } }));
+}
+
+const { tag } = Astro.params;
+const tags = getAllTags();
+const meta = tags.find((t) => t.slug === tag);
+const label = meta?.label ?? tag;
+const insights = loadInsightsByTag(tag);
+
+const pageTitle = `${label} | Market Insights — ALFArhan`;
+const pageDescription = `Institutional insights tagged "${label}" from AFGT covering commodity markets and global trade intelligence.`;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  ogType="website"
+  locale="en"
+  currentPath={`insights/tag/${tag}`}
+>
+  <div class="w-full">
+    <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <a
+          href={withBase("/en/insights")}
+          class="text-sm text-[#5c5c5c] hover:text-[#2c2c2c] transition-colors mb-4 inline-block"
+          style="font-family: Inter, sans-serif"
+        >
+          ← All Insights
+        </a>
+        <div class="flex items-center gap-3 mb-3">
+          <span
+            class="text-xs uppercase tracking-widest text-[#5c5c5c]"
+            style="font-family: Inter, sans-serif"
+          >
+            Tag
+          </span>
+        </div>
+        <h1
+          class="text-3xl sm:text-4xl lg:text-6xl mb-4 sm:mb-6 text-[#2c2c2c]"
+          style="font-family: Cormorant Garamond, serif; font-weight: 400;"
+        >
+          {label}
+        </h1>
+        <p class="text-lg text-[#5c5c5c] max-w-3xl" style="font-family: Inter, sans-serif">
+          {insights.length} insight{insights.length === 1 ? "" : "s"} tagged with this topic.
+        </p>
+      </div>
+    </section>
+
+    <section
+      class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24"
+    >
+      <div class="max-w-[1140px] mx-auto px-8">
+        {insights.length === 0 ? (
+          <div class="section-white p-8 sm:p-10 text-center">
+            <p class="text-base text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+              No published insights with this tag yet.
+            </p>
+          </div>
+        ) : (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+            {insights.map((item) => (
+              <InsightCard
+                title={item.title}
+                slug={item.slug}
+                shortDescription={item.shortDescription}
+                coverImage={item.coverImage}
+                publishDate={item.publishDate}
+                category={item.category}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

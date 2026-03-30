@@ -111,8 +111,28 @@ export type ProductDoc = {
   cta?: { label?: string; href?: string };
 };
 
+export type InsightDoc = {
+  title?: string;
+  slug: string;
+  shortDescription?: string;
+  coverImage?: string;
+  body?: string;
+  publishDate?: string;
+  author?: string;
+  readingTime?: string;
+  category?: string;
+  tags?: string[];
+  seoTitle?: string;
+  seoDescription?: string;
+  ogImage?: string;
+  ctaLabel?: string;
+  ctaLink?: string;
+  isPublished?: boolean;
+};
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PRODUCTS_DIR = path.join(process.cwd(), "src", "content-store", "collections", "products");
+const INSIGHTS_DIR = path.join(process.cwd(), "src", "content-store", "collections", "insights");
 
 export function loadProduct(slug: string): ProductDoc | null {
   try {
@@ -137,4 +157,101 @@ export function loadAllProducts(): ProductDoc[] {
   return slugs
     .map((slug) => loadProduct(slug))
     .filter((p): p is ProductDoc => p !== null);
+}
+
+function parseDateOrZero(dateValue: string | undefined): number {
+  if (!dateValue) return 0;
+  const ts = Date.parse(dateValue);
+  return Number.isNaN(ts) ? 0 : ts;
+}
+
+export function loadInsight(slug: string): InsightDoc | null {
+  try {
+    const filePath = path.join(INSIGHTS_DIR, `${slug}.json`);
+    const raw = fs.readFileSync(filePath, "utf8");
+    return JSON.parse(raw) as InsightDoc;
+  } catch {
+    return null;
+  }
+}
+
+export function slugifyLabel(label: string): string {
+  return label
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
+}
+
+export function loadAllInsights(options?: { includeUnpublished?: boolean }): InsightDoc[] {
+  const includeUnpublished = options?.includeUnpublished ?? false;
+  let slugs: string[] = [];
+  try {
+    const indexPath = path.join(INSIGHTS_DIR, "index.json");
+    const indexRaw = fs.readFileSync(indexPath, "utf8");
+    const index = JSON.parse(indexRaw) as { order?: string[] };
+    slugs = index.order ?? [];
+  } catch {
+    try {
+      const fileNames = fs.readdirSync(INSIGHTS_DIR);
+      slugs = fileNames
+        .filter((fileName) => fileName.endsWith(".json") && fileName !== "index.json")
+        .map((fileName) => fileName.replace(/\.json$/, ""));
+    } catch {
+      slugs = [];
+    }
+  }
+
+  const insights = slugs
+    .map((slug) => loadInsight(slug))
+    .filter((item): item is InsightDoc => item !== null);
+
+  const filtered = includeUnpublished ? insights : insights.filter((item) => item.isPublished === true);
+  return filtered.sort((a, b) => parseDateOrZero(b.publishDate) - parseDateOrZero(a.publishDate));
+}
+
+export function loadInsightsByCategory(categorySlug: string): InsightDoc[] {
+  return loadAllInsights().filter(
+    (item) => slugifyLabel(item.category ?? "") === categorySlug
+  );
+}
+
+export function loadInsightsByTag(tagSlug: string): InsightDoc[] {
+  return loadAllInsights().filter((item) =>
+    (item.tags ?? []).some((tag) => slugifyLabel(tag) === tagSlug)
+  );
+}
+
+export function getAllCategories(): Array<{ slug: string; label: string; count: number }> {
+  const all = loadAllInsights();
+  const map = new Map<string, { label: string; count: number }>();
+  for (const item of all) {
+    if (item.category) {
+      const s = slugifyLabel(item.category);
+      const existing = map.get(s);
+      if (existing) {
+        existing.count++;
+      } else {
+        map.set(s, { label: item.category, count: 1 });
+      }
+    }
+  }
+  return Array.from(map.entries()).map(([slug, { label, count }]) => ({ slug, label, count }));
+}
+
+export function getAllTags(): Array<{ slug: string; label: string; count: number }> {
+  const all = loadAllInsights();
+  const map = new Map<string, { label: string; count: number }>();
+  for (const item of all) {
+    for (const tag of item.tags ?? []) {
+      const s = slugifyLabel(tag);
+      const existing = map.get(s);
+      if (existing) {
+        existing.count++;
+      } else {
+        map.set(s, { label: tag, count: 1 });
+      }
+    }
+  }
+  return Array.from(map.entries()).map(([slug, { label, count }]) => ({ slug, label, count }));
 }

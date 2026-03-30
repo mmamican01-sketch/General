@@ -20,6 +20,21 @@
         "name": "productsData",
         "keyedBy": "slug"
       }
+    },
+    {
+      "route": "/en/insights/:slug",
+      "file": "src/pages/en/insights/[slug].astro",
+      "getStaticPaths": true,
+      "slugSource": {
+        "type": "collection-files",
+        "collection": "insights",
+        "filter": "isPublished=true"
+      },
+      "recordSource": {
+        "type": "collection-json",
+        "name": "insights",
+        "keyedBy": "slug"
+      }
     }
   ],
   "collections": {
@@ -78,6 +93,31 @@
         "ctaLink": "slot:link",
         "ctaText": "slot:text"
       }
+    },
+    "Insight": {
+      "sourceFiles": [
+        "src/pages/en/insights.astro",
+        "src/pages/en/insights/[slug].astro"
+      ],
+      "primaryKey": "slug",
+      "fields": {
+        "title": "string",
+        "slug": "string",
+        "shortDescription": "string",
+        "coverImage": "string(url)",
+        "body": "richtext(markdown)",
+        "publishDate": "date",
+        "author": "string",
+        "readingTime": "string (optional)",
+        "category": "enum(Market Analysis|Commodity Guide|Trade Insights|Industry News)",
+        "tags": "array<string>",
+        "seoTitle": "string",
+        "seoDescription": "string",
+        "ogImage": "string(url, optional)",
+        "ctaLabel": "string (optional)",
+        "ctaLink": "string (optional)",
+        "isPublished": "boolean"
+      }
     }
   },
   "relations": [
@@ -116,6 +156,18 @@
       "file": "src/pages/en/commodities/{barley|sugar|sunflower-oil|wheat}.astro",
       "usesCollection": "Commodity",
       "binding": "static page templates with content slots"
+    },
+    {
+      "page": "/en/insights",
+      "file": "src/pages/en/insights.astro",
+      "usesCollection": "Insight",
+      "binding": "loadAllInsights() listing cards"
+    },
+    {
+      "page": "/en/insights/:slug",
+      "file": "src/pages/en/insights/[slug].astro",
+      "usesCollection": "Insight",
+      "binding": "getStaticPaths + slug resolver + related insights"
     }
   ],
   "notes": [

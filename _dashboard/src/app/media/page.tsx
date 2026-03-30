@@ -51,45 +51,47 @@ export default function MediaPage() {
   return (
     <DashboardShell breadcrumbs={["Media"]}>
       <div className="container">
-        <div className="row" style={{ justifyContent: "space-between", marginBottom: 16 }}>
-          <h1 className="title" style={{ margin: 0 }}>
-            Media
-          </h1>
+        <div className="page-header">
+          <div>
+            <h1 className="title" style={{ margin: 0 }}>Media</h1>
+            <p className="muted" style={{ margin: "4px 0 0", fontSize: 13 }}>{items.length} file{items.length !== 1 ? "s" : ""}</p>
+          </div>
           <Link className="button secondary" href="/">
             Back
           </Link>
         </div>
 
-      <div className="card" style={{ marginBottom: 16 }}>
-        <label
-          className="button"
-          style={{
-            cursor: uploading ? "wait" : "pointer",
-            display: "inline-block",
-            opacity: uploading ? 0.7 : 1,
-          }}
-        >
-          <input type="file" onChange={onUpload} style={{ display: "none" }} accept="image/*" disabled={uploading} />
-          {uploading ? "Uploading..." : "Upload"}
-        </label>
-        {status ? <p className="muted" style={{ marginTop: 10 }}>{status}</p> : null}
-      </div>
+        <div className="card" style={{ marginBottom: 16 }}>
+          <label
+            className="button"
+            style={{
+              cursor: uploading ? "wait" : "pointer",
+              display: "inline-block",
+              opacity: uploading ? 0.7 : 1,
+            }}
+          >
+            <input type="file" onChange={onUpload} style={{ display: "none" }} accept="image/*" disabled={uploading} />
+            {uploading ? "Uploading..." : "Upload image"}
+          </label>
+          {status ? <p className="muted" style={{ marginTop: 10 }}>{status}</p> : null}
+        </div>
 
-      <div className="card">
-        <ul className="list">
-          {items.map((item) => (
-            <li key={item.name}>
-              <div className="row" style={{ justifyContent: "space-between" }}>
-                <span>{item.path}</span>
-                <button className="button secondary" onClick={() => copy(item.path)}>
-                  Copy path
-                </button>
+        {items.length === 0 ? (
+          <div className="card empty-state">
+            <h3>No media files</h3>
+            <p>Upload an image above to get started.</p>
+          </div>
+        ) : (
+          <div className="media-grid">
+            {items.map((item) => (
+              <div key={item.name} className="media-card" onClick={() => copy(item.path)} title="Click to copy path">
+                <img src={item.path} alt={item.name} loading="lazy" />
+                <div className="media-card-info">{item.name}</div>
               </div>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
+        )}
       </div>
-    </div>
     </DashboardShell>
   );
 }

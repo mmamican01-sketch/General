@@ -45,6 +45,25 @@ const productSchema = z.object({
   seo: seoSchema,
 }).passthrough();
 
+const insightSchema = z.object({
+  slug: z.string(),
+  title: z.string().optional(),
+  shortDescription: z.string().optional(),
+  coverImage: z.string().optional(),
+  body: z.string().optional(),
+  publishDate: z.string().optional(),
+  author: z.string().optional(),
+  readingTime: z.string().optional(),
+  category: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  seoTitle: z.string().optional(),
+  seoDescription: z.string().optional(),
+  ogImage: z.string().optional(),
+  ctaLabel: z.string().optional(),
+  ctaLink: z.string().optional(),
+  isPublished: z.boolean().optional(),
+}).passthrough();
+
 export async function GET(req: NextRequest) {
   try {
     const auth = await requireAuthApi();
@@ -110,7 +129,8 @@ export async function PUT(req: NextRequest) {
       if (!isSafeKey(collection) || !isSafeKey(slug)) {
         return NextResponse.json({ error: "Invalid collection/slug" }, { status: 400 });
       }
-      const parsed = productSchema.parse(body);
+      const schema = collection === "insights" ? insightSchema : productSchema;
+      const parsed = schema.parse(body);
       const filePath = toCollectionFilePath(collection, slug);
       await writeJsonFile(filePath, parsed);
       broadcastContentUpdated({ type: "collection", collection, slug, locale });

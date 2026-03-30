@@ -47,20 +47,23 @@ export default function PagesListPage() {
   return (
     <DashboardShell breadcrumbs={["Pages"]}>
       <div className="container">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-          <h1 className="title" style={{ margin: 0 }}>
-            Pages
-          </h1>
+        <div className="page-header">
+          <div>
+            <h1 className="title" style={{ margin: 0 }}>Pages</h1>
+            <p className="muted" style={{ margin: "4px 0 0", fontSize: 13 }}>Static page content slots</p>
+          </div>
           <Link className="button secondary" href="/">
             Back
           </Link>
         </div>
 
-        {error && <p style={{ color: "#b91c1c", marginBottom: 16 }}>{error}</p>}
+        {error && <p style={{ color: "var(--color-error)", marginBottom: 16 }}>{error}</p>}
 
         <div className="card" style={{ marginBottom: 16 }}>
+          <label className="field-label" htmlFor="new-page-key">Create new page</label>
           <div className="row">
             <input
+              id="new-page-key"
               className="input"
               placeholder="New page key (e.g. my-page)"
               value={newKey}
@@ -74,6 +77,11 @@ export default function PagesListPage() {
 
         {loading ? (
           <div className="card">Loading…</div>
+        ) : pages.length === 0 ? (
+          <div className="card empty-state">
+            <h3>No pages yet</h3>
+            <p>Create a page above to get started.</p>
+          </div>
         ) : (
           <div className="card">
             <ul className="list">

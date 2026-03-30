@@ -54,15 +54,15 @@ export default function CollectionItemEditor() {
     setStatus("saving");
     setError(null);
     try {
-      const res = await fetch(`/api/content?collection=${encodeURIComponent(collection)}&slug=${encodeURIComponent(slug)}&locale=en`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(doc),
-      });
+    const res = await fetch(`/api/content?collection=${encodeURIComponent(collection)}&slug=${encodeURIComponent(slug)}&locale=en`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(doc),
+    });
       const data = await res.json().catch(() => ({}));
-      if (res.ok) {
-        setStatus("saved");
-      } else {
+    if (res.ok) {
+      setStatus("saved");
+    } else {
         setStatus("unsaved");
         const errMsg = Array.isArray(data.error) ? data.error.join("; ") : (data.error || data.message || `Save failed (${res.status})`);
         setError(typeof errMsg === "string" ? errMsg : JSON.stringify(errMsg));

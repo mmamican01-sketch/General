@@ -172,6 +172,9 @@ export default function PageEditor() {
   const [slotsMeta, setSlotsMeta] = useState<SlotDef[]>([]);
   const [status, setStatus] = useState<"saved" | "unsaved" | "saving">("saved");
   const [loading, setLoading] = useState(true);
+  const [showPreview, setShowPreview] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [savedAt, setSavedAt] = useState<string>("");
 
   const previewPath = key === "index" ? "/en/" : `/en/${key.replace(/__/g, "/")}`;
   const previewUrl = `${getAstroSiteUrl()}${previewPath}`;
@@ -200,15 +203,25 @@ export default function PageEditor() {
   const save = useCallback(async () => {
     if (!doc || !key) return;
     setStatus("saving");
-    const res = await fetch(`/api/content?page=${encodeURIComponent(key)}&locale=en`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(doc),
-    });
-    if (res.ok) {
-      setStatus("saved");
-    } else {
+    setError(null);
+    try {
+      const res = await fetch(`/api/content?page=${encodeURIComponent(key)}&locale=en`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(doc),
+      });
+      if (res.ok) {
+        setStatus("saved");
+        setSavedAt(new Date().toLocaleTimeString());
+      } else {
+        const data = await res.json().catch(() => ({}));
+        const errMsg = Array.isArray(data.error) ? data.error.join("; ") : (data.error || data.message || `Save failed (${res.status})`);
+        setStatus("unsaved");
+        setError(typeof errMsg === "string" ? errMsg : JSON.stringify(errMsg));
+      }
+    } catch (err) {
       setStatus("unsaved");
+      setError(err instanceof Error ? err.message : "Save failed");
     }
   }, [doc, key]);
 
@@ -226,6 +239,7 @@ export default function PageEditor() {
       };
     });
     setStatus("unsaved");
+    setError(null);
   }, [slotsMeta]);
 
   const allSlotKeys = Array.from(
@@ -240,8 +254,8 @@ export default function PageEditor() {
       status={status}
       previewUrl={previewPath}
     >
-      <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
-        <div style={{ flex: "0 0 420px", overflow: "auto", borderRight: "1px solid var(--line)" }}>
+      <div className="editor-layout">
+        <div className="editor-form">
           <div className="container" style={{ padding: 24 }}>
             <div style={{ marginBottom: 16 }}>
               <Link className="button secondary" href="/pages">
@@ -253,15 +267,18 @@ export default function PageEditor() {
               <div className="card">Loading…</div>
             ) : doc ? (
               <>
+                {error && (
+                  <div className="save-error">{error}</div>
+                )}
                 <Tabs.Root defaultValue="content">
-                  <Tabs.List style={{ display: "flex", gap: 4, marginBottom: 16 }}>
-                    <Tabs.Trigger value="content" style={{ padding: "8px 16px", border: "1px solid var(--line)", background: "transparent", borderRadius: 6, cursor: "pointer" }}>
+                  <Tabs.List className="editor-tabs">
+                    <Tabs.Trigger value="content" className="editor-tab">
                       Content
                     </Tabs.Trigger>
-                    <Tabs.Trigger value="seo" style={{ padding: "8px 16px", border: "1px solid var(--line)", background: "transparent", borderRadius: 6, cursor: "pointer" }}>
+                    <Tabs.Trigger value="seo" className="editor-tab">
                       SEO
                     </Tabs.Trigger>
-                    <Tabs.Trigger value="media" style={{ padding: "8px 16px", border: "1px solid var(--line)", background: "transparent", borderRadius: 6, cursor: "pointer" }}>
+                    <Tabs.Trigger value="media" className="editor-tab">
                       Media
                     </Tabs.Trigger>
                   </Tabs.List>
@@ -290,27 +307,29 @@ export default function PageEditor() {
 
                   <Tabs.Content value="seo">
                     <div className="card" style={{ marginBottom: 16 }}>
-                      <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>Meta Title</label>
+                      <label className="field-label" htmlFor="page-seo-title">Meta Title</label>
                       <input
+                        id="page-seo-title"
                         className="input"
                         value={doc.seo?.title ?? ""}
-                        onChange={(e) => { setDoc((d) => d ? { ...d, seo: { ...d.seo, title: e.target.value } } : null); setStatus("unsaved"); }}
+                        onChange={(e) => { setDoc((d) => d ? { ...d, seo: { ...d.seo, title: e.target.value } } : null); setStatus("unsaved"); setError(null); }}
                       />
                     </div>
                     <div className="card" style={{ marginBottom: 16 }}>
-                      <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>Meta Description</label>
+                      <label className="field-label" htmlFor="page-seo-desc">Meta Description</label>
                       <textarea
+                        id="page-seo-desc"
                         className="textarea"
                         rows={3}
                         value={doc.seo?.description ?? ""}
-                        onChange={(e) => { setDoc((d) => d ? { ...d, seo: { ...d.seo, description: e.target.value } } : null); setStatus("unsaved"); }}
+                        onChange={(e) => { setDoc((d) => d ? { ...d, seo: { ...d.seo, description: e.target.value } } : null); setStatus("unsaved"); setError(null); }}
                       />
                     </div>
                     <div className="card" style={{ marginBottom: 16 }}>
-                      <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>OG Image</label>
+                      <label className="field-label">OG Image</label>
                       <MediaPicker
                         value={doc.seo?.image ?? ""}
-                        onChange={(v) => { setDoc((d) => d ? { ...d, seo: { ...d.seo, image: v } } : null); setStatus("unsaved"); }}
+                        onChange={(v) => { setDoc((d) => d ? { ...d, seo: { ...d.seo, image: v } } : null); setStatus("unsaved"); setError(null); }}
                       />
                     </div>
                   </Tabs.Content>
@@ -336,12 +355,27 @@ export default function PageEditor() {
                   </Tabs.Content>
                 </Tabs.Root>
 
-                <button className="button" onClick={save} style={{ marginTop: 16, width: "100%" }}>
-                  Save
+                <div className="editor-save">
+                  <button
+                    className={`button${status === "saving" ? " button-saving" : ""}`}
+                    onClick={save}
+                    disabled={status === "saving" || status === "saved"}
+                    style={{ width: "100%" }}
+                  >
+                    {status === "saving" ? "Saving…" : "Save"}
+                  </button>
+                  <p className="editor-note">
+                    التغييرات تُنشر على الموقع فقط عند الضغط على Save. بعد الحفظ، انتظر ~15 ثانية لإعادة البناء.
+                  </p>
+                  {savedAt && <p className="save-meta">Last saved at {savedAt}</p>}
+                </div>
+                <button
+                  type="button"
+                  className="button secondary preview-toggle"
+                  onClick={() => setShowPreview((v) => !v)}
+                >
+                  {showPreview ? "Hide Preview" : "Show Preview"}
                 </button>
-                <p style={{ fontSize: 11, color: "var(--muted)", marginTop: 8 }}>
-                  التغييرات تُنشر على الموقع فقط عند الضغط على Save. بعد الحفظ، انتظر ~15 ثانية لإعادة البناء.
-                </p>
               </>
             ) : (
               <div className="card">Failed to load page.</div>
@@ -349,8 +383,11 @@ export default function PageEditor() {
           </div>
         </div>
 
-        <div style={{ flex: 1, minWidth: 0, padding: 16 }}>
-          <LivePreview url={previewUrl} currentRoute={key} />
+        <div className="editor-preview" style={{ display: showPreview ? undefined : "none" }}>
+          <div className="preview-frame">
+            <div className="preview-header">Live Preview</div>
+            <LivePreview url={previewUrl} currentRoute={key} />
+          </div>
         </div>
       </div>
     </DashboardShell>

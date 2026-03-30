@@ -210,7 +210,7 @@ export default function PageEditor() {
                   </Tabs.Content>
 
                   <Tabs.Content value="seo">
-                    <div className="card" style={{ marginBottom: 16 }}>
+                  <div className="card" style={{ marginBottom: 16 }}>
                       <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>Meta Title</label>
                       <input
                         className="input"
@@ -233,7 +233,7 @@ export default function PageEditor() {
                         value={doc.seo?.image ?? ""}
                         onChange={(v) => { setDoc((d) => d ? { ...d, seo: { ...d.seo, image: v } } : null); setStatus("unsaved"); }}
                       />
-                    </div>
+                  </div>
                   </Tabs.Content>
 
                   <Tabs.Content value="media">

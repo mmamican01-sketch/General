@@ -3,14 +3,26 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search } from "lucide-react";
+import { Search, ChevronsLeft, ChevronsRight, X } from "lucide-react";
 
 type PageItem = { key: string; path: string };
 type CollectionItem = { slug: string; file: string };
 type Collection = { collection: string; route: string; items: CollectionItem[] };
 type IndexData = { pages?: PageItem[]; collections?: Collection[] };
 
-export function SidebarNav() {
+type SidebarNavProps = {
+  collapsed?: boolean;
+  onToggle?: () => void;
+  isOverlay?: boolean;
+  onClose?: () => void;
+};
+
+export function SidebarNav({
+  collapsed = false,
+  onToggle,
+  isOverlay = false,
+  onClose,
+}: SidebarNavProps) {
   const pathname = usePathname();
   const [index, setIndex] = useState<IndexData | null>(null);
   const [search, setSearch] = useState("");
@@ -39,183 +51,225 @@ export function SidebarNav() {
     setExpanded((e) => ({ ...e, [key]: !e[key] }));
   };
 
-  return (
-    <aside
-      style={{
-        width: 260,
-        borderRight: "1px solid var(--line)",
-        background: "var(--card)",
-        padding: "16px 0",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <Link href="/" style={{ padding: "0 20px 16px", display: "block", fontWeight: 600, fontSize: 18 }}>
-        AFGT Dashboard
-      </Link>
+  const isRail = collapsed && !isOverlay;
 
-      <div style={{ padding: "0 20px 12px" }}>
-        <div style={{ position: "relative" }}>
-          <Search size={16} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "var(--muted)" }} />
-          <input
-            type="search"
-            placeholder="Search..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "8px 12px 8px 36px",
-              border: "1px solid var(--line)",
-              borderRadius: "var(--radius)",
-              fontSize: 13,
-              background: "var(--bg)",
-            }}
-          />
-        </div>
+  const sidebarClass = [
+    "sidebar",
+    isRail ? "sidebar-collapsed" : "",
+    isOverlay ? "sidebar-overlay" : "",
+  ].filter(Boolean).join(" ");
+
+  const handleNavClick = () => {
+    if (isOverlay && onClose) onClose();
+  };
+
+  return (
+    <aside className={sidebarClass}>
+      <div style={{ padding: "0 12px 16px", display: "flex", alignItems: "center", justifyContent: isRail ? "center" : "space-between" }}>
+        {isRail ? (
+          <button
+            type="button"
+            className="sidebar-collapse-btn"
+            onClick={onToggle}
+            title="Expand sidebar"
+            aria-label="Expand sidebar"
+          >
+            <ChevronsRight size={16} />
+          </button>
+        ) : (
+          <>
+            <Link href="/" style={{ fontWeight: 600, fontSize: 18, padding: "0 8px" }} onClick={handleNavClick}>
+              AFGT Dashboard
+            </Link>
+            {isOverlay ? (
+              <button
+                type="button"
+                className="sidebar-collapse-btn"
+                onClick={onClose}
+                title="Close"
+                aria-label="Close navigation"
+              >
+                <X size={16} />
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="sidebar-collapse-btn"
+                onClick={onToggle}
+                title="Collapse sidebar"
+                aria-label="Collapse sidebar"
+              >
+                <ChevronsLeft size={16} />
+              </button>
+            )}
+          </>
+        )}
       </div>
 
-      <div style={{ flex: 1, overflow: "auto" }}>
-        <div style={{ marginBottom: 16 }}>
-          <div style={{ padding: "4px 20px", fontSize: 11, color: "var(--muted)", textTransform: "uppercase" }}>
-            Content
+      {!isRail && (
+        <div style={{ padding: "0 20px 12px" }}>
+          <div style={{ position: "relative" }}>
+            <Search size={16} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "var(--muted)" }} />
+            <input
+              type="search"
+              placeholder="Search..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: "100%",
+                minHeight: 44,
+                padding: "8px 12px 8px 36px",
+                border: "1px solid var(--line)",
+                borderRadius: "var(--radius)",
+                fontSize: 13,
+                background: "var(--bg)",
+              }}
+            />
           </div>
-          <Link
-            href="/pages"
-            style={{
-              display: "block",
-              padding: "8px 20px",
-              fontSize: 14,
-              color: isActive("/pages") ? "var(--brand)" : "var(--text)",
-              background: isActive("/pages") ? "rgba(17,24,39,0.06)" : "transparent",
-            }}
-          >
-            Pages
-          </Link>
-          {pages.length > 0 && (
-            <div style={{ paddingLeft: 12 }}>
-              {pages.slice(0, 8).map((p) => (
-                <Link
-                  key={p.key}
-                  href={`/pages/${p.key}`}
-                  style={{
-                    display: "block",
-                    padding: "6px 12px",
-                    fontSize: 13,
-                    color: isActive(`/pages/${p.key}`) ? "var(--brand)" : "var(--muted)",
-                    background: isActive(`/pages/${p.key}`) ? "rgba(17,24,39,0.06)" : "transparent",
-                  }}
-                >
-                  {p.key}
-                </Link>
-              ))}
-              {pages.length > 8 && (
-                <div style={{ padding: "4px 12px", fontSize: 12, color: "var(--muted)" }}>
-                  +{pages.length - 8} more
+        </div>
+      )}
+
+      <div style={{ flex: 1, overflow: "auto" }}>
+        {isRail ? (
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, padding: "4px 0" }}>
+            <Link
+              href="/pages"
+              className="sidebar-link"
+              data-active={isActive("/pages").toString()}
+              title="Pages"
+              onClick={handleNavClick}
+            >
+              P
+            </Link>
+            <Link
+              href="/collections"
+              className="sidebar-link"
+              data-active={isActive("/collections").toString()}
+              title="Collections"
+              onClick={handleNavClick}
+            >
+              C
+            </Link>
+            <Link
+              href="/globals"
+              className="sidebar-link"
+              data-active={isActive("/globals").toString()}
+              title="Globals"
+              onClick={handleNavClick}
+            >
+              G
+            </Link>
+            <Link
+              href="/media"
+              className="sidebar-link"
+              data-active={isActive("/media").toString()}
+              title="Media"
+              onClick={handleNavClick}
+            >
+              M
+            </Link>
+          </div>
+        ) : (
+          <>
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ padding: "4px 20px", fontSize: 11, color: "var(--muted)", textTransform: "uppercase" }}>
+                Content
+              </div>
+              <Link
+                href="/pages"
+                className="sidebar-link"
+                data-active={isActive("/pages").toString()}
+                onClick={handleNavClick}
+              >
+                Pages
+              </Link>
+              {pages.length > 0 && (
+                <div style={{ paddingLeft: 12 }}>
+                  {pages.slice(0, 8).map((p) => (
+                    <Link
+                      key={p.key}
+                      href={`/pages/${p.key}`}
+                      className="sidebar-sub"
+                      data-active={isActive(`/pages/${p.key}`).toString()}
+                      onClick={handleNavClick}
+                    >
+                      {p.key}
+                    </Link>
+                  ))}
+                  {pages.length > 8 && (
+                    <div style={{ padding: "4px 12px", fontSize: 12, color: "var(--muted)" }}>
+                      +{pages.length - 8} more
+                    </div>
+                  )}
                 </div>
               )}
             </div>
-          )}
-        </div>
 
-        <div style={{ marginBottom: 16 }}>
-          <button
-            type="button"
-            onClick={() => toggle("collections")}
-            style={{
-              width: "100%",
-              padding: "8px 20px",
-              fontSize: 14,
-              textAlign: "left",
-              border: "none",
-              background: "transparent",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              gap: 6,
-              color: "var(--text)",
-            }}
-          >
-            <span style={{ fontSize: 10 }}>{expanded.collections ? "▼" : "▶"}</span>
-            Collections
-          </button>
-          {expanded.collections &&
-            collections.map((c) => {
-              const collKey = `coll-${c.collection}`;
-              const isCollExpanded = expanded[collKey] ?? true;
-              const filteredItems = c.items.filter((i) => matchesSearch(i.slug));
-              return (
-                <div key={c.collection} style={{ marginLeft: 12 }}>
-                  <button
-                    type="button"
-                    onClick={() => toggle(collKey)}
-                    style={{
-                      width: "100%",
-                      padding: "6px 12px",
-                      fontSize: 13,
-                      textAlign: "left",
-                      border: "none",
-                      background: "transparent",
-                      cursor: "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 6,
-                      color: "var(--muted)",
-                      fontWeight: 500,
-                    }}
-                  >
-                    <span style={{ fontSize: 10 }}>{isCollExpanded ? "▼" : "▶"}</span>
-                    {c.collection}
-                  </button>
-                  {isCollExpanded &&
-                    filteredItems.map((item) => (
-                      <Link
-                        key={item.slug}
-                        href={`/collections/${c.collection}/${item.slug}`}
-                        style={{
-                          display: "block",
-                          padding: "6px 12px 6px 24px",
-                          fontSize: 13,
-                          color: isActive(`/collections/${c.collection}/${item.slug}`) ? "var(--brand)" : "var(--muted)",
-                          background: isActive(`/collections/${c.collection}/${item.slug}`) ? "rgba(17,24,39,0.06)" : "transparent",
-                        }}
+            <div style={{ marginBottom: 16 }}>
+              <button
+                type="button"
+                onClick={() => toggle("collections")}
+                className="sidebar-toggle"
+              >
+                <span style={{ fontSize: 10 }}>{expanded.collections ? "▼" : "▶"}</span>
+                Collections
+              </button>
+              {expanded.collections &&
+                collections.map((c) => {
+                  const collKey = `coll-${c.collection}`;
+                  const isCollExpanded = expanded[collKey] ?? true;
+                  const filteredItems = c.items.filter((i) => matchesSearch(i.slug));
+                  return (
+                    <div key={c.collection} style={{ marginLeft: 12 }}>
+                      <button
+                        type="button"
+                        onClick={() => toggle(collKey)}
+                        className="sidebar-coll-toggle"
                       >
-                        {item.slug}
-                      </Link>
-                    ))}
-                </div>
-              );
-            })}
-        </div>
+                        <span style={{ fontSize: 10 }}>{isCollExpanded ? "▼" : "▶"}</span>
+                        {c.collection}
+                      </button>
+                      {isCollExpanded &&
+                        filteredItems.map((item) => (
+                          <Link
+                            key={item.slug}
+                            href={`/collections/${c.collection}/${item.slug}`}
+                            className="sidebar-sub"
+                            data-active={isActive(`/collections/${c.collection}/${item.slug}`).toString()}
+                            style={{ paddingLeft: 24 }}
+                            onClick={handleNavClick}
+                          >
+                            {item.slug}
+                          </Link>
+                        ))}
+                    </div>
+                  );
+                })}
+            </div>
 
-        <div style={{ marginBottom: 16 }}>
-          <div style={{ padding: "4px 20px", fontSize: 11, color: "var(--muted)", textTransform: "uppercase" }}>
-            Settings
-          </div>
-          <Link
-            href="/globals"
-            style={{
-              display: "block",
-              padding: "8px 20px",
-              fontSize: 14,
-              color: isActive("/globals") ? "var(--brand)" : "var(--text)",
-              background: isActive("/globals") ? "rgba(17,24,39,0.06)" : "transparent",
-            }}
-          >
-            Globals
-          </Link>
-          <Link
-            href="/media"
-            style={{
-              display: "block",
-              padding: "8px 20px",
-              fontSize: 14,
-              color: isActive("/media") ? "var(--brand)" : "var(--text)",
-              background: isActive("/media") ? "rgba(17,24,39,0.06)" : "transparent",
-            }}
-          >
-            Media
-          </Link>
-        </div>
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ padding: "4px 20px", fontSize: 11, color: "var(--muted)", textTransform: "uppercase" }}>
+                Settings
+              </div>
+              <Link
+                href="/globals"
+                className="sidebar-link"
+                data-active={isActive("/globals").toString()}
+                onClick={handleNavClick}
+              >
+                Globals
+              </Link>
+              <Link
+                href="/media"
+                className="sidebar-link"
+                data-active={isActive("/media").toString()}
+                onClick={handleNavClick}
+              >
+                Media
+              </Link>
+            </div>
+          </>
+        )}
       </div>
     </aside>
   );

@@ -1,0 +1,254 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import InsightCard from "../../components/InsightCard.astro";
+import { loadAllInsights } from "../../lib/contentStore";
+import { withBase } from "../../lib/url";
+
+const INSIGHTS_PER_PAGE = 6;
+
+const allInsights = loadAllInsights();
+const totalPages = Math.max(1, Math.ceil(allInsights.length / INSIGHTS_PER_PAGE));
+const insights = allInsights.slice(0, INSIGHTS_PER_PAGE);
+
+const pageTitle = "Market Insights | Institutional Commodity Intelligence — ALFArhan";
+const pageDescription =
+  "Institutional market insights from AFGT covering commodity trends, trade structures, and global market signals.";
+
+// Serialise all insights for client-side search — escape </script> to be safe
+const insightsJson = JSON.stringify(
+  allInsights.map((i) => ({
+    slug: i.slug,
+    title: i.title ?? "",
+    shortDescription: i.shortDescription ?? "",
+    category: i.category ?? "",
+    publishDate: i.publishDate ?? "",
+    coverImage: i.coverImage ?? "",
+    tags: i.tags ?? [],
+  }))
+).replace(/<\/script>/gi, "<\\/script>");
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} locale="en" currentPath="insights">
+  <link slot="head" rel="alternate" type="application/rss+xml" title="AFGT Market Insights RSS" href={withBase("/en/insights/rss.xml")} />
+
+  <div class="w-full">
+    <!-- Page header + search -->
+    <section class="w-full section-white pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24">
+      <div class="max-w-[1140px] mx-auto px-8">
+        <h1
+          class="text-3xl sm:text-4xl lg:text-6xl mb-4 sm:mb-6 text-[#2c2c2c]"
+          style="font-family: Cormorant Garamond, serif; font-weight: 400;"
+        >
+          Market Insights
+        </h1>
+        <p class="text-lg text-[#5c5c5c] max-w-3xl mb-8" style="font-family: Inter, sans-serif">
+          Strategic commentary and institutional perspectives across global commodity markets.
+        </p>
+
+        <!-- Search input -->
+        <div class="max-w-md">
+          <div class="relative">
+            <input
+              id="insights-search"
+              type="search"
+              placeholder="Search insights…"
+              autocomplete="off"
+              aria-label="Search market insights"
+              class="w-full border border-[#d4d4d4] bg-white text-[#2c2c2c] px-4 py-2.5 pr-10 text-sm focus:outline-none focus:border-[#2c2c2c] transition-colors"
+              style="font-family: Inter, sans-serif"
+            />
+            <svg
+              class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5c5c5c]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="8" stroke-width="2"></circle>
+              <path d="m21 21-4.3-4.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              ></path>
+            </svg>
+          </div>
+          <p
+            id="search-status"
+            class="text-xs text-[#5c5c5c] mt-2"
+            style="font-family: Inter, sans-serif; min-height: 1.2em;"
+            aria-live="polite"
+          ></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid + pagination -->
+    <section
+      class="w-full bg-[var(--bg-section)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-24 lg:pb-24 mt-12 sm:mt-16 lg:mt-24"
+    >
+      <div class="max-w-[1140px] mx-auto px-8">
+
+        <!-- Normal paginated grid (hidden when search is active) -->
+        <div id="insights-grid">
+          {insights.length === 0 ? (
+            <div class="section-white p-8 sm:p-10 text-center">
+              <h2
+                class="text-2xl sm:text-3xl text-[#2c2c2c] mb-4"
+                style="font-family: Cormorant Garamond, serif; font-weight: 400;"
+              >
+                Insights will be published soon
+              </h2>
+              <p class="text-base text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+                New institutional insights are being prepared and will appear here once published.
+              </p>
+            </div>
+          ) : (
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+              {insights.map((item) => (
+                <InsightCard
+                  title={item.title}
+                  slug={item.slug}
+                  shortDescription={item.shortDescription}
+                  coverImage={item.coverImage}
+                  publishDate={item.publishDate}
+                  category={item.category}
+                />
+              ))}
+            </div>
+          )}
+
+          <!-- Pagination nav (only appears when there are multiple pages) -->
+          {totalPages > 1 && (
+            <nav
+              aria-label="Pagination"
+              class="flex justify-center items-center gap-8 mt-12 pt-8 border-t border-[#e7e7e7]"
+              style="font-family: Inter, sans-serif"
+            >
+              <span class="text-sm text-[#5c5c5c]">Page 1 of {totalPages}</span>
+              <a
+                href={withBase("/en/insights/page/2")}
+                class="text-sm text-[#2c2c2c] hover:underline transition-colors"
+              >
+                Next →
+              </a>
+            </nav>
+          )}
+        </div>
+
+        <!-- Search results container (shown when search is active) -->
+        <div id="search-results" style="display:none;" aria-live="polite">
+          <div
+            id="search-results-grid"
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10"
+          ></div>
+          <div
+            id="search-no-results"
+            class="section-white p-8 sm:p-10 text-center"
+            style="display:none;"
+          >
+            <p class="text-base text-[#5c5c5c]" style="font-family: Inter, sans-serif">
+              No insights found matching your search.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- All-insights JSON for client-side search -->
+  <script id="all-insights-data" type="application/json" set:html={insightsJson}></script>
+  <!-- Base URL for constructing hrefs in JS -->
+  <div id="insights-base-meta" data-url={withBase("/en/insights")} style="display:none;"></div>
+
+  <script>
+    (function () {
+      const searchInput = document.getElementById("insights-search") as HTMLInputElement | null;
+      const insightsGrid = document.getElementById("insights-grid");
+      const searchResults = document.getElementById("search-results");
+      const searchResultsGrid = document.getElementById("search-results-grid");
+      const searchNoResults = document.getElementById("search-no-results");
+      const searchStatus = document.getElementById("search-status");
+      const baseMeta = document.getElementById("insights-base-meta") as HTMLElement | null;
+      const dataEl = document.getElementById("all-insights-data");
+
+      if (!searchInput || !insightsGrid || !searchResults || !searchResultsGrid || !dataEl) return;
+
+      interface InsightSummary {
+        slug: string;
+        title: string;
+        shortDescription: string;
+        category: string;
+        publishDate: string;
+        coverImage: string;
+        tags: string[];
+      }
+
+      const allInsights: InsightSummary[] = JSON.parse(dataEl.textContent || "[]");
+      const baseUrl = (baseMeta as HTMLElement | null)?.dataset?.url || "/en/insights";
+
+      function formatDate(ds: string): string {
+        if (!ds) return "";
+        const d = new Date(ds);
+        if (isNaN(d.getTime())) return "";
+        return d.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
+      }
+
+      function escAttr(s: string): string {
+        return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      }
+
+      function buildCard(item: InsightSummary): string {
+        const href = `${baseUrl}/${item.slug}`;
+        const date = formatDate(item.publishDate);
+        const img = item.coverImage || "/assets/figma/media-default.svg";
+        return `<a href="${escAttr(href)}" class="group block section-white p-5 sm:p-6 hover:shadow-sm transition-shadow">
+  <div class="w-full aspect-[16/9] overflow-hidden bg-gray-300 mb-4">
+    <img src="${escAttr(img)}" alt="${escAttr(item.title)}" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" loading="lazy" decoding="async">
+  </div>
+  <div class="flex items-center gap-3 text-xs text-[#5c5c5c] mb-3" style="font-family:Inter,sans-serif">
+    <span>${date}</span><span aria-hidden="true">•</span><span>${escAttr(item.category || "Trade Insights")}</span>
+  </div>
+  <h2 class="text-2xl mb-3 text-[#2c2c2c] group-hover:underline" style="font-family:Cormorant Garamond,serif;font-weight:400">${escAttr(item.title || "Untitled Insight")}</h2>
+  <p class="text-base text-[#5c5c5c] leading-relaxed" style="font-family:Inter,sans-serif">${escAttr(item.shortDescription || "Read the full market insight.")}</p>
+</a>`;
+      }
+
+      function doSearch(query: string): void {
+        const q = query.trim();
+        if (!q) {
+          insightsGrid!.style.display = "";
+          searchResults!.style.display = "none";
+          if (searchStatus) searchStatus.textContent = "";
+          return;
+        }
+        const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+        const matched = allInsights.filter((item) => {
+          const haystack = [item.title, item.shortDescription, item.category, ...item.tags]
+            .join(" ")
+            .toLowerCase();
+          return terms.every((term) => haystack.includes(term));
+        });
+
+        insightsGrid!.style.display = "none";
+        searchResults!.style.display = "";
+
+        if (matched.length === 0) {
+          searchResultsGrid!.innerHTML = "";
+          searchNoResults!.style.display = "";
+          if (searchStatus) searchStatus.textContent = "No results found.";
+        } else {
+          searchResultsGrid!.innerHTML = matched.map(buildCard).join("");
+          searchNoResults!.style.display = "none";
+          if (searchStatus)
+            searchStatus.textContent = `${matched.length} insight${matched.length === 1 ? "" : "s"} found`;
+        }
+      }
+
+      let debounceTimer: number;
+      searchInput.addEventListener("input", (e) => {
+        clearTimeout(debounceTimer);
+        debounceTimer = window.setTimeout(() => {
+          doSearch((e.target as HTMLInputElement).value);
+        }, 250);
+      });
+    })();
+  </script>
+</BaseLayout>

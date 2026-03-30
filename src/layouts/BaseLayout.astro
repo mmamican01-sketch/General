@@ -2,7 +2,7 @@
 import "../styles/index.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { normalizeUrl } from "../lib/seo";
+import { normalizeUrl, toAbsoluteAssetUrl } from "../lib/seo";
 import { withBase } from "../lib/url";
 
 const {
@@ -10,6 +10,8 @@ const {
   locale,
   currentPath = "",
   description = "AL Farhan General Trading Co — institutional commodity trading.",
+  ogImage = "",
+  ogType = "website",
 } = Astro.props;
 
 if (!locale) {
@@ -41,10 +43,12 @@ const arHref = normalizeUrl(Astro.site, arPath);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="AL Farhan General Trading Co" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
+    {ogImage ? <meta property="og:image" content={toAbsoluteAssetUrl(Astro.site, ogImage)} /> : null}
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    {ogImage ? <meta name="twitter:image" content={toAbsoluteAssetUrl(Astro.site, ogImage)} /> : null}
     <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <link rel="icon" href={withBase("/favicon.ico")} />
     <link rel="preconnect" href="https://player.vimeo.com" />
@@ -54,6 +58,7 @@ const arHref = normalizeUrl(Astro.site, arPath);
     <link rel="alternate" hreflang="en" href={enHref} />
     <link rel="alternate" hreflang="ar" href={arHref} />
     <link rel="alternate" hreflang="x-default" href={normalizeUrl(Astro.site, "/en")} />
+    <slot name="head" />
   </head>
   <body class="min-h-screen">
     <Header locale={locale} currentPath={currentPath} />
