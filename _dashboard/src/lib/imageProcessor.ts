@@ -74,15 +74,15 @@ export async function processImage(
   publicUrl: string
 ): Promise<ProcessedImageMeta | null> {
   if (!isSupportedImage(originalName)) return null;
-  let meta: Awaited<ReturnType<typeof sharp.metadata>>;
   let width: number;
   let height: number;
+  let format: string | undefined;
 
   try {
-    const pipeline = sharp(absPath);
-    meta = await pipeline.metadata();
+    const meta = await sharp(absPath).metadata();
     width = meta.width ?? 0;
     height = meta.height ?? 0;
+    format = meta.format;
 
     if (width > MAX_DIMENSION || height > MAX_DIMENSION) {
       return null;
@@ -130,7 +130,7 @@ export async function processImage(
     variants,
     width,
     height,
-    mimeType: `image/${meta.format ?? "jpeg"}`,
+    mimeType: `image/${format ?? "jpeg"}`,
     fileSize: stats.size,
   };
 }
