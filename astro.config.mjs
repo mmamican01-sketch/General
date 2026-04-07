@@ -23,17 +23,16 @@ function watchContentStore() {
 }
 
 // https://astro.build/config
-// Set GITHUB_PAGES=1 when deploying to GitHub Pages (https://username.github.io/General/)
-const isGitHubPages = process.env.GITHUB_PAGES === '1';
 export default defineConfig({
   output: 'static',
-  base: isGitHubPages ? '/General/' : '/',
-  site: isGitHubPages ? 'https://mmamican01-sketch.github.io' : 'https://general-gjpn.vercel.app',
+  // Hostinger VPS deployment expects the site to be served from the domain root.
+  base: '/',
+  site: 'https://afgtglobal.com',
   vite: {
     plugins: [tailwindcss(), watchContentStore()]
   },
   redirects: {
-    '/': isGitHubPages ? '/General/en/' : '/en/'
+    '/': '/en/'
   }
 });
 
