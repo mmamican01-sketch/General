@@ -9,7 +9,7 @@ export function triggerRebuild(): void {
 
   const isWin = process.platform === "win32";
   const cmd = isWin ? "npm.cmd" : "npm";
-  const args = ["run", "build"];
+  const args = ["run", "build:publish"];
 
   const proc = spawn(cmd, args, {
     cwd: ASTRO_ROOT,
