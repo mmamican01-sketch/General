@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { DashboardShell } from "@/components/DashboardShell";
+import { getAstroSiteUrl } from "@/lib/astro-url";
 
 type MediaItem = { name: string; path: string };
 
@@ -85,7 +86,7 @@ export default function MediaPage() {
           <div className="media-grid">
             {items.map((item) => (
               <div key={item.name} className="media-card" onClick={() => copy(item.path)} title="Click to copy path">
-                <img src={item.path} alt={item.name} loading="lazy" />
+                <img src={item.path.startsWith("/") ? `${getAstroSiteUrl()}${item.path}` : item.path} alt={item.name} loading="lazy" />
                 <div className="media-card-info">{item.name}</div>
               </div>
             ))}
